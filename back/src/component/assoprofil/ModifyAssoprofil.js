@@ -12,7 +12,6 @@ class ModifyNewAssoprofil extends Component {
         this.getAssoprofil();
     }
     handleChange = (e) => {
-        console.log(e.target.value,e.target.name)
         this.setState({ modifyInputValue:{...this.state.modifyInputValue,
             [e.target.name] : e.target.value,} });
     };
