@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Saisie from '../Input'
+import Input from '../Input'
 import Checkbox from '../Checkbox'
 
 class AddNewAssoprofil extends Component {
@@ -41,7 +41,7 @@ class AddNewAssoprofil extends Component {
       .post("http://localhost:3002/assoprofil", this.state.addInputValue)
       .then(this.setState({}))
      .then(window.history.back() );
-    alert("Association ajouté !")
+    alert("Association ajoutée !")
   };
 
   render() {
@@ -50,7 +50,7 @@ class AddNewAssoprofil extends Component {
         <form onSubmit={this.submitNewAssoprofil}>
 
           <fieldset><legend>Ajouter une association</legend></fieldset>
-          <Saisie name="name" label="Nom*" value={this.state.addInputValue.name} handleChange={this.handleChange} isRequired={"required"} />
+          <Input name="name" label="Nom*" value={this.state.addInputValue.name} handleChange={this.handleChange} isRequired={"required"} />
           <div className="form-group">
             <label class="control-label">Description*</label>
             <textarea
@@ -63,14 +63,14 @@ class AddNewAssoprofil extends Component {
               required
             />
           </div>
-          <Saisie name="address" label="Adresse" value={this.state.addInputValue.address} handleChange={this.handleChange} isRequired={false} />
-          <Saisie name="social_network_url_1" label="Social 1" value={this.state.addInputValue.social_network_url_1} handleChange={this.handleChange} isRequired={false} />
-          <Saisie name="social_network_url_2" label="Social 2" value={this.state.addInputValue.social_network_url_2} handleChange={this.handleChange} isRequired={false} />
-          <Saisie name="social_network_url_3" label="Social 3" value={this.state.addInputValue.social_network_url_3} handleChange={this.handleChange} isRequired={false} />
-          <Saisie name="phone_number" label="Téléphone" value={this.state.addInputValue.phone_number} handleChange={this.handleChange} isRequired={false} />
-          <Saisie name="logo" label="Logo" value={this.state.addInputValue.logo} handleChange={this.handleChange} isRequired={false} />
-          <Saisie name="web_site" label="Site Internet" value={this.state.addInputValue.web_site} handleChange={this.handleChange} isRequired={false} />
-          <Saisie name="mail" label="Adresse mail" value={this.state.addInputValue.mail} handleChange={this.handleChange} isRequired={false} />
+          <Input name="address" label="Adresse" value={this.state.addInputValue.address} handleChange={this.handleChange} isRequired={false} />
+          <Input name="social_network_url_1" label="Social 1" value={this.state.addInputValue.social_network_url_1} handleChange={this.handleChange} isRequired={false} />
+          <Input name="social_network_url_2" label="Social 2" value={this.state.addInputValue.social_network_url_2} handleChange={this.handleChange} isRequired={false} />
+          <Input name="social_network_url_3" label="Social 3" value={this.state.addInputValue.social_network_url_3} handleChange={this.handleChange} isRequired={false} />
+          <Input name="phone_number" label="Téléphone" value={this.state.addInputValue.phone_number} handleChange={this.handleChange} isRequired={false} />
+          <Input name="logo" label="Logo" value={this.state.addInputValue.logo} handleChange={this.handleChange} isRequired={false} />
+          <Input name="web_site" label="Site Internet" value={this.state.addInputValue.web_site} handleChange={this.handleChange} isRequired={false} />
+          <Input name="mail" label="Adresse mail" value={this.state.addInputValue.mail} handleChange={this.handleChange} isRequired={false} />
 
           <label class="control-label">Departement* </label>
           <select required name="departements_id" onChange={this.handleChange} value={this.state.addInputValue.departements_id}>
@@ -78,7 +78,7 @@ class AddNewAssoprofil extends Component {
             <option name="departements_id" value="1">75 Paris</option>
             <option name="departements_id" value="2">92 Hauts-de-Seine</option>
           </select>
-          <Checkbox name="actions" title="Actions" options={this.state.actionsOptions} selectedOptions={this.state.addInputValue.actions||[]} handleChange={this.handleActionsCheckBox} isRequired={false} />
+          <Checkbox name="actions" title="Actions" options={this.state.actionsOptions} selectedOptions={this.state.addInputValue.actions} handleChange={this.handleActionsCheckBox} isRequired={false} />
           <div><button type="submit">Submit</button></div>
         </form>
       </div>
