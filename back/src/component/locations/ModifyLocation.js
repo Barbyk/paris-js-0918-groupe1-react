@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Input from '../Input';
-//import "./ModifyLocation.css"
 
 export default class ModifyLocation extends Component {
 
