@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Input from '../Input';
+import {Link} from "react-router-dom"
 
 export default class ModifyLocation extends Component {
 
@@ -57,6 +58,7 @@ export default class ModifyLocation extends Component {
 
                     <div><button type="submit">Soumettre</button></div>
                 </form>
+                <Link to ={"/locations"}><button>Retour liste des lieux</button></Link>
             </div>
         )
     }

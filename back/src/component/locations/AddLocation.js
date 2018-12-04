@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import Input from '../Input'
+import {Link} from "react-router-dom"
 
 export default class AddLocation extends Component {
 
@@ -38,6 +39,7 @@ export default class AddLocation extends Component {
                     <Input name="departements_id" label="Département*" value={this.state.addInputValue.departements_id} handleChange={this.handleChange} isRequired={"required"} />
                     <div><button type="submit">Submit</button></div>
                 </form>
+                <Link to ={"/locations"}><button>Retour liste des lieux</button></Link>
             </div>
         )
     }
