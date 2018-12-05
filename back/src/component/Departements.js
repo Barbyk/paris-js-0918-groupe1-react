@@ -1,9 +1,9 @@
 import React  from 'react';
-const Departements= ({handleChange,departements_id})=>{
+const Departements= ({handleChange,value})=>{
     return (
         <div className="form-group">
                 <label class="control-label">Departement* </label>
-                    <select required name="departements_id" onChange={handleChange} value={departements_id}>
+                    <select required name="departements_id" onChange={handleChange} value={value}>
                         <option name="departements_id" value="">Sélectionner le dépt.</option>
                         <option name="departements_id" value="1">75 Paris</option>
                         <option name="departements_id" value="2">77 Seine-et-Marne</option>
