@@ -2,7 +2,7 @@ import React  from 'react';
 const Input= ({label, name, value, handleChange, isRequired})=>{
     return (
         <div className="form-group">
-                <label className="control-label">{label}</label>
+                <label class="control-label">{label}</label>
                 <input
                     className="form-control"
                     type="text"

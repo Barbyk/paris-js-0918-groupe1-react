@@ -6,6 +6,9 @@ import Assoprofil from "./component/assoprofil/Assoprofil"
 import AddArticle from "./component/News/AddArticle";
 import ModifArticle from "./component/News/ModifArticle"
 import Articles from "./component/News/Articles"
+import Locations from "./component/locations/Locations";
+import AddLocation from "./component/locations/AddLocation";
+import ModifyLocation from "./component/locations/ModifyLocation";
 import Button from '@material-ui/core/Button';
 
 
@@ -23,6 +26,10 @@ class App extends Component {
           <Route exact path="/addArticle" component={AddArticle} />
           <Route path="/modifArticle/:id" component={ModifArticle} />
           <Route path="/articles/" component={Articles} />
+          <Route path="/locations" component={Locations} />
+          <Route path="/addNewLocation" component={AddLocation} />
+          <Route path="/modifyLocation/:id" component={ModifyLocation} />
+
         </Switch>
        
       </div>

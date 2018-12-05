@@ -2,7 +2,7 @@ import React  from 'react';
 
 const CheckBox = (props) => {
     return( <div>
-    <label htmlFor={props.name} className="form-label">{props.title}</label>
+    <label for={props.name} className="form-label">{props.title}</label>
     <div className="checkbox-group">
       {props.options.map((option,index) => {
         return (
@@ -10,7 +10,7 @@ const CheckBox = (props) => {
             <input
               className="form-checkbox"
               id = {props.name}
-              name={index+1}
+              name={index}
               onChange={props.handleChange}
               value={option}
               checked={ props.selectedOptions.indexOf(index.toString()) > -1 }
