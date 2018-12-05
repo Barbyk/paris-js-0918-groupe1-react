@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./ModifyAssoprofil.css"
 import Input from '../Input'
+import Departements from '../Departements'
 
 class ModifyNewAssoprofil extends Component {
     state = {
@@ -64,13 +65,8 @@ class ModifyNewAssoprofil extends Component {
                 <Input name="logo" label="Logo" value={this.state.modifyInputValue.logo} handleChange={this.handleChange} isRequired={false}/>
                 <Input name="web_site" label="Site Internet" value={this.state.modifyInputValue.web_site} handleChange={this.handleChange} isRequired={false}/>
                 <Input name="mail" label="Adresse mail" value={this.state.modifyInputValue.mail} handleChange={this.handleChange} isRequired={false}/>
+               <Departements value={this.state.modifyInputValue.departements_id} handleChange={this.handleChange}/>
 
-                    <label class="control-label">Departement* </label>
-                    <select required name="departements_id" onChange={this.handleChange} value={this.state.modifyInputValue.departements_id}>
-                        <option name="departements_id" value="">Sélectionner le dépt.</option>
-                        <option name="departements_id" value="1">75 Paris</option>
-                        <option name="departements_id" value="2">92 Hauts-de-Seine</option>
-                    </select>
 
                     <div><button type="submit">Soumettre</button></div>
                 </form>

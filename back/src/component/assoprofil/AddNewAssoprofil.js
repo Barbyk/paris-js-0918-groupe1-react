@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Input from '../Input'
 import Checkbox from '../Checkbox'
+import Departements from '../Departements'
 
 class AddNewAssoprofil extends Component {
   state = {
@@ -71,13 +72,8 @@ class AddNewAssoprofil extends Component {
           <Input name="logo" label="Logo" value={this.state.addInputValue.logo} handleChange={this.handleChange} isRequired={false} />
           <Input name="web_site" label="Site Internet" value={this.state.addInputValue.web_site} handleChange={this.handleChange} isRequired={false} />
           <Input name="mail" label="Adresse mail" value={this.state.addInputValue.mail} handleChange={this.handleChange} isRequired={false} />
+          <Departements value={this.state.modifyInputValue.departements_id} handleChange={this.handleChange}/>
 
-          <label class="control-label">Departement* </label>
-          <select required name="departements_id" onChange={this.handleChange} value={this.state.addInputValue.departements_id}>
-            <option name="departements_id" value="">Sélectionner le dépt.</option>
-            <option name="departements_id" value="1">75 Paris</option>
-            <option name="departements_id" value="2">92 Hauts-de-Seine</option>
-          </select>
           <Checkbox name="actions" title="Actions" options={this.state.actionsOptions} selectedOptions={this.state.addInputValue.actions} handleChange={this.handleActionsCheckBox} isRequired={false} />
           <div><button type="submit">Submit</button></div>
         </form>

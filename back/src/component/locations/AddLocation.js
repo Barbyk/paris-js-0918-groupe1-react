@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import Input from '../Input'
 import {Link} from "react-router-dom"
+import Departements from '../Departements'
 
 export default class AddLocation extends Component {
 
@@ -36,7 +37,7 @@ export default class AddLocation extends Component {
                     <fieldset><legend>Ajouter une Localisation</legend></fieldset>
                     <Input name="name" label="Nom*" value={this.state.addInputValue.name} handleChange={this.handleChange} isRequired={"required"} />
                     <Input name="img_url" label="Image" value={this.state.addInputValue.img_url} handleChange={this.handleChange} isRequired={false} />
-                    <Input name="departements_id" label="Département*" value={this.state.addInputValue.departements_id} handleChange={this.handleChange} isRequired={"required"} />
+                    <Departements value={this.state.modifyInputValue.departements_id} handleChange={this.handleChange}/>
                     <div><button type="submit">Submit</button></div>
                 </form>
                 <Link to ={"/locations"}><button>Retour liste des lieux</button></Link>

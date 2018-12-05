@@ -24,7 +24,7 @@ state = {
 
 
   render() {
-
+    const tabDepartement = ["75","77","78","91","92","93","94","95"]
     if (!this.state.isLoading)
 
     return (
@@ -38,8 +38,8 @@ state = {
             </thead>
             <tbody>
               {this.state.locations.map((el, index) =>
-                <tr><td>{el.id}</td><td>{el.name}</td><td>{el.image}</td>
-                  <td>{el.departements_id}</td><td><Link to={'/modifyLocation/' + el.id}>
+                <tr><td>{el.id}</td><td>{el.name}</td><td>{el.img_url}</td>
+                  <td>{tabDepartement[el.departements_id-1]}</td><td><Link to={'/modifyLocation/' + el.id}>
               <button>Modifier</button></Link></td></tr> )}
             </tbody>
           </table>
