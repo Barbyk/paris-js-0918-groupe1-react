@@ -13,19 +13,18 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Link to={`/assoprofil`}><Button>Associations</Button></Link>
+        <Link to={`/articles`}><Button>Articles</Button></Link>
+        <Link to={`/locations`}><Button>Lieux</Button></Link>
         <Switch>
           <Route path="/addNewAssoprofil" component={AddNewAssoprofil} />
           <Route path="/modifyAssoprofil/:id" component={ModifyAssoprofil} />
-          <Route path="/Assoprofil" component={Assoprofil} />
+          <Route path="/assoprofil" component={Assoprofil} />
           <Route exact path="/addArticle" component={AddArticle} />
           <Route path="/modifArticle/:id" component={ModifArticle} />
           <Route path="/articles/" component={Articles} />
         </Switch>
-        <Link to={`/addNewAssoprofil`}><Button>addNewAssoprofil</Button></Link>
-        <Link to={`/Assoprofill`}><Button>Assoprofil</Button></Link>
-        <Link to={`/addArticle`}><Button>addArticle</Button></Link>
-        
-        <Link to={`/articles`}><Button>Articles</Button></Link>
+       
       </div>
     )
   }

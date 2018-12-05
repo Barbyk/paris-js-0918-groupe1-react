@@ -17,7 +17,7 @@ class Articles extends Component {
     getAssoprofil = e => {
         this.setState({ isLoading: true })
         axios
-            .get("http://localhost:3030/news")
+            .get("http://localhost:3002/news")
             .then(response => this.setState({ assoProfil: response.data, isLoading: false }))
 
 
@@ -27,7 +27,7 @@ class Articles extends Component {
         const response = window.confirm("Etes-vous certain de vouloir supprimer ?");
         if (response) {
             axios
-                .put("http://localhost:3030/news/" + id, { "is_active": "0" })
+                .put("http://localhost:3002/news" + id, { "is_active": "0" })
                 .then(window.location.reload())
         }
 
@@ -38,8 +38,8 @@ class Articles extends Component {
                 <div>
                     <Link to={'/addarticle'}><button>Ajouter un article</button></Link>
                     <table className="table">
-                        <caption>Edition un article</caption>
-                        <thead><tr><th> Id </th><th> Titre</th><th> Text</th><th> img_url </th><th> date</th></tr></thead>
+                        <caption>Edition des articles</caption>
+                        <thead><tr><th> Id </th><th> Titre</th><th> Texte</th><th> Image URL </th><th> Date</th></tr></thead>
                         <tbody>
                             {this.state.assoProfil.map((el, index) =>
                               <tr key={index}><td>{el.id}</td><td>{el.title}</td><td>{el.text}</td><td>{el.img_url}</td><td>{el.date}</td>

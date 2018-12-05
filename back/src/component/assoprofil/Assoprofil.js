@@ -17,7 +17,7 @@ class Assoprofil extends Component {
   getAssoprofil = e => {
     this.setState({ isLoading: true })
     axios
-      .get("http://localhost:3030/assoprofil")
+      .get("http://localhost:3002/assoprofil")
       .then(response => this.setState({ assoProfil: response.data, isLoading: false }))
 
 
@@ -27,7 +27,7 @@ class Assoprofil extends Component {
     const response = window.confirm("Etes-vous certain de vouloir supprimer ?");
     if (response) {
       axios
-        .put("http://localhost:3030/assoprofil/" + id, { "is_active": "0" })
+        .put("http://localhost:3002/assoprofil/" + id, { "is_active": "0" })
         .then(window.location.reload())
     }
 

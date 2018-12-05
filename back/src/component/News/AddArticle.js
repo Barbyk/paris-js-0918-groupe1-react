@@ -45,18 +45,11 @@ class AddArticle extends Component {
     postArticle = (e) => {
         e.preventDefault();
         axios
-            .post('http://localhost:3030/news', this.state)
-            .then(this.setState({
-                img_url: "",
-                text: "",
-                title: "",
-                date: "",
-                is_active: 1,
-                user_id: 1,
-
-            }));
-        console.log('tutu', this.postArticle)
-    }
+            .post('http://localhost:3002/news', this.state)
+            .then(window.history.back() );
+        alert("L'article a bien été enregistré")
+    };
+        
 
     render() {
         const { classes } = this.props;

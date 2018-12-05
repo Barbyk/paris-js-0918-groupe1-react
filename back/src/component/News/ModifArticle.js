@@ -19,7 +19,7 @@ class ModifArticle extends Component {
     getAssoprofil = e => {
         this.setState({ isLoading: true })
         axios
-            .get("http://localhost:3030/news/" + this.props.match.params.id)
+            .get("http://localhost:3002/news/" + this.props.match.params.id)
             .then(response => this.setState({ modifyInputValue: response.data[0], isLoading: false }))
             
         // .then(window.location.reload());
@@ -31,7 +31,7 @@ class ModifArticle extends Component {
         e.preventDefault();
 
         axios
-            .put("http://localhost:3030/news/" + this.props.match.params.id, this.state.modifyInputValue)
+            .put("http://localhost:3002/news/" + this.props.match.params.id, this.state.modifyInputValue)
             .then(window.history.back() );
         alert("Les modifications sont enregistrées")
 
