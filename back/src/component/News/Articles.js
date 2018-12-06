@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom'
 import '../assoprofil/Assoprofil.css'
+import withAuth from '../withAuth';
+
 
 class Articles extends Component {
     state = {
@@ -57,4 +59,4 @@ class Articles extends Component {
     }
 }
 
-export default Articles;
+export default withAuth(Articles);

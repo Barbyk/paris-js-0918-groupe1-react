@@ -3,6 +3,8 @@ import axios from "axios";
 import Input from '../Input'
 import Checkbox from '../Checkbox'
 import Departements from '../Departements'
+import withAuth from '../withAuth';
+
 
 class AddNewAssoprofil extends Component {
   state = {
@@ -39,7 +41,8 @@ class AddNewAssoprofil extends Component {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3002/assoprofil", this.state.addInputValue)
+      .post("http://localhost:3002/assoprofil", this.state.addInputValue,{headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem("id_token")}})
       .then(this.setState({}))
      .then(window.history.back() );
     alert("Association ajoutée !")
@@ -82,4 +85,4 @@ class AddNewAssoprofil extends Component {
   }
 }
 
-export default AddNewAssoprofil;
+export default withAuth(AddNewAssoprofil);

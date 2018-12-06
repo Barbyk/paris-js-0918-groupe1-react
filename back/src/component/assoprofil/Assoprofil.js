@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom'
 import './Assoprofil.css'
+import withAuth from '../withAuth'
 
 class Assoprofil extends Component {
   state = {
@@ -17,7 +18,9 @@ class Assoprofil extends Component {
   getAssoprofil = e => {
     this.setState({ isLoading: true })
     axios
-      .get("http://localhost:3002/assoprofil")
+      .get("http://localhost:3002/assoprofil",{headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem("id_token")}
+      })
       .then(response => this.setState({ assoProfil: response.data, isLoading: false }))
 
 
@@ -27,7 +30,8 @@ class Assoprofil extends Component {
     const response = window.confirm("Etes-vous certain de vouloir supprimer ?");
     if (response) {
       axios
-        .put("http://localhost:3002/assoprofil/" + id, { "is_visible": "0" })
+        .put("http://localhost:3002/assoprofil/" + id, { "is_visible": "0" },{headers: {
+          'Authorization': 'Bearer ' + sessionStorage.getItem("id_token")}})
         .then(window.location.reload())
     }
 
@@ -63,4 +67,4 @@ class Assoprofil extends Component {
   }
 }
 
-export default Assoprofil;
+export default withAuth(Assoprofil);

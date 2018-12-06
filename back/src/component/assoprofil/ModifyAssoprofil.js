@@ -3,6 +3,8 @@ import axios from "axios";
 import "./ModifyAssoprofil.css"
 import Input from '../Input'
 import Departements from '../Departements'
+import withAuth from '../withAuth';
+
 
 class ModifyNewAssoprofil extends Component {
     state = {
@@ -20,7 +22,8 @@ class ModifyNewAssoprofil extends Component {
     getAssoprofil = e => {
         this.setState({ isLoading: true })
         axios
-            .get("http://localhost:3002/assoprofil/" + this.props.match.params.id)
+            .get("http://localhost:3002/assoprofil/" + this.props.match.params.id,{headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem("id_token")}})
             .then(response => this.setState({ modifyInputValue: response.data[0], isLoading: false }))
             
         // .then(window.location.reload());
@@ -76,4 +79,4 @@ class ModifyNewAssoprofil extends Component {
     }
 }
 
-export default ModifyNewAssoprofil;
+export default withAuth(ModifyNewAssoprofil);

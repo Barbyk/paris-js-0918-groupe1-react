@@ -3,8 +3,9 @@ import axios from 'axios';
 import Input from '../Input';
 import {Link} from "react-router-dom"
 import Departements from '../Departements';
+import withAuth from '../withAuth';
 
-export default class ModifyLocation extends Component {
+class ModifyLocation extends Component {
 
     state = {
         modifyInputValue: { is_active: "1" }
@@ -63,3 +64,5 @@ export default class ModifyLocation extends Component {
         )
     }
 }
+
+export default withAuth(ModifyLocation)
