@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./ModifyAssoprofil.css"
 import Input from '../Input'
+import Checkbox from '../Checkbox'
 import Departements from '../Departements'
 import withAuth from '../withAuth';
 
 
 class ModifyNewAssoprofil extends Component {
     state = {
-        modifyInputValue: { is_visible: "1" }
+        modifyInputValue: { is_visible: "1" },
+        actionsOptions: ["Maraudes mobiles","Tables solidaires","Colis alimentaires","Visites aux isolés","Accompagnement administratif",
+    "Cultures et loisirs","Soutien scolaire","Actions de l'étranger","Aide aux migrants"],
     };
 
     componentDidMount() {
@@ -18,13 +21,32 @@ class ModifyNewAssoprofil extends Component {
         this.setState({ modifyInputValue:{...this.state.modifyInputValue,
             [e.target.name] : e.target.value,} });
     };
-
+    handleActionsCheckBox=(e)=> {
+    
+        const newSelection = parseInt(e.target.name);
+        let newSelectionArray;
+        // if pour les cas de déselection de la checkbox, on enleve la valeur du tableau
+        if (this.state.modifyInputValue.actions.indexOf(newSelection) > -1) {
+            console.log(this.state.modifyInputValue.actions, newSelection)
+          newSelectionArray = this.state.modifyInputValue.actions.filter(s => s !== newSelection)
+        } else {
+          newSelectionArray = [...this.state.modifyInputValue.actions,  newSelection ];
+        }
+    
+        this.setState({
+          modifyInputValue:
+            { ...this.state.modifyInputValue, actions: newSelectionArray }
+        })
+    
+    }
+    
     getAssoprofil = e => {
         this.setState({ isLoading: true })
         axios
             .get("http://localhost:3002/assoprofil/" + this.props.match.params.id,{headers: {
                 'Authorization': 'Bearer ' + sessionStorage.getItem("id_token")}})
-            .then(response => this.setState({ modifyInputValue: response.data[0], isLoading: false }))
+            .then(response => {console.log(response.data)
+                this.setState({ modifyInputValue: response.data[0], isLoading: false })})
             
         // .then(window.location.reload());
 
@@ -69,6 +91,7 @@ class ModifyNewAssoprofil extends Component {
                 <Input name="web_site" label="Site Internet" value={this.state.modifyInputValue.web_site} handleChange={this.handleChange} isRequired={false}/>
                 <Input name="mail" label="Adresse mail" value={this.state.modifyInputValue.mail} handleChange={this.handleChange} isRequired={false}/>
                <Departements value={this.state.modifyInputValue.departements_id} handleChange={this.handleChange}/>
+               <Checkbox name="actions" title="Actions" options={this.state.actionsOptions} selectedOptions={this.state.modifyInputValue.actions} handleChange={this.handleActionsCheckBox} isRequired={false} />
 
 
                     <div><button type="submit">Soumettre</button></div>
