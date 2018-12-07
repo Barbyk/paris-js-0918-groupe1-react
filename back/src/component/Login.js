@@ -6,6 +6,10 @@ const Auth = new AuthService();
 class Login extends Component {
     constructor(){
         super();
+        this.state={
+            username:undefined,
+            password:undefined
+        }
     }
     
 
@@ -16,7 +20,9 @@ class Login extends Component {
     
     handleFormSubmit=(e)=>{
         e.preventDefault();
-      
+        if (!this.state.username || !this.state.password )
+            alert('Veuillez remplir les champs !')
+        else {
         Auth.login((this.state.username||""),(this.state.password||""))
             .then(res =>{
                this.props.history.replace('/');
@@ -24,6 +30,7 @@ class Login extends Component {
             .catch(err =>{
                 alert(err);
             })
+        }
     }
 
     render() {
@@ -34,7 +41,7 @@ class Login extends Component {
                     <form>
                         <input
                             className="form-item"
-                            placeholder="Username goes here..."
+                            placeholder="Nom d'utilisateur..."
                             name="username"
                             type="text"
                             onChange={this.handleChange}
@@ -42,7 +49,7 @@ class Login extends Component {
                         />
                         <input
                             className="form-item"
-                            placeholder="Password goes here..."
+                            placeholder="Mot de passe..."
                             name="password"
                             type="password"
                             onChange={this.handleChange}
@@ -50,7 +57,7 @@ class Login extends Component {
                         />
                         <input
                             className="form-submit"
-                            value="SUBMIT"
+                            value="VALIDER"
                             type="submit"
 
                             onClick={this.handleFormSubmit}

@@ -29,7 +29,7 @@ class Articles extends Component {
         const response = window.confirm("Etes-vous certain de vouloir supprimer ?");
         if (response) {
             axios
-                .put("http://localhost:3002/news" + id, { "is_active": "0" })
+                .put("http://localhost:3002/news/" + id, { "is_active": "0" })
                 .then(window.location.reload())
         }
 

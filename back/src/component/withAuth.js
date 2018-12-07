@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import AuthService from './AuthService';
 
 // Export a function withAuth which takes a AuthComponent as a parameter
-
-// Instantiate AuthService
-
-// Return a class AuthWrapped in which auth is handled
-
 export default function withAuth(AuthComponent) {
+
+    // Instantiate AuthService
     const Auth = new AuthService();
+
+    // Return a class AuthWrapped in which auth is handled
     return class AuthWrapped extends Component {
         constructor() {
             super();
@@ -16,6 +15,7 @@ export default function withAuth(AuthComponent) {
                 user: null
             }
         }
+
         // Add componentWillMount hook which checks the auth
 
         componentWillMount() {
@@ -47,10 +47,3 @@ export default function withAuth(AuthComponent) {
         }
     }
 }
-        
-
-   
-    
-
-
-
