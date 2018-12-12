@@ -22,6 +22,7 @@ export default class AuthService {
     loggedIn=()=> {
         // Checks if there is a saved token and it's still valid
         const token = this.getToken() // GEtting token from localstorage
+        console.log(token)
         return !!token // handwaiving here
     }
 
@@ -29,17 +30,17 @@ export default class AuthService {
 
     setToken=(idToken)=> {
         // Saves user token to localStorage
-        sessionStorage.setItem('id_token', idToken)
+        localStorage.setItem('id_token', idToken)
     }
 
     getToken=()=> {
         // Retrieves the user token from localStorage
-        return sessionStorage.getItem('id_token')
+        return localStorage.getItem('id_token')
     }
 
     logout=()=> {
         // Clear user token and profile data from localStorage
-        sessionStorage.removeItem('id_token');
+        localStorage.removeItem('id_token');
     }
 
 

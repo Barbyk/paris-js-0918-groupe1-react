@@ -42,7 +42,8 @@ class Assoprofil extends Component {
 
   render() {
     const tabDepartement = ["75","77","78","91","92","93","94","95"]
-    console.log(this.state.assoProfil[0])
+    const tabActions = ["Maraudes mobiles","Tables solidaires","Colis alimentaires","Visites aux isolés","Accompagnement administratif",
+    "Cultures et loisirs","Soutien scolaire","Actions de l'étranger","Aide aux migrants"]
     if (!this.state.isLoading)
       return (
         <div>
@@ -55,7 +56,7 @@ class Assoprofil extends Component {
               {this.state.assoProfil.map((el, index) =>
                 <tr><td>{el.id}</td><td>{el.name}</td><td>{el.description}</td><td>{el.address}</td><td>{el.logo}</td>
                   <td>{el.social_network_url_1}</td><td>{el.social_network_url_2}</td><td>{el.social_network_url_3}</td>
-                  <td>{el.phone_number}</td><td>{el.web_site}</td><td>{el.mail}</td><td>{tabDepartement[el.departements_id-1]}</td><td>{el.actions}</td><td><Link to={'/modifyAssoprofil/' + el.id}>
+                  <td>{el.phone_number}</td><td>{el.web_site}</td><td>{el.mail}</td><td>{tabDepartement[el.departements_id-1]}</td><td>{ el.actions ? JSON.parse(el.actions).map(e=>(tabActions[e-1]+"\r\n")):null}</td><td><Link to={'/modifyAssoprofil/' + el.id}>
                     <button>Modifier</button>
                   </Link>
                     <button onClick={() => this.handleChangeDelete(el.id)}>Supprimer</button></td></tr>

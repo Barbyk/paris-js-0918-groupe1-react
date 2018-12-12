@@ -1,7 +1,6 @@
 import React  from 'react';
 
 const CheckBox = (props) => {
-  console.log(props.selectedOptions)
     return( <div>
     <label for={props.name} className="form-label">{props.title}</label>
     <div className="checkbox-group">

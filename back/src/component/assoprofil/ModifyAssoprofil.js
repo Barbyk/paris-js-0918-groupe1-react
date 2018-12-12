@@ -9,7 +9,7 @@ import withAuth from '../withAuth';
 
 class ModifyNewAssoprofil extends Component {
     state = {
-        modifyInputValue: { is_visible: "1" },
+        modifyInputValue: { is_visible: "1",actions:[]  },
         actionsOptions: ["Maraudes mobiles","Tables solidaires","Colis alimentaires","Visites aux isolés","Accompagnement administratif",
     "Cultures et loisirs","Soutien scolaire","Actions de l'étranger","Aide aux migrants"],
     };
@@ -25,12 +25,12 @@ class ModifyNewAssoprofil extends Component {
     
         const newSelection = parseInt(e.target.name);
         let newSelectionArray;
+
         // if pour les cas de déselection de la checkbox, on enleve la valeur du tableau
-        if (this.state.modifyInputValue.actions.indexOf(newSelection) > -1) {
-            console.log(this.state.modifyInputValue.actions, newSelection)
+        if ((this.state.modifyInputValue.actions||[]).indexOf(newSelection) > -1) {
           newSelectionArray = this.state.modifyInputValue.actions.filter(s => s !== newSelection)
         } else {
-          newSelectionArray = [...this.state.modifyInputValue.actions,  newSelection ];
+          newSelectionArray = [...this.state.modifyInputValue.actions||[],  newSelection ];
         }
     
         this.setState({
@@ -45,7 +45,7 @@ class ModifyNewAssoprofil extends Component {
         axios
             .get("http://localhost:3002/assoprofil/" + this.props.match.params.id,{headers: {
                 'Authorization': 'Bearer ' + sessionStorage.getItem("id_token")}})
-            .then(response => {console.log(response.data)
+            .then(response => {
                 this.setState({ modifyInputValue: response.data[0], isLoading: false })})
             
         // .then(window.location.reload());
