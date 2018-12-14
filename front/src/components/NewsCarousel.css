@@ -1,0 +1,20 @@
+.item {
+    background-color: white;
+}
+
+img {
+
+}
+
+
+.legend {
+    opacity: 1 !important;
+}
+
+.title {
+    font-size: 30px;
+}
+
+.text {
+    font-size: 20px;
+}
