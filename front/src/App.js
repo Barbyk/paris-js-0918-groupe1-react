@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Map from './components/Map'
+import Calendrier from './components/Calendrier'
 import AssoByDept from './components/AssoByDept'
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
         <Header />
         <Switch>
             <Route exact path='/' component={Home} />
+            <Route exact path='/calendrier' component={Calendrier} />
             <Route exact path="/trouverunemaraude" component = { Map } />
             <Route path ="/trouverunemaraude/:id" component = { AssoByDept } />
         </Switch>

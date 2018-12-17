@@ -24,10 +24,10 @@ class AddNewAssoprofil extends Component {
     const newSelection = parseInt(e.target.name);
     let newSelectionArray;
     // if pour les cas de déselection de la checkbox, on enleve la valeur du tableau
-    if ((this.state.addInputValue.actions||[]).indexOf(newSelection) > -1) {
+    if (this.state.addInputValue.actions.indexOf(newSelection) > -1) {
       newSelectionArray = this.state.addInputValue.actions.filter(s => s !== newSelection)
     } else {
-      newSelectionArray = [...this.state.addInputValue.actions||[],  newSelection ];
+      newSelectionArray = [...this.state.addInputValue.actions,  newSelection ];
     }
 
     this.setState({
