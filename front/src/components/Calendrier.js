@@ -19,7 +19,9 @@ class Calendrier extends PureComponent {
     event_start_on: null,
     event_end_on: null,
     event_title: null,
-    currentEvent: null
+    currentEvent: null,
+    location_selected:null,
+    locations: []
   }
 
   convertDate = (date) => {
@@ -28,14 +30,27 @@ class Calendrier extends PureComponent {
 
 
   componentDidMount() {
-
+    this.getLocations()
     this.getEvents()
 
   }
+  getLocations = () => {
 
-  getEvents = () => {
+    axios.get('http://localhost:3002/locations/')
+      .then(response => {
+       this.setState({
+          locations: response.data
+        })
 
-    axios.get('http://localhost:3002/events')
+      })
+      .catch(function (error) {
+        alert(error);
+      });
+  }
+
+  getEvents = (locationid = 0) => {
+
+    axios.get('http://localhost:3002/events/location/'+locationid)
       .then(response => {
         let appointments = response.data;
 
@@ -59,7 +74,7 @@ class Calendrier extends PureComponent {
     var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD hh:mm:ss");
 
     axios.post('http://localhost:3002/events', {
-      users_id: 1, locations_id: 1, is_active: 1, title: this.state.event_title,
+      users_id: 1, locations_id: this.state.location_selected, is_active: 1, title: this.state.event_title,
       begin_date: startDate, end_date: endDate
     })
       .then(response => {
@@ -67,7 +82,7 @@ class Calendrier extends PureComponent {
         this.setState({
           isAddModalOpen: !this.state.isAddModalOpen,
         })
-        this.getEvents()
+        this.getEvents(this.state.location_selected)
 
       })
       .catch(function (error) {
@@ -82,7 +97,7 @@ class Calendrier extends PureComponent {
     var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD hh:mm:ss");
 
     axios.put('http://localhost:3002/events/' + this.state.currentEvent.id, {
-      users_id: 1, locations_id: 1, title: this.state.event_title,
+      users_id: 1, locations_id: this.state.location_selected, is_active: 1, title: this.state.event_title,
       begin_date: startDate, end_date: endDate
     })
       .then(response => {
@@ -90,7 +105,7 @@ class Calendrier extends PureComponent {
         this.setState({
           isEditModalOpen: !this.state.isEditModalOpen,
         })
-        this.getEvents()
+        this.getEvents(this.state.location_selected)
 
       })
       .catch(function (error) {
@@ -102,14 +117,14 @@ class Calendrier extends PureComponent {
   deleteEvent = (element) => {
 
     axios.put('http://localhost:3002/events/' + this.state.currentEvent.id, {
-      is_active : 0, users_id: 1, locations_id: 1
+      is_active : 0, users_id: 1, locations_id: this.state.location_selected
     })
       .then(response => {
 
         this.setState({
           isEditModalOpen: !this.state.isEditModalOpen,
         })
-        this.getEvents()
+        this.getEvents(this.state.location_selected)
 
       })
       .catch(function (error) {
@@ -139,7 +154,7 @@ class Calendrier extends PureComponent {
         isEditModalOpen: !this.state.isEditModalOpen,
         event_title: event.title,
         event_start_on: startDate,
-        event_end_on: endDate
+        event_end_on: endDate,
       });
     }
   };
@@ -158,6 +173,13 @@ class Calendrier extends PureComponent {
     this.setState({
       event_end_on: e.target.value
     })
+  }
+
+  handleLocationChange = (e) => {
+    this.setState({
+      location_selected: e.target.value
+    })
+    this.getEvents(e.target.value)
   }
 
   eventStyleGetter = (event, start, end, isSelected) => {
@@ -180,27 +202,37 @@ class Calendrier extends PureComponent {
   render() {
 
     const { cal_events, event_title, isEditModalOpen, isAddModalOpen, 
-      event_start_on, event_end_on } = this.state
-
+      event_start_on, event_end_on, locations, location_selected } = this.state
     return (
       <div className="App">
-
+        <div className="dropdown" style={{fontSize:"14px"}}>
+          <label class="control-label">Lieu de la mauraude </label>
+          <select name="locations_id" onChange={this.handleLocationChange} value={this.state.location}>
+            <option name="locations_id" value="">Sélectionner un lieu</option>
+            {locations.map((e, index) => {
+              return (<option name="locations_id" value={index + 1}>{e.name}</option>)
+            })}
+          </select>
+        </div>
         <div style={{ height: 700 }}>
           <BigCalendar
-            selectable
+            selectable={location_selected ? true : false}
             onSelectEvent={event => this.toggleEditModal(event)}
             onSelectSlot={(slotInfo) => this.toggleAddModal(slotInfo)}
             localizer={localizer}
             messages={{ next: "Suivant", previous: "Précédent", today: "Aujourd'hui", month: "Mois", week: "Semaine", day: "Jour" }}
             events={cal_events}
             step={30}
+            scrollToTime={new Date(new Date().setHours(8))}
             defaultView='week'
             views={['month', 'week', 'day']}
             defaultDate={new Date()}
             eventPropGetter={this.eventStyleGetter}
 
           />
-
+          
+          
+  
           <Modal isOpen={isEditModalOpen} toggle={this.toggleEditModal}>
             <ModalHeader toggle={this.toggle}>Modifier l'évenement</ModalHeader>
             <ModalBody><form>
