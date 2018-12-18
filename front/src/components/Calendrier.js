@@ -59,7 +59,7 @@ class Calendrier extends PureComponent {
     var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD hh:mm:ss");
 
     axios.post('http://localhost:3002/events', {
-      users_id: 1, locations_id: 1, title: this.state.event_title,
+      users_id: 1, locations_id: 1, is_active: 1, title: this.state.event_title,
       begin_date: startDate, end_date: endDate
     })
       .then(response => {
@@ -84,6 +84,25 @@ class Calendrier extends PureComponent {
     axios.put('http://localhost:3002/events/' + this.state.currentEvent.id, {
       users_id: 1, locations_id: 1, title: this.state.event_title,
       begin_date: startDate, end_date: endDate
+    })
+      .then(response => {
+
+        this.setState({
+          isEditModalOpen: !this.state.isEditModalOpen,
+        })
+        this.getEvents()
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+  }
+
+  deleteEvent = (element) => {
+
+    axios.put('http://localhost:3002/events/' + this.state.currentEvent.id, {
+      is_active : 0, users_id: 1, locations_id: 1
     })
       .then(response => {
 
@@ -147,6 +166,7 @@ class Calendrier extends PureComponent {
       backgroundColor: backgroundColor,
       borderRadius: '0px',
       opacity: 0.8,
+      fontSize:'15px',
       color: 'white',
       border: '0px',
       display: 'block'
@@ -159,9 +179,8 @@ class Calendrier extends PureComponent {
 
   render() {
 
-    const { cal_events } = this.state
-
-    const { classes, toolbarVisible, defaultView } = this.props;
+    const { cal_events, event_title, isEditModalOpen, isAddModalOpen, 
+      event_start_on, event_end_on } = this.state
 
     return (
       <div className="App">
@@ -182,34 +201,37 @@ class Calendrier extends PureComponent {
 
           />
 
-          <Modal isOpen={this.state.isEditModalOpen} toggle={this.toggleEditModal}>
+          <Modal isOpen={isEditModalOpen} toggle={this.toggleEditModal}>
             <ModalHeader toggle={this.toggle}>Modifier l'évenement</ModalHeader>
             <ModalBody><form>
               <label>
                 Nom de l'évenement :
                     </label>
-              <input type="text" name="title" value={this.state.event_title} onChange={this.handleInputChange} /><br />
+              <input type="text" name="title" value={event_title} onChange={this.handleInputChange} /><br />
               <label>
                 Début :
                     </label>
-              <input type="datetime-local" name="date_start" value={this.state.event_start_on} onChange={this.handleStartChange} required /><br />
+              <input type="datetime-local" name="date_start" value={event_start_on} onChange={this.handleStartChange} required /><br />
               <label>
                 Fin :
                     </label>
-              <input type="datetime-local" name="date_end" value={this.state.event_end_on} onChange={this.handleEndChange} required />
+              <input type="datetime-local" name="date_end" value={event_end_on} onChange={this.handleEndChange} required />
             </form>
+            <Button color="secondary" onClick={this.deleteEvent}>Supprimer du calendrier</Button>
+
             </ModalBody>
             <ModalFooter>
+
               <Button color="primary" onClick={this.editEvent}>Enregistrer</Button>{' '}
               <Button color="secondary" onClick={this.toggleEditModal}>Annuler</Button>
             </ModalFooter>
           </Modal>
 
-          <Modal isOpen={this.state.isAddModalOpen} toggle={this.toggleAddModal}>
+          <Modal isOpen={isAddModalOpen} toggle={this.toggleAddModal}>
             <ModalHeader toggle={this.toggle}>Ajouter un nouvel évenement</ModalHeader>
             <ModalBody>
-              <p>de : {this.state.event_start_on ? this.state.event_start_on.toLocaleString() : ''}</p>
-              <p>à : {this.state.event_end_on ? this.state.event_end_on.toLocaleString() : ''}</p>
+              <p>de : {event_start_on ? event_start_on.toLocaleString() : ''}</p>
+              <p>à : {event_end_on ? event_end_on.toLocaleString() : ''}</p>
 
               <form>
                 <label>
