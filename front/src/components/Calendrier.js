@@ -203,7 +203,7 @@ class Calendrier extends PureComponent {
 
     const { cal_events, event_title, isEditModalOpen, isAddModalOpen,
       event_start_on, event_end_on, locations, location_selected } = this.state
-      
+
     return (
       <div className="App">
         <div className="dropdown" style={{ fontSize: "14px" }}>
@@ -224,6 +224,7 @@ class Calendrier extends PureComponent {
             messages={{ next: "Suivant", previous: "Précédent", today: "Aujourd'hui", month: "Mois", week: "Semaine", day: "Jour" }}
             events={cal_events}
             step={30}
+            timeslots={2}
             scrollToTime={new Date(new Date().setHours(8))}
             defaultView='week'
             views={['month', 'week', 'day']}
@@ -244,11 +245,11 @@ class Calendrier extends PureComponent {
               <label>
                 Début :
                     </label>
-              <input type="datetime-local" name="date_start" value={event_start_on} onChange={this.handleStartChange} required /><br />
+              <input type="datetime-local" step="1800" name="date_start" value={event_start_on} onChange={this.handleStartChange} required /><br />
               <label>
                 Fin :
                     </label>
-              <input type="datetime-local" name="date_end" value={event_end_on} onChange={this.handleEndChange} required />
+              <input type="datetime-local" step="1800" min={event_start_on} name="date_end" value={event_end_on} onChange={this.handleEndChange} required />
             </form>
               <Button color="secondary" onClick={this.deleteEvent}>Supprimer du calendrier</Button>
 
