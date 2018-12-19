@@ -3,8 +3,9 @@ import axios from 'axios';
 import Input from '../Input';
 import {Link} from "react-router-dom"
 import Departements from '../Departements';
+import withAuth from '../withAuth';
 
-export default class ModifyLocation extends Component {
+class ModifyLocation extends Component {
 
     state = {
         modifyInputValue: { is_active: "1" }
@@ -52,7 +53,7 @@ export default class ModifyLocation extends Component {
             <div>
                 <form onSubmit={this.submitModifyLocation}>
 
-                    <fieldset><legend>Modifier l'association {this.state.modifyInputValue.name}</legend></fieldset>
+                    <fieldset><legend>Modifier le lieu {this.state.modifyInputValue.name}</legend></fieldset>
                     <Input name="name" label="Nom*" value={this.state.modifyInputValue.name} handleChange={this.handleChange} isRequired={"required"} />
                     <Input name="img_url" label="Image du lieu" value={this.state.modifyInputValue.img_url} handleChange={this.handleChange} isRequired={false} />
                     <Departements value={this.state.modifyInputValue.departements_id} handleChange={this.handleChange}/>
@@ -63,3 +64,5 @@ export default class ModifyLocation extends Component {
         )
     }
 }
+
+export default withAuth(ModifyLocation)

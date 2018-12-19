@@ -5,7 +5,7 @@ import { Grid } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-
+import withAuth from '../withAuth';
 
 
 
@@ -80,4 +80,4 @@ class AddArticle extends Component {
         );
     }
 }
-export default withStyles(styles)(AddArticle);
+export default withAuth(withStyles(styles)(AddArticle));

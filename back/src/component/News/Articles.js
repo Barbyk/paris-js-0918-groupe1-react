@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom'
 import '../assoprofil/Assoprofil.css'
+import withAuth from '../withAuth';
+
 
 class Articles extends Component {
     state = {
@@ -27,7 +29,7 @@ class Articles extends Component {
         const response = window.confirm("Etes-vous certain de vouloir supprimer ?");
         if (response) {
             axios
-                .put("http://localhost:3002/news" + id, { "is_active": "0" })
+                .put("http://localhost:3002/news/" + id, { "is_active": "0" })
                 .then(window.location.reload())
         }
 
@@ -57,4 +59,4 @@ class Articles extends Component {
     }
 }
 
-export default Articles;
+export default withAuth(Articles);

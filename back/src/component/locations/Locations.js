@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
+import withAuth from '../withAuth';
 
 
-export default class Locations extends Component {
+class Locations extends Component {
 
 state = {
   locations : [],
@@ -49,4 +50,5 @@ state = {
           }
         }
           
+export default withAuth(Locations)
         

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import "../assoprofil/ModifyAssoprofil.css"
 import Input from '../Input'
+import withAuth from '../withAuth';
+
 
 class ModifArticle extends Component {
     state = {
@@ -80,4 +82,4 @@ class ModifArticle extends Component {
     }
 }
 
-export default ModifArticle;
+export default withAuth(ModifArticle);
