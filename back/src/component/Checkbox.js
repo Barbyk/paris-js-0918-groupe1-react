@@ -10,10 +10,10 @@ const CheckBox = (props) => {
             <input
               className="form-checkbox"
               id = {props.name}
-              name={index}
+              name={index+1}
               onChange={props.handleChange}
               value={option}
-              checked={ props.selectedOptions.indexOf(index.toString()) > -1 }
+              checked={ (props.selectedOptions||[]).includes(index+1)  }
               type="checkbox" /> {option}
           </label>
         );

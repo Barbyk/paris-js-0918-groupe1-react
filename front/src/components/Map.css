@@ -1,0 +1,36 @@
+.map path:hover,.map path.active {
+    fill:red;
+    transition: fill 0.3s;
+  }
+  
+  .map_view{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+  
+  .map_list{
+    color: inherit;
+    transition: color 0.3s;
+    
+  }
+  
+  .map_list li,a {
+    text-decoration: none;
+    list-style: none;
+    color: #373A7B;
+  }
+  
+  .map_list a:hover{
+  color: red;
+  }
+  
+  .block_map{
+    text-align: center;
+  }
+  
+.dep{
+    margin-top: 40px;
+}

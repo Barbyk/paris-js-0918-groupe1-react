@@ -3,8 +3,9 @@ import axios from 'axios';
 import Input from '../Input'
 import {Link} from "react-router-dom"
 import Departements from '../Departements'
+import withAuth from '../withAuth';
 
-export default class AddLocation extends Component {
+class AddLocation extends Component {
 
     state = {
         addInputValue: { is_active: "1" }
@@ -45,3 +46,5 @@ export default class AddLocation extends Component {
         )
     }
 }
+
+export default withAuth(AddLocation);
