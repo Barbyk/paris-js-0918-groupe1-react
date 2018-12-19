@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import BigCalendar from 'react-big-calendar'
+import moment_timezone from 'moment-timezone';
 import moment from 'moment';
 import { Modal, ModalBody, ModalFooter, ModalHeader, Button } from 'reactstrap';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -7,7 +8,8 @@ import 'moment/locale/fr';
 import axios from 'axios'
 import './Calendrier.css'
 
-const localizer = BigCalendar.momentLocalizer(moment)
+moment_timezone.tz.setDefault('Europe/Paris');
+const localizer = BigCalendar.momentLocalizer(moment_timezone)
 
 class Calendrier extends PureComponent {
   state = {
@@ -20,7 +22,7 @@ class Calendrier extends PureComponent {
     event_end_on: null,
     event_title: null,
     currentEvent: null,
-    location_selected:null,
+    location_selected: null,
     locations: []
   }
 
@@ -38,7 +40,7 @@ class Calendrier extends PureComponent {
 
     axios.get('http://localhost:3002/locations/')
       .then(response => {
-       this.setState({
+        this.setState({
           locations: response.data
         })
 
@@ -50,7 +52,7 @@ class Calendrier extends PureComponent {
 
   getEvents = (locationid = 0) => {
 
-    axios.get('http://localhost:3002/events/location/'+locationid)
+    axios.get('http://localhost:3002/events/location/' + locationid)
       .then(response => {
         let appointments = response.data;
 
@@ -58,7 +60,6 @@ class Calendrier extends PureComponent {
           appointments[i].start = this.convertDate(appointments[i].start)
           appointments[i].end = this.convertDate(appointments[i].end)
         }
-
         this.setState({
           cal_events: appointments
         })
@@ -70,9 +71,9 @@ class Calendrier extends PureComponent {
   }
   createEvent = (element) => {
 
-    var startDate = moment(this.state.event_start_on).format("YYYY-MM-DD hh:mm:ss");
-    var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD hh:mm:ss");
-
+    var startDate = moment(this.state.event_start_on).format("YYYY-MM-DD H:mm:ss");
+    var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD H:mm:ss");
+    console.log(startDate,endDate)
     axios.post('http://localhost:3002/events', {
       users_id: 1, locations_id: this.state.location_selected, is_active: 1, title: this.state.event_title,
       begin_date: startDate, end_date: endDate
@@ -93,8 +94,8 @@ class Calendrier extends PureComponent {
 
   editEvent = (element) => {
 
-    var startDate = moment(this.state.event_start_on).format("YYYY-MM-DD hh:mm:ss");
-    var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD hh:mm:ss");
+    var startDate = moment(this.state.event_start_on).format("YYYY-MM-DD H:mm:ss");
+    var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD H:mm:ss");
 
     axios.put('http://localhost:3002/events/' + this.state.currentEvent.id, {
       users_id: 1, locations_id: this.state.location_selected, is_active: 1, title: this.state.event_title,
@@ -117,7 +118,7 @@ class Calendrier extends PureComponent {
   deleteEvent = (element) => {
 
     axios.put('http://localhost:3002/events/' + this.state.currentEvent.id, {
-      is_active : 0, users_id: 1, locations_id: this.state.location_selected
+      is_active: 0, users_id: 1, locations_id: this.state.location_selected
     })
       .then(response => {
 
@@ -145,9 +146,8 @@ class Calendrier extends PureComponent {
   };
 
   toggleEditModal = event => {
-    var startDate = moment(event.start).format("YYYY-MM-DDThh:mm");
-    var endDate = moment(event.end).format("YYYY-MM-DDThh:mm");
-
+    var startDate = moment(event.start).format("YYYY-MM-DDTHH:mm");
+    var endDate = moment_timezone.tz(event.end,'Europe/Paris').format("YYYY-MM-DDTHH:mm");
     if (!this.state.isAddModalOpen) {
       this.setState({
         currentEvent: event,
@@ -188,7 +188,7 @@ class Calendrier extends PureComponent {
       backgroundColor: backgroundColor,
       borderRadius: '0px',
       opacity: 0.8,
-      fontSize:'15px',
+      fontSize: '15px',
       color: 'white',
       border: '0px',
       display: 'block'
@@ -201,11 +201,12 @@ class Calendrier extends PureComponent {
 
   render() {
 
-    const { cal_events, event_title, isEditModalOpen, isAddModalOpen, 
+    const { cal_events, event_title, isEditModalOpen, isAddModalOpen,
       event_start_on, event_end_on, locations, location_selected } = this.state
+      
     return (
       <div className="App">
-        <div className="dropdown" style={{fontSize:"14px"}}>
+        <div className="dropdown" style={{ fontSize: "14px" }}>
           <label class="control-label">Lieu de la mauraude </label>
           <select name="locations_id" onChange={this.handleLocationChange} value={this.state.location}>
             <option name="locations_id" value="">Sélectionner un lieu</option>
@@ -230,9 +231,9 @@ class Calendrier extends PureComponent {
             eventPropGetter={this.eventStyleGetter}
 
           />
-          
-          
-  
+
+
+
           <Modal isOpen={isEditModalOpen} toggle={this.toggleEditModal}>
             <ModalHeader toggle={this.toggle}>Modifier l'évenement</ModalHeader>
             <ModalBody><form>
@@ -249,7 +250,7 @@ class Calendrier extends PureComponent {
                     </label>
               <input type="datetime-local" name="date_end" value={event_end_on} onChange={this.handleEndChange} required />
             </form>
-            <Button color="secondary" onClick={this.deleteEvent}>Supprimer du calendrier</Button>
+              <Button color="secondary" onClick={this.deleteEvent}>Supprimer du calendrier</Button>
 
             </ModalBody>
             <ModalFooter>
