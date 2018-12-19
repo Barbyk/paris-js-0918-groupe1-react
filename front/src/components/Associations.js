@@ -44,7 +44,7 @@ export default class Associations extends Component {
     getAssoPerPage() {
         const { currentNumberPage } = this.state;
         const { asso } = this.state;
-        const { numberResultStart } = (
+        let numberResultStart  = (
             currentNumberPage - 1) * numberAssoPerPage;
         let numberResultEnd = currentNumberPage * numberAssoPerPage;
         if (numberResultEnd > asso.length) {
@@ -112,6 +112,7 @@ export default class Associations extends Component {
                                         //     if (a.id === el){
                                         //         console.log("hhhh")
                                         //     return a.icon}})}
+                                        icon={e.actions?JSON.parse(e.actions):null}
                                         key={e.id}
                                     />
                                 </div>)
