@@ -3,6 +3,7 @@ import './App.css';
 import './components/Map.css'
 import { Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
+import Actions from'./components/Actions';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Associations from './components/Associations';
@@ -19,6 +20,7 @@ class App extends Component {
             <Route path="/associations" component ={Associations} />
             <Route exact path="/trouverunemaraude" component = { Map } />
             <Route path ="/trouverunemaraude/:id" component = { AssoByDept } />
+            <Route path ="/actions" component = { Actions } />
         </Switch>
         <Footer />
       </div>
