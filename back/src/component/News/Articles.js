@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from 'react-router-dom'
 import '../assoprofil/Assoprofil.css'
 import withAuth from '../withAuth';
+import moment from 'moment'
 
 
 class Articles extends Component {
@@ -32,9 +33,11 @@ class Articles extends Component {
                 .put("http://localhost:3002/news/" + id, { "is_active": "0" })
                 .then(window.location.reload())
         }
-
     }
     render() {
+
+
+        
         if (!this.state.isLoading)
             return (
                 <div>
@@ -44,7 +47,7 @@ class Articles extends Component {
                         <thead><tr><th> Id </th><th> Titre</th><th> Texte</th><th> Image URL </th><th> Date</th></tr></thead>
                         <tbody>
                             {this.state.assoProfil.map((el, index) =>
-                              <tr key={index}><td>{el.id}</td><td>{el.title}</td><td>{el.text}</td><td>{el.img_url}</td><td>{el.date}</td>
+                              <tr key={index}><td>{el.id}</td><td>{el.title}</td><td>{el.text}</td><td><img src={el.img_url} alt=""/></td><td>{ moment(el.date).format('DD-MM-YYYY')  }</td>
                                     <td><Link to={'/modifarticle/' + el.id}>
                                         <button>Modifier</button>
                                     </Link>

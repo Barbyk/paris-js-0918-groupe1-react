@@ -10,7 +10,6 @@ export default class Associations extends Component {
     state = {
         asso: [],
         actions: [],
-
         currentNumberPage: 1,
         assoPerPage: [],
         numberResultStart: 0,
@@ -88,6 +87,13 @@ export default class Associations extends Component {
     }
 
     render() {
+        const shouldParse = (el) => {
+            if (!Array.isArray(el)){
+              return JSON.parse(el)
+            }else{
+              return el
+            }
+          }
 
 
         if (this.state.asso.length === 0) {
@@ -112,7 +118,7 @@ export default class Associations extends Component {
                                         //     if (a.id === el){
                                         //         console.log("hhhh")
                                         //     return a.icon}})}
-                                        icon={e.actions?JSON.parse(e.actions):null}
+                                        icon={e.actions ? shouldParse(e.actions) : null}
                                         key={e.id}
                                     />
                                 </div>)
