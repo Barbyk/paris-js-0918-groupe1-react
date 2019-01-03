@@ -1,0 +1,14 @@
+.nobuttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.twins {
+    margin : 30px 30px;
+}
+
+.number_page {
+    font-size: 150%;
+}

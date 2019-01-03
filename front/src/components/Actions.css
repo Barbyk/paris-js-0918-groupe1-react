@@ -1,0 +1,47 @@
+img {
+    width: 8vw;
+    height: 20vh;
+}
+
+.first,
+.second,
+.third {
+    display: flex;
+    justify-content: space-around;
+    margin: 1em
+}
+
+.action {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgba(111, 218, 203, 0.4)
+}
+
+.definition {
+    border: 2px solid black;
+    margin: 40px;
+    padding: 40px;
+    border-radius: 10px;
+    background-color: rgba(118, 118, 201, 0.8)
+}
+.mybut{
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    color: rgba(3, 169, 244, 0.54);
+    width: 13vw;
+    height: 25vh;
+    border-radius: 50%;
+    text-align: center;
+    background: #f7f7f7;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.08);
+    outline: none;
+}
+@media only screen and (max-width: 1000px){
+    img {
+        width: 13vw;
+        height: 9vh;
+    }
+}
+

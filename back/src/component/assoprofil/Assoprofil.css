@@ -65,3 +65,6 @@ button {
 * {
     box-sizing: border-box;
 }
+img{
+    width: 50px;
+}
