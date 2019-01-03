@@ -38,7 +38,7 @@ class Calendrier extends PureComponent {
   }
   getLocations = () => {
 
-    axios.get('http://localhost:3002/locations/')
+    axios.get('locations/')
       .then(response => {
         this.setState({
           locations: response.data
@@ -52,7 +52,7 @@ class Calendrier extends PureComponent {
 
   getEvents = (locationid = 0) => {
 
-    axios.get('http://localhost:3002/events/location/' + locationid)
+    axios.get('/events/location/' + locationid)
       .then(response => {
         let appointments = response.data;
 
@@ -74,7 +74,7 @@ class Calendrier extends PureComponent {
     var startDate = moment(this.state.event_start_on).format("YYYY-MM-DD H:mm:ss");
     var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD H:mm:ss");
     console.log(startDate,endDate)
-    axios.post('http://localhost:3002/events', {
+    axios.post('events', {
       users_id: 1, locations_id: this.state.location_selected, is_active: 1, title: this.state.event_title,
       begin_date: startDate, end_date: endDate
     })
@@ -97,7 +97,7 @@ class Calendrier extends PureComponent {
     var startDate = moment(this.state.event_start_on).format("YYYY-MM-DD H:mm:ss");
     var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD H:mm:ss");
 
-    axios.put('http://localhost:3002/events/' + this.state.currentEvent.id, {
+    axios.put('/events/' + this.state.currentEvent.id, {
       users_id: 1, locations_id: this.state.location_selected, is_active: 1, title: this.state.event_title,
       begin_date: startDate, end_date: endDate
     })
@@ -117,7 +117,7 @@ class Calendrier extends PureComponent {
 
   deleteEvent = (element) => {
 
-    axios.put('http://localhost:3002/events/' + this.state.currentEvent.id, {
+    axios.put('/events/' + this.state.currentEvent.id, {
       is_active: 0, users_id: 1, locations_id: this.state.location_selected
     })
       .then(response => {
