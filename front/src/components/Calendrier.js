@@ -203,7 +203,7 @@ class Calendrier extends PureComponent {
 
     const { cal_events, event_title, isEditModalOpen, isAddModalOpen,
       event_start_on, event_end_on, locations, location_selected } = this.state
-
+    const locations_id = parseInt(location_selected)-1
     return (
       <div className="App">
         <div className="dropdown" style={{ fontSize: "14px" }}>
@@ -264,6 +264,7 @@ class Calendrier extends PureComponent {
           <Modal isOpen={isAddModalOpen} toggle={this.toggleAddModal}>
             <ModalHeader toggle={this.toggle}>Ajouter un nouvel évenement</ModalHeader>
             <ModalBody>
+              <p> Lieu : {(locations[locations_id]||"").name}</p>
               <p>de : {event_start_on ? event_start_on.toLocaleString() : ''}</p>
               <p>à : {event_end_on ? event_end_on.toLocaleString() : ''}</p>
 
