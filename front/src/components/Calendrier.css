@@ -2,3 +2,6 @@
     z-index: 999 !important;
   }
 
+  @media screen and (max-width: 640px) {
+    select {max-width: 250px}
+  }

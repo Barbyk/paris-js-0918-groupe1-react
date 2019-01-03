@@ -226,7 +226,7 @@ class Calendrier extends PureComponent {
             step={30}
             timeslots={2}
             scrollToTime={new Date(new Date().setHours(8))}
-            defaultView='week'
+            defaultView={(window.innerWidth <= 760)?'day':'week'}
             views={['month', 'week', 'day']}
             defaultDate={new Date()}
             eventPropGetter={this.eventStyleGetter}
