@@ -7,6 +7,7 @@ import withAuth from '../withAuth';
 import Dropzone from 'react-dropzone'
 
 
+
 class AddNewAssoprofil extends Component {
   state = {
     addInputValue: { is_visible: "1",actions:[] },
@@ -43,7 +44,8 @@ class AddNewAssoprofil extends Component {
 
     axios
       .post("http://localhost:3002/assoprofil", this.state.addInputValue,{headers: {
-        'Authorization': 'Bearer ' + sessionStorage.getItem("id_token")} })
+        'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
+        
       .then(this.setState({}))
      .then(window.history.back() );
     alert("Association ajoutée !")

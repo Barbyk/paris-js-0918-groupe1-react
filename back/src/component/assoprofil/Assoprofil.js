@@ -18,9 +18,10 @@ class Assoprofil extends Component {
     this.setState({ isLoading: true })
     axios
       .get("http://localhost:3002/assoprofil",{headers: {
-        'Authorization': 'Bearer ' + sessionStorage.getItem("id_token")}
+        'Authorization': 'Bearer ' + localStorage.getItem("id_token")}
       })
       .then(response => this.setState({ assoProfil: response.data, isLoading: false }))
+
   };
 
   handleChangeDelete = (id) => {
@@ -28,7 +29,7 @@ class Assoprofil extends Component {
     if (response) {
       axios
         .put("http://localhost:3002/assoprofil/" + id, { "is_visible": "0" },{headers: {
-          'Authorization': 'Bearer ' + sessionStorage.getItem("id_token")}})
+          'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
         .then(window.location.reload())
     }
   }
@@ -57,7 +58,9 @@ class Assoprofil extends Component {
               {this.state.assoProfil.map((el, index) =>
                 <tr><td>{el.id}</td><td>{el.name}</td><td>{el.description}</td><td>{el.address}</td><td><img src={el.logo} alt=""/></td>
                   <td>{el.social_network_url_1}</td><td>{el.social_network_url_2}</td><td>{el.social_network_url_3}</td>
+
                   <td>{el.phone_number}</td><td>{el.web_site}</td><td>{el.mail}</td><td>{tabDepartement[el.departements_id-1]}</td><td>{ el.actions ? (shouldParse(el.actions)).map(e=>(tabActions[e-1]+"\r\n")):null}</td><td><Link to={'/modifyAssoprofil/' + el.id}>
+
                     <button>Modifier</button>
                   </Link>
                     <button onClick={() => this.handleChangeDelete(el.id)}>Supprimer</button></td></tr>
