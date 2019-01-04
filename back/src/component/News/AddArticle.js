@@ -79,7 +79,7 @@ class AddArticle extends Component {
           const formData = new FormData();
           formData.append("file", image);
           formData.append("tags", 'image article'); // Add tags for the images - {Array}
-          formData.append("upload_preset", "wj40wyla"); // Replace the preset name with your own
+          formData.append("upload_preset", "iophnmh1"); // Replace the preset name with your own
           formData.append("api_key", "823679753155951"); // Replace API key with your own Cloudinary API key
           formData.append("timestamp", (Date.now() / 1000) | 0);
     
