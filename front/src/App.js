@@ -10,6 +10,8 @@ import Associations from './components/Associations';
 import Map from './components/Map'
 import Calendrier from './components/Calendrier'
 import AssoByDept from './components/AssoByDept'
+import AssoByAction from './components/AssoByAction'
+
 
 class App extends Component {
   render() {
@@ -25,7 +27,8 @@ class App extends Component {
 
             <Route exact path="/trouverunemaraude" component = { Map } />
             <Route path ="/trouverunemaraude/:id" component = { AssoByDept } />
-            <Route path ="/actions" component = { Actions } />
+            <Route  exact path ="/actions" component = { Actions } />
+            <Route path ="/actions/:id" component = { AssoByAction } />
         </Switch>
         <Footer />
       </div>
