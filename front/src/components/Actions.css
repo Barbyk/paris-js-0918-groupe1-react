@@ -38,10 +38,10 @@ img {
     box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.08);
     outline: none;
 }
-@media only screen and (max-width: 1000px){
+/* @media only screen and (max-width: 1000px){
     img {
         width: 13vw;
         height: 9vh;
     }
-}
+} */
 
