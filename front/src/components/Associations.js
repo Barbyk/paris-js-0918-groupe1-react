@@ -3,7 +3,7 @@ import axios from 'axios';
 import DisplayAssociations from './DisplayAssociations'
 import "./Associations.css"
 
-const numberAssoPerPage = 2
+const numberAssoPerPage = 10
 
 export default class Associations extends Component {
 
@@ -102,30 +102,41 @@ export default class Associations extends Component {
         else {
             return (
                 <div>
-                    <div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                        <th>Nom de l'association</th>
+                        <th>Logo</th>
+                        <th>Ville</th>
+                        <th>Actions</th>
+                        <th>Contacts</th>
+                        </tr>
+                        </thead>
+                    <tbody>
                         {this.state.assoPerPage.map(e => {
 
                             // const icon_urls = {
                             // }
                             return (
-                                <div>
                                     <DisplayAssociations
                                         name={e.name}
                                         logo={e.logo}
                                         address={e.address}
                                         social_1={e.social_network_url_1}
-                                        // icon ={JSON.parse(e.actions).map(el=>{for (let a in this.state.actions)
-                                        //     if (a.id === el){
-                                        //         console.log("hhhh")
-                                        //     return a.icon}})}
+                                        social_2={e.social_network_url_2}
+                                        social_3={e.social_network_url_3}
+                                        phone={e.phone_number}
+                                        web_site={e.web_site}
+                                        mail={e.mail}
                                         icon={e.actions ? shouldParse(e.actions) : null}
                                         key={e.id}
                                     />
-                                </div>)
+                                )
 
 
                         })}
-                    </div>
+                    </tbody>
+                    </table>
                     <div className="nobuttons">
 
                         <div className="twins"><button type="button" class="btn btn-dark" onClick={this.handleButtonPrevious}>Précédent</button></div>

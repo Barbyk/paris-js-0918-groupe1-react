@@ -1,3 +1,14 @@
+table {
+width: 100%;
+}
+
+thead {
+    border-bottom: 3px solid rgb(100, 165, 173) !important
+}
+
+tbody {
+}
+
 .nobuttons {
     display: flex;
     flex-direction: row;

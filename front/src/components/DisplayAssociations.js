@@ -23,18 +23,22 @@ export default class DisplayAssociations extends Component {
 
   render() {
     return (
-      <div className = "nocard">
-      <div><h3>{this.props.name}</h3></div>
-        <div><img src={this.props.logo} alt=""/></div>
-        <div><p>{this.props.address}</p></div>
-        <div><p>{this.props.social_1}</p></div>
-        <div><p>{this.props.icon ? this.props.icon.map((e)=>
-            <img src={this.tab[e-1]}
-            alt=""/>
-          ):null} </p></div>
-        
-        
-      </div>
+      <tr>     
+        <td><div className="name"><p>{this.props.name}</p></div></td>
+        <td><div className="logo"><img src={this.props.logo} alt="" /></div></td>
+        <td><div className="city"><p>{this.props.address}</p></div></td>
+        <td><div className="icon"><p>{this.props.icon ? this.props.icon.map((e) =>
+          <img src={this.tab[e - 1]} alt="" />) : null} </p>
+        </div></td>
+        <td><div className="coordonnees">
+          <div><p>{this.props.social_1}</p></div>
+          <div><p>{this.props.social_2}</p></div>
+          <div><p>{this.props.social_3}</p></div>
+          <div><p>{this.props.mail}</p></div>
+          <div><p>{this.props.web_site}</p></div>
+          <div><p>{this.props.phone}</p></div>
+        </div></td>
+        </tr> 
     )
   }
 }
