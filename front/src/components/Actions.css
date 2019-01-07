@@ -1,4 +1,4 @@
-
+/* .map {cursor:pointer;} */
  .container-fluid {
      background-color: #15550f;
     min-height: 100vh
@@ -30,7 +30,8 @@
 
  .actionbtn {
      margin:2.5em;
-     box-shadow: 3px 5px
+     box-shadow: 3px 5px;
+     cursor: pointer;
  }
 
  @media only screen and (max-width: 1500px) {
