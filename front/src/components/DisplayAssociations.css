@@ -4,6 +4,7 @@ tr {
     color: #002040;
     font-family: 'Times New Roman', serif;
     background-color: rgb(224, 232, 243);
+    width: 100%;
 }
 
 td {
@@ -12,8 +13,7 @@ td {
 }
 
 .name {
-    font-weight: bold;
-    font-size: 30px
+   
 }
 .logo {
 }
@@ -31,4 +31,14 @@ td {
 img{
     width: 60px;
     height : 60px
+}
+.za{
+    width: 100%;
+}
+
+.information {
+    color : #0d5399;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: 'Times New Roman', serif;
 }

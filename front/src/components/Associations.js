@@ -3,6 +3,7 @@ import axios from 'axios';
 import DisplayAssociations from './DisplayAssociations'
 import "./Associations.css"
 
+
 const numberAssoPerPage = 10
 
 export default class Associations extends Component {
@@ -113,15 +114,18 @@ export default class Associations extends Component {
                         </tr>
                         </thead>
                     <tbody>
+                    
                         {this.state.assoPerPage.map(e => {
 
                             // const icon_urls = {
                             // }
                             return (
+                                
                                     <DisplayAssociations
                                         name={e.name}
                                         logo={e.logo}
                                         address={e.address}
+                                        description={e.description}
                                         social_1={e.social_network_url_1}
                                         social_2={e.social_network_url_2}
                                         social_3={e.social_network_url_3}
@@ -131,12 +135,22 @@ export default class Associations extends Component {
                                         icon={e.actions ? shouldParse(e.actions) : null}
                                         key={e.id}
                                     />
+                    
+                                   
+                                  
                                 )
 
 
                         })}
+                        
                     </tbody>
+                       
+        
                     </table>
+                     
+         
+        
+          
                     <div className="nobuttons">
 
                         <div className="twins"><button type="button" class="btn btn-dark" onClick={this.handleButtonPrevious}>Précédent</button></div>
