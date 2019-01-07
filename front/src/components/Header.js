@@ -7,7 +7,7 @@ class Header extends React.Component {
     render() {
         return(
             <div>
-                <div>Logo</div>
+                <div id="logo">Logo</div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <button type="button" className="btn btn-outline-light btn-sm">Espace asso</button>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

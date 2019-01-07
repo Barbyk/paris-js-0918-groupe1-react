@@ -1,38 +1,42 @@
- .container-fluid{
-background-color: #15550f;
-min-height: 100%
+
+ .container-fluid {
+     background-color: #15550f;
+    min-height: 100vh
  }
- p{
-    color:#15550f;
-    font-weight: bold
-}
 
-img {
-    width: 8vw;
-    height: 20vh;
- padding:1em
-}
+ p {
+     color: #15550f;
+     font-weight: bold
+ }
 
-.definition {
-    border: 2px solid black;
-    border-radius: 10px;
-    background-color: rgba(177, 177, 189, 0.8);  
-    margin-top:2em;
-    margin-bottom: 2em
-}
+ .actionlogo {
+     width: 8vw;
+     height: 20vh;
+     padding: 1em
+ }
 
- .actionbtn  {
-    
-    margin: 0.5em;
-    box-shadow: 3px 5px 
-   
-} 
+ .definition {
+     border: 2px solid black;
+     border-radius: 10px;
+     background-color: rgba(177, 177, 189, 0.8);
+     margin-top: 2em;
+     margin-bottom: 2em;
+     
+ }
+ .btn {
+     margin:10px;
 
-@media only screen and (max-width: 1500px) {
-    img {
-        width: 35vw;
-        height: 20vh;
-        padding:1em
-        
-    }
-}
+ }
+
+ .actionbtn {
+     margin:2.5em;
+     box-shadow: 3px 5px
+ }
+
+ @media only screen and (max-width: 1500px) {
+    .actionlogo {
+         width: 35vw;
+         height: 20vh;
+         padding: 1em
+     }
+ }
