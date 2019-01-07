@@ -102,11 +102,11 @@ export default class Associations extends Component {
         }
         else {
             return (
-                <div>
-                    <table class="table table-striped">
+                <div className="table-responsive">
+                    <table className="table table-striped">
                         <thead>
                         <tr>
-                        <th>Nom de l'association</th>
+                        <th scope="col">Nom de l'association</th>
                         <th>Logo</th>
                         <th>Ville</th>
                         <th>Actions</th>
