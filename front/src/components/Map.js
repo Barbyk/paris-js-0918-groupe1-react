@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+import PropTypes from 'prop-types';
+import Card from '@material-ui/core/Card';
 
+import { withStyles } from '@material-ui/core/styles';
 
-export default class Map extends Component {
+const styles = {
+    card: {
+      minWidth: 575,
+      boxShadow: "0px 0px 0px 0px" ,
+  }
+}
 
+class Map extends Component {
+     
     state= {active : "", target : undefined}
 
     handleHover = (e) => {
@@ -15,17 +25,19 @@ export default class Map extends Component {
 
   render() {
     const target = this.state.target 
+    const { classes } = this.props;
           
     return (
       <div className="map_view">
         
+        <Card className={classes.card} >
         <div className="block_map">
             <div className="dep">
             <h1>{this.state.target ? this.state.target : "Ile-de-France" }</h1>
             </div>
         <div className="map" id="map">
          <svg version="1.1" id="Plan_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px"
-         width="842px" height="595px" viewBox="0 0 842 595" enableBackground="new 0 0 842 595" >
+         width="100%" height="100%" viewBox="0 0 842 595" enableBackground="new 0 0 842 595" >
     <Link to = {"/trouverunemaraude/75"} ><path onMouseOver={ this.getDep }  id="Paris" onMouseOut={ () => this.setState({ target : "" })} className={ target==="Paris" ? this.state.active : "" } fillRule="evenodd" clipRule="evenodd" fill="#DCDCDC" stroke="#FFFFFF" strokeWidth="2" strokeMiterlimit="22.9256" d="
         M365.675,200.243l-7.47,4.338c-0.324,0.437-0.959,0.972-1.399,1.322c-0.4,0.318-1.064,0.729-1.373,1.111
         c-0.806,1-1.675,2.104-2.56,2.989l-8.932-2.297c-1.144,1.589-2.328,3.234-3.579,4.281c-3.077,2.572-4.977,5.65-4.302,10.05
@@ -510,8 +522,10 @@ export default class Map extends Component {
     </svg>
     </div>
     </div>
+    </Card>
     <div className="map_list">
-    <h1>Liste des départements </h1>
+    <Card className={classes.card} >
+    <h1>Départements </h1>
     <ul>
 
         <li><a href="/" id="Paris" onMouseOver={ this.handleHover } onMouseOut={ () => { this.setState({ active:"", target:"" }) } }> Paris 75</a></li>
@@ -524,9 +538,14 @@ export default class Map extends Component {
         <li><a href="/" id="Val-d'Oise" onMouseOver={ this.handleHover } onMouseOut={ () => { this.setState({ active:"", target:"" }) } }> Val-d'Oise 95</a></li>
         
     </ul>
-
+    </Card>
     </div>
+   
       </div>
     )
   }
 }
+  Map.propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
+export default  withStyles(styles)(Map);

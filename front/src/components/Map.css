@@ -9,8 +9,14 @@
     justify-content: center;
     align-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    min-height: 85vh;
+  }
+  .MuiPaper-elevation1-6 {
+    box-shadow: 0px !important;
   }
   
+
   .map_list{
     color: inherit;
     transition: color 0.3s;
