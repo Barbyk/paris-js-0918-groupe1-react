@@ -1,8 +1,8 @@
- .container-fluid{
-background-color: #15550f;
-min-height: 100%
- }
- p{
+.container-fluid{
+	background-color: #15550f;
+	min-height: 100%
+}
+p{
     color:#15550f;
     font-weight: bold
 }
@@ -10,7 +10,7 @@ min-height: 100%
 img {
     width: 8vw;
     height: 20vh;
- padding:1em
+    padding:1em
 }
 
 .definition {

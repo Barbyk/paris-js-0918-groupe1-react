@@ -6,7 +6,6 @@ import moment from 'moment'
 
 class NewsCarousel extends React.Component {
     render() {
-        console.log(this.props.news);
         
         return (
             <Carousel autoPlay infiniteLoop={true} showThumbs={false} useKeyboardArrows={true}>

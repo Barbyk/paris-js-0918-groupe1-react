@@ -1,5 +1,5 @@
 .map path:hover,.map path.active {
-    fill:red;
+    fill:rgb(100, 165, 173);
     transition: fill 0.3s;
   }
   
@@ -9,18 +9,25 @@
     justify-content: center;
     align-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    min-height: 85vh;
+  }
+  .MuiPaper-elevation1-6 {
+    box-shadow: 0px !important;
   }
   
+
   .map_list{
     color: inherit;
     transition: color 0.3s;
+    font-family: 'Times New Roman', serif;
     
   }
   
   .map_list li,a {
     text-decoration: none;
     list-style: none;
-    color: #373A7B;
+    color: rgb(98, 103, 201);
   }
   
   .map_list a:hover{
@@ -33,4 +40,10 @@
   
 .dep{
     margin-top: 40px;
+    font-family: 'Times New Roman', serif;
+}
+
+li {
+  font-family: 'Times New Roman', serif;
+  font-size: 120%
 }
