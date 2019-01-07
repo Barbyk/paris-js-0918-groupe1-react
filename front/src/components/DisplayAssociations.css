@@ -4,6 +4,7 @@ tr {
     color: #002040;
     font-family: 'Times New Roman', serif;
     background-color: rgb(224, 232, 243);
+    width: 100%;
 }
 
 td {
@@ -11,19 +12,28 @@ td {
     vertical-align: middle !important;
 }
 
-.name {
-    font-weight: bold;
-    font-size: 30px
-}
 .city {
     line-height: 200px;
     width: 200px;
     font-weight: bold;
     font-size: 20px
 }
- .icon {
+.icon {
     height: 200px;
     width: 200px;
 }
 
+img{
+    width: 60px;
+    height : 60px
+}
+.za{
+    width: 100%;
+}
 
+.information {
+    color : #0d5399;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: 'Times New Roman', serif;
+}

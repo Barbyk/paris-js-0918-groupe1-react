@@ -118,6 +118,7 @@ else {
                     return (
                             <DisplayAssociations
                                 name={e.name}
+                                description={e.description}
                                 logo={e.logo}
                                 address={e.address}
                                 social_1={e.social_network_url_1}
