@@ -8,7 +8,6 @@ class NewsCarousel extends React.Component {
     render() {
         
         return (
-            <div className='caroussel-global'>
             <Carousel autoPlay infiniteLoop={true} showThumbs={false} useKeyboardArrows={true}>
                 {this.props.news.map(e => {
                     return ( <div className='item'>
@@ -22,7 +21,6 @@ class NewsCarousel extends React.Component {
                             </div> )  
                 })}
             </Carousel>
-            </div>
         );
     }
 };
