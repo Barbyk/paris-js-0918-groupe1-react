@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import DisplayAssociations from './DisplayAssociations'
+import './AssoByAction.css'
 
 const numberAssoPerPage = 10
 
@@ -99,8 +100,8 @@ if (this.state.asso.length === 0) {
 }
 else {
     return (
-        <div>
-            <table class="table table-striped">
+        <div class="assocard" >
+            {/* <table class="table table-striped">
                 <thead>
                 <tr>
                 <th>Nom de l'association</th>
@@ -109,14 +110,15 @@ else {
                 <th>Actions</th>
                 <th>Contacts</th>
                 </tr>
-                </thead>
-            <tbody>
+                </thead> */}
+            {/* <tbody> */}
                 {this.state.assoPerPage.map(e => {
 
                     // const icon_urls = {
                     // }
                     return (
                             <DisplayAssociations
+                            
                                 name={e.name}
                                 description={e.description}
                                 logo={e.logo}
@@ -134,8 +136,8 @@ else {
 
 
                 })}
-            </tbody>
-            </table>
+            {/* </tbody>
+            </table> */}
             <div className="nobuttons">
 
                 <div className="twins"><button type="button" class="btn btn-dark" onClick={this.handleButtonPrevious}>Précédent</button></div>

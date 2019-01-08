@@ -7,7 +7,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
     card: {
-      minWidth: 575,
       boxShadow: "0px 0px 0px 0px" ,
   }
 }
@@ -30,7 +29,7 @@ class Map extends Component {
     return (
       <div className="map_view">
         
-        <Card className={classes.card} >
+        <Card className={classes.card} class="mapcard" >
         <div className="block_map">
             <div className="dep">
             <h1>{this.state.target ? this.state.target : "Ile-de-France" }</h1>
