@@ -1,22 +1,61 @@
 .item {
-    background-color: white;
+    background-color: black;
+}
+@media only screen and (min-width: 1000px) {
+    .carousel-global{
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
+    .carousel img {
+        max-height: 87vh;
+        max-width: 56vw;
+        padding-bottom: 12vw;
+        padding-left: 7vw;
+        padding-right: 7vw;
+    }
+    .title ,.date{
+        font-family: sans-serif;
+        font-size: 2.75vw;
+    }
+    
+    .text {
+        font-family: sans-serif;
+        font-size: 1.75vw;
+        line-height: 1.5em;
+    }
 }
 
+@media only screen and (max-width: 600px) {
 
-.img img {
-    height: 600px
+    .carousel-global{
+        width: 100%;
+        min-height: 85vh;
+        
+    }
+
+    .carousel img {
+        max-height: 55vh;
+        max-width: 105vw;
+        padding-bottom: 12vw;
+        padding-left: 7vw;
+        padding-right: 7vw;
+    }
+    .title ,.date{
+        font-family: sans-serif;
+        font-size: 5.5vw;
+    }
+    
+    .text {
+        font-family: sans-serif;
+        font-size: 4.5vw;
+        line-height: 1.5em;
+    }
 }
-
 
 .legend {
-    opacity: 1 !important;
+    opacity: 0.5 !important;
+    background-color: grey;
 }
 
-.title ,.date{
-    font-size: 30px;
-}
-
-.text {
-    font-size: 20px;
-}
