@@ -2,7 +2,7 @@
 tr {
     border-bottom: 1px solid rgb(100, 165, 173);
     color: #002040;
-    font-family: 'Times New Roman', serif;
+    font-family: sans-serif;
     background-color: rgb(224, 232, 243);
     width: 100%;
 }
@@ -35,5 +35,5 @@ td {
     color : #0d5399;
     font-weight: bold;
     font-size: 30px;
-    font-family: 'Times New Roman', serif;
+    font-family: sans-serif;
 }
