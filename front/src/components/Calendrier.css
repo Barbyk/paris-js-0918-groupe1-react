@@ -5,3 +5,7 @@
   @media screen and (max-width: 640px) {
     select {max-width: 250px}
   }
+
+.calendrier {
+  background-color: #edf0f4
+}

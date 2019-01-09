@@ -29,7 +29,7 @@
     border: 3px solid rgb(143, 138, 138);
     border-radius: 12px;
     overflow: hidden;
-    
+    margin-bottom: 2em;
 }
 
 .info {

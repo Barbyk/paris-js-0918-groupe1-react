@@ -73,7 +73,6 @@ class Calendrier extends PureComponent {
 
     var startDate = moment(this.state.event_start_on).format("YYYY-MM-DD H:mm:ss");
     var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD H:mm:ss");
-    console.log(startDate,endDate)
     axios.post('events', {
       users_id: 1, locations_id: this.state.location_selected, is_active: 1, title: this.state.event_title,
       begin_date: startDate, end_date: endDate
@@ -205,7 +204,7 @@ class Calendrier extends PureComponent {
       event_start_on, event_end_on, locations, location_selected } = this.state
     const locations_id = parseInt(location_selected)-1
     return (
-      <div className="App">
+      <div className="calendrier">
         <div className="dropdown" style={{ fontSize: "14px" }}>
           <label class="control-label">Lieu de la mauraude </label>
           <select name="locations_id" onChange={this.handleLocationChange} value={this.state.location}>
