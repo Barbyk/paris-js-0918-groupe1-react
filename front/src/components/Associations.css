@@ -1,25 +1,40 @@
-table {
-width: 100%;
+/* table {
+    width: 100%;
 }
 
 thead {
     border-bottom: 3px solid rgb(100, 165, 173) !important
-}
-
-tbody {
-}
+} */
 
 .nobuttons {
     display: flex;
     flex-direction: row;
     justify-content: center;
-
 }
 
 .twins {
-    margin : 30px 30px;
+    margin: 30px 30px;
 }
 
 .number_page {
     font-size: 150%;
+}
+
+.assocard{
+
+    margin-right: 10em;
+    margin-left: 10em;
+    margin-top: 2em;
+    margin-bottom: 2em
+}
+
+@media only screen and (max-width: 1100px){
+    .assocard {
+        margin-right: 1em;
+        margin-left: 1em;
+        margin-top: 1em;
+        margin-bottom: 1em
+    }
+    
+
 }

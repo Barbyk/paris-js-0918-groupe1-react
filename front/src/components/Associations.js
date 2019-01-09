@@ -102,8 +102,8 @@ export default class Associations extends Component {
         }
         else {
             return (
-                <div className="table-responsive">
-                    <table className="table table-striped">
+                <div className="back">
+                    {/* <table className="table table-striped">
                         <thead>
                         <tr>
                         <th scope="col">Nom de l'association</th>
@@ -113,15 +113,15 @@ export default class Associations extends Component {
                         <th>Contacts</th>
                         </tr>
                         </thead>
-                    <tbody>
+                    <tbody> */}
                     
                         {this.state.assoPerPage.map(e => {
 
                             // const icon_urls = {
                             // }
                             return (
-                                
-                                    <DisplayAssociations
+                                <div class="assocard">
+                                    <DisplayAssociations 
                                         name={e.name}
                                         logo={e.logo}
                                         address={e.address}
@@ -135,6 +135,7 @@ export default class Associations extends Component {
                                         icon={e.actions ? shouldParse(e.actions) : null}
                                         key={e.id}
                                     />
+                                   </div>
                     
                                    
                                   
@@ -143,10 +144,10 @@ export default class Associations extends Component {
 
                         })}
                         
-                    </tbody>
+                    {/* </tbody>
                        
         
-                    </table>
+                    </table> */}
                      
          
         

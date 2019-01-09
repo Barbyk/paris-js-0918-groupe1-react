@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
 import "./DisplayAssociations.css"
-import colis from "../assets/colis.png"
-import mauraudes from "../assets/mauraudes.png"
-import tables from "../assets/tables.png"
-import soutien from "../assets/soutien.png"
-import visite from "../assets/visites.png"
-import administratif from "../assets/administratif.png"
-import culture from "../assets/culture.png"
-import etranger from "../assets/etranger.png"
-import migrants from "../assets/migrants.png"
-import impots from "../assets/impots.png"
-import recolte from "../assets/recolte.png"
-import sante from "../assets/sante.png"
-import vestimentaires from "../assets/vestimentaires.png"
+import colis from './imgActions/colis.png';
+import accompagnement from './imgActions/accompagnement.png';
+import culture from './imgActions/culture.png';
+import etranger from './imgActions/etranger.png';
+import maraude from './imgActions/maraude.png';
+import table from './imgActions/table-solidaire.png';
+import visite from './imgActions/visite.png';
+import soutient from './imgActions/soutient.png';
+import migrant from './imgActions/migrant.png';
+import fb from './imgActions/fb.png';
+import tweet from'./imgActions/tweet.png'
+import insta from'./imgActions/insta.png'
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
@@ -37,6 +35,7 @@ const DialogTitle = withStyles(theme => ({
     top: theme.spacing.unit,
     color: theme.palette.grey[500],
   },
+ 
 }))(props => {
   const { children, classes, onClose } = props;
   return (
@@ -58,13 +57,7 @@ const DialogContent = withStyles(theme => ({
   },
 }))(MuiDialogContent);
 
-const DialogActions = withStyles(theme => ({
-  root: {
-    borderTop: `1px solid ${theme.palette.divider}`,
-    margin: 0,
-    padding: theme.spacing.unit,
-  },
-}))(MuiDialogActions);
+
 
 
 
@@ -76,7 +69,7 @@ export default class DisplayAssociations extends Component {
 
   // à faire: recuperer toutes les autres icones d'actions et les importer ici
   tab = [
-    migrants, mauraudes, tables, colis, visite, administratif, culture, soutien, etranger
+   colis,accompagnement,culture,etranger, maraude ,table ,visite ,soutient,migrant 
   ]
 
 
@@ -95,43 +88,60 @@ export default class DisplayAssociations extends Component {
 
   render() {
     return (
+<div className="actioncard">
+      <div class="container-fluid assocontain">
+          <div class=" top row">
+            <div col-xs-12 col-lg-4 class="entete">
+              <img src={this.props.logo} alt="" class="logoasso" />
+              <h1>{this.props.name}</h1>
+            </div>
+            <div  col-xs-12 offset-lg-8 class="reseaux">
+              <a href={this.props.social_1}><img src={tweet} class="icon " /></a>
+              <a href={this.props.social_2}><img src={fb} class="icon " /></a>
+              <a href={this.props.social_3}><img src={insta} class="icon " /></a>
+            </div>
+          </div>
 
-      <tr>
+          <div class="bottom row">
+            <div class="info offset-sm-12 ">
+              <p>adresse: {this.props.address} </p>
+              <p>mail: {this.props.mail}</p>
+              <a href={this.props.web_site}><p>site web</p></a>
+              <p>tel: {this.props.phone}</p>
+            </div>
+            <div class="col-sm-12">
+               <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
+                Informations
+              </Button>
+              <Dialog
+                onClose={this.handleClose}
+                aria-labelledby="customized-dialog-title"
+                open={this.state.open}
+              >
+                <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
+                  {this.props.name}
+                </DialogTitle>
+                <DialogContent>
+                  <Typography gutterBottom>
+                    {this.props.description ? this.props.description : "Description à venir."}
+                      <p>{this.props.address}</p>
+                      <p>{this.props.mail}</p>
+                      <a href={this.props.web_site}><p>site web</p></a>
+                      <p>{this.props.phone}</p>
+                      <p>{this.props.icon ? this.props.icon.map((e) =>
+                      <img src={this.tab[e - 1]} alt="" class="icon" />) : null} </p>
+                  </Typography>
+                </DialogContent>
+              </Dialog>
+            </div>
+          </div>
+        </div>
+      </div>
+      
 
-        <td><div className="name">
-          <Button variant="outlined" onClick={this.handleClickOpen}>
-            <p className="information">{this.props.name}</p>
-          </Button>
-          <Dialog
-          onClose={this.handleClose}
-          aria-labelledby="customized-dialog-title"
-          open={this.state.open}
-        >
-          <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-            {this.props.name}
-          </DialogTitle>
-          <DialogContent>
-            <Typography gutterBottom>
-              {this.props.description ? this.props.description : "Description à venir."}
-            </Typography>
-          </DialogContent>
-        </Dialog>
-        </div></td>
-        <td><div className="logo"><img src={this.props.logo} alt="" /></div></td>
-        <td><div className="city"><p>{this.props.address}</p></div></td>
-        <td><div className="icon"><p>{this.props.icon ? this.props.icon.map((e) =>
-          <img src={this.tab[e - 1]} alt="" />) : null} </p>
-        </div></td>
-        <td><div className="coordonnees">
-          <div><p>{this.props.social_1}</p></div>
-          <div><p>{this.props.social_2}</p></div>
-          <div><p>{this.props.social_3}</p></div>
-          <div><p>{this.props.mail}</p></div>
-          <div><p>{this.props.web_site}</p></div>
-          <div><p>{this.props.phone}</p></div>
-        </div></td>
 
-      </tr>
+
+
 
 
 

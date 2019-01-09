@@ -2,7 +2,6 @@
     background-color: black;
 }
 @media only screen and (min-width: 1000px) {
-
     .carousel-global{
         width: 50%;
         margin-left: auto;
@@ -54,8 +53,6 @@
         line-height: 1.5em;
     }
 }
-
-
 
 .legend {
     opacity: 0.5 !important;

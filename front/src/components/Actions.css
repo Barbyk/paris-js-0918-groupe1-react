@@ -1,43 +1,55 @@
-/* .map {cursor:pointer;} */
- .container-fluid {
-     background-color: #15550f;
+.map {
+    cursor: pointer;
+}
+
+.actioncontain {
+    background-color: rgb(168, 206, 228);
     min-height: 100vh
- }
+}
 
- p {
-     color: #15550f;
-     font-weight: bold
- }
+p {
+    color: #15550f;
+    font-weight: bold
+}
 
- .actionlogo {
-     width: 8vw;
-     height: 20vh;
-     padding: 1em
- }
+.actionlogo {
+    width: 8vw;
+    height: 18vh;
+    padding: 1em
+}
 
- .definition {
-     border: 2px solid black;
-     border-radius: 10px;
-     background-color: rgba(177, 177, 189, 0.8);
-     margin-top: 2em;
-     margin-bottom: 2em;
-     
- }
- .btn {
-     margin:10px;
+.definition {
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgba(177, 177, 189, 0.8);
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
 
- }
+.btn {
+    margin: 10px;
+}
 
- .actionbtn {
-     margin:2.5em;
-     box-shadow: 3px 5px;
-     cursor: pointer;
- }
+.actionbtn {
+    margin: 2.5em;
+    box-shadow: 3px 5px;
+    cursor: pointer;
+}
 
- @media only screen and (max-width: 1500px) {
+@media only screen and (max-width: 1100px) {
     .actionlogo {
-         width: 35vw;
-         height: 20vh;
-         padding: 1em
-     }
- }
+        min-width: 16vw;
+        min-height: 20vh;
+        max-width: 16vw;
+        max-height: 20vh;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .actionlogo {
+        min-width: 30vw;
+        min-height: 18vh;
+        max-width: 30vw;
+        max-height: 18vh;
+    }
+}

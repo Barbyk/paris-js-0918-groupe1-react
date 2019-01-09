@@ -11,6 +11,7 @@
     align-items: center;
     flex-wrap: wrap;
     min-height: 85vh;
+    background-color: white
   }
   .MuiPaper-elevation1-6 {
     box-shadow: 0px !important;
@@ -46,4 +47,8 @@
 li {
   font-family: 'Times New Roman', serif;
   font-size: 120%
+}
+.mapcard
+{
+  width:80%;
 }

@@ -6,7 +6,7 @@ class Header extends React.Component {
 
     render() {
         return(
-            <div>
+            <div class="header">
                 <div id="logo">Logo</div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <button type="button" className="btn btn-outline-light btn-sm">Espace asso</button>
