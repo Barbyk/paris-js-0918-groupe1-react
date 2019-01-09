@@ -134,6 +134,7 @@ export default class Associations extends Component {
                                         mail={e.mail}
                                         icon={e.actions ? shouldParse(e.actions) : null}
                                         key={e.id}
+                                        definition={this.state.actions}
                                     />
                                    </div>
                     
