@@ -9,6 +9,9 @@
     justify-content: center;
 }
 #logo{
-    background-color: white;
+    background-color:#868e95;
+}
+.imglogo{
+    width: 20%;
 }
 
