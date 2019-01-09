@@ -11,8 +11,8 @@
 
     .carousel img {
         max-height: 87vh;
-        max-width: 49vw;
-        padding-bottom: 3vw;
+        max-width: 56vw;
+        padding-bottom: 12vw;
         padding-left: 7vw;
         padding-right: 7vw;
     }
@@ -37,7 +37,7 @@
     }
 
     .carousel img {
-        max-height: 83vh;
+        max-height: 55vh;
         max-width: 105vw;
         padding-bottom: 12vw;
         padding-left: 7vw;
