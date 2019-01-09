@@ -93,12 +93,12 @@ export default class DisplayAssociations extends Component {
           <div class=" top row">
             <div col-xs-12 col-lg-4 class="entete">
               <img src={this.props.logo} alt="" class="logoasso" />
-              <h1>{this.props.name}</h1>
+              <h3>{this.props.name}</h3>
             </div>
             <div  col-xs-12 offset-lg-8 class="reseaux">
-              <a href={this.props.social_1}><img src={tweet} class="icon " /></a>
-              <a href={this.props.social_2}><img src={fb} class="icon " /></a>
-              <a href={this.props.social_3}><img src={insta} class="icon " /></a>
+              {this.props.social_1?<a href={this.props.social_1}><img src={tweet} class="icon " /></a>:null}
+              {this.props.social_2?<a href={this.props.social_2}><img src={fb} class="icon " /></a>:null}
+              {this.props.social_3?<a href={this.props.social_3}><img src={insta} class="icon " /></a>:null}
             </div>
           </div>
 
@@ -106,7 +106,7 @@ export default class DisplayAssociations extends Component {
             <div class="info offset-sm-12 ">
               <p>adresse: {this.props.address} </p>
               <p>mail: {this.props.mail}</p>
-              <a href={this.props.web_site}><p>site web</p></a>
+              <p>site: <a href={this.props.web_site}>{this.props.web_site}</a></p>
               <p>tel: {this.props.phone}</p>
             </div>
             <div class="col-sm-12">

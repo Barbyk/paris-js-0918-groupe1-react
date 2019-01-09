@@ -1,61 +1,82 @@
 .item {
-    background-color: black;
+    background-color: rgb(166, 219, 240, 0)
 }
-@media only screen and (min-width: 1000px) {
-    .carousel-global{
-        width: 50%;
-        margin-left: auto;
-        margin-right: auto;
-    }
 
-    .carousel img {
-        max-height: 87vh;
-        max-width: 56vw;
-        padding-bottom: 12vw;
-        padding-left: 7vw;
-        padding-right: 7vw;
-    }
-    .title ,.date{
-        font-family: sans-serif;
-        font-size: 2.75vw;
-    }
-    
-    .text {
-        font-family: sans-serif;
-        font-size: 1.75vw;
-        line-height: 1.5em;
-    }
+/* @media only screen and (min-width: 1000px) { */
+
+.carousel-global {
+    width: 50%;
+    height: 10%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.news {
+    background-color: rgb(44, 173, 206);
+    border: 4px solid rgb(110, 138, 199);
+    border-radius: 30px;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 3em;
+    padding: 4vw
+}
+
+.text {
+    color: white;
+    text-shadow: 2px 2px black
+}
+
+.carousel img {
+    max-height: 20em;
+    max-width: 70%;
+    margin: 2em;
+    border-radius: 30px;
+}
+
+.title {
+    font-family: sans-serif;
+    font-size: 2vw;
+    color: white;
+    text-shadow: 2px 2px black
+}
+
+.date {
+    font-family: sans-serif;
+    font-size: 3vw;
+    color: rgb(248, 95, 7)
+}
+
+.text {
+    font-family: sans-serif;
+    font-size: 1.75vw;
+    line-height: 1.5em;
+}
+
+.control-dots {
+    background-color: rgb(255, 255, 0, 0)
+}
+
+.carousel .slide {
+    background: rgba(24, 110, 185, 0)
 }
 
 @media only screen and (max-width: 600px) {
-
-    .carousel-global{
+    .carousel-global {
         width: 100%;
-        min-height: 85vh;
-        
     }
-
     .carousel img {
-        max-height: 55vh;
-        max-width: 105vw;
-        padding-bottom: 12vw;
-        padding-left: 7vw;
-        padding-right: 7vw;
+        max-height: 17em;
+        max-width: 70%;
+        margin: 2em;
+        border-radius: 30px;
     }
-    .title ,.date{
+    .title,
+    .date {
         font-family: sans-serif;
-        font-size: 5.5vw;
+        font-size: 6.5vw;
     }
-    
     .text {
         font-family: sans-serif;
-        font-size: 4.5vw;
-        line-height: 1.5em;
+        font-size: 5vw;
     }
 }
-
-.legend {
-    opacity: 0.5 !important;
-    background-color: grey;
-}
-

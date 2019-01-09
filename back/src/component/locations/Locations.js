@@ -13,7 +13,7 @@ state = {
 }
  getLocations =() => {
      axios
-        .get ('http://localhost:3002/locations')
+        .get ('/locations')
         .then (reponse => this.setState ({locations : reponse.data, isLoading: false}))
         .then(console.log(this.state.locations))
         
