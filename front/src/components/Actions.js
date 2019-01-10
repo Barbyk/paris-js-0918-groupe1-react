@@ -79,7 +79,7 @@ class Actions extends Component {
         if (this.state.isLoading) return "loading"
         else
             return (
-                <div class="container-fluid actioncontain" >
+                <div class="container actioncontain" >
                     <Collapse isOpen={this.state.collapse} >
                         <div class="row">
                             <div class='definition  col-sm-12 offset-md-2 col-md-8'>

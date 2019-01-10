@@ -1,6 +1,7 @@
 import React from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
+import logo from "./imgActions/Temporaire.png"
 
 class Header extends React.Component {
 
@@ -8,7 +9,7 @@ class Header extends React.Component {
         return(
             <div class="header">
                 <nav className="navbar navbar-expand-lg">
-                    <Link to={"/calendrier"}><button type="button" className="btn btn-outline-light btn-sm btn-menu">Espace asso</button></Link>
+                    <Link to={"/"}><img src={logo} class="logo"/></Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -29,6 +30,8 @@ class Header extends React.Component {
                         </li>
                         </ul>
                     </div>
+                    <Link to={"/calendrier"}><button type="button" className="btn btn-outline-light btn-sm btn-menu">Espace asso</button></Link>
+
                 </nav>
             </div>
         )

@@ -12,17 +12,32 @@
 .nav-link {
     font-family: Pacifico;
 }
-
 .collapse {
     display: flex;
     justify-content: center;
 }
-#logo{
-    background-color: white;
+.logo{
+    height:15vh;
+    margin-left: 1vw;
+
+}
+@media only screen and (max-width: 1000px){
+
+.logo{
+    height:10vh;
+    margin-left:0em ;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    position: relative;
+
+
+    }
 }
 
-.navbar {
-    background-color: #004c52!important;
+.navbar{
+    display: flex;
+   flex-direction: column;
+    background:linear-gradient(to right, #017a83, #004c52) !important;
 }
 
 .btn-menu {

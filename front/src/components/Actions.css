@@ -4,7 +4,8 @@
 
 .actioncontain {
     background-color: white;
-    min-height: 100vh
+    min-height: 100vh;
+    padding-bottom: 20vh
 }
 
 p {
@@ -52,19 +53,15 @@ p {
 
 @media only screen and (max-width: 1100px) {
     .actionlogo {
-        min-width: 16vw;
-        min-height: 20vh;
-        max-width: 16vw;
-        max-height: 20vh;
+        width: 16vw;
+        height: 20vh;
     }
 }
 
 @media only screen and (max-width: 500px) {
     .actionlogo {
-        min-width: 30vw;
-        min-height: 18vh;
-        max-width: 30vw;
-        max-height: 18vh;
+        width: 30vw;
+        height: 18vh;
     }
 }
 
