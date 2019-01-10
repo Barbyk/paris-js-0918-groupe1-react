@@ -137,22 +137,8 @@ export default class Associations extends Component {
                                         definition={this.state.actions}
                                     />
                                    </div>
-                    
-                                   
-                                  
                                 )
-
-
                         })}
-                        
-                    {/* </tbody>
-                       
-        
-                    </table> */}
-                     
-         
-        
-          
                     <div className="nobuttons">
 
                         <div className="twins"><button type="button" class="btn btn-dark" onClick={this.handleButtonPrevious}>Précédent</button></div>

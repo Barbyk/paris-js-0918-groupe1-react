@@ -13,11 +13,7 @@ import fb from './imgActions/fb.png';
 import tweet from'./imgActions/tweet.png'
 import insta from'./imgActions/insta.png'
 
-
-
 import { UncontrolledTooltip, Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
-
-
 
 export default class DisplayAssociations extends Component {
 
@@ -30,7 +26,6 @@ export default class DisplayAssociations extends Component {
    colis,accompagnement,culture,etranger, maraude ,table ,visite ,soutient,migrant 
   ]
 
-
   handleToggle = () => {
     this.setState({
       open: !this.state.open
@@ -38,37 +33,30 @@ export default class DisplayAssociations extends Component {
 
   };
 
-  
-
-
-
   render() {
     return (
 <div className="actioncard">
       <div class="container-fluid assocontain">
           <div class=" top row">
-            <div col-xs-12 col-lg-4 class="entete">
+            <div  class="entete">
               <img src={this.props.logo} alt="" class="logoasso" />
               <h3>{this.props.name}</h3>
             </div>
-            <div  col-xs-12 offset-lg-8 class="reseaux">
+            <div  class="reseaux">
               {this.props.social_1?<a href={this.props.social_1}><img src={tweet} class="icon " /></a>:null}
               {this.props.social_2?<a href={this.props.social_2}><img src={fb} class="icon " /></a>:null}
               {this.props.social_3?<a href={this.props.social_3}><img src={insta} class="icon " /></a>:null}
             </div>
-          </div>
-
-          <div class="bottom row">
-            <div class="info offset-sm-12 ">
-              <p>adresse: {this.props.address} </p>
-              <p>mail: {this.props.mail}</p>
-              <p>site: <a href={this.props.web_site}>{this.props.web_site}</a></p>
-              <p>tel: {this.props.phone}</p>
+            <div >
+              <p>Contact</p>
+              <p>{this.props.address} </p>
+              <p>{this.props.mail}</p>
+              <p><a href={this.props.web_site}>{this.props.web_site}</a></p>
+              <p>{this.props.phone}</p>
             </div>
-            <div class="col-sm-12">
-               <Button variant="contained" color="primary" onClick={this.handleToggle}>
-                Informations
-              </Button>
+            <div class="positionBouton">
+               <button className="styleInfobulle" onClick={this.handleToggle}>i</button>
+            </div>
 
               <Modal isOpen={this.state.open} toggle={this.handleToggle}>
               <ModalHeader toggle={this.handleToggle}>
@@ -88,13 +76,9 @@ export default class DisplayAssociations extends Component {
                 ) : null} </p>
                 
               </ModalBody>
-              </Modal>
-
-
-              
-                    
+              </Modal>     
                   
-            </div>
+            
           </div>
         </div>
       </div>

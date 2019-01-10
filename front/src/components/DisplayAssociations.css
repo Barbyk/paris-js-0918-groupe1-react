@@ -3,26 +3,23 @@
     height: 7vh;
     margin: 1em;
 }
+.entete{
+    padding: 1em;
+}
 
 .logoasso{
     width: 30%;
     height: 60%;
 }
 
-.top {
-    display: flex;
-    flex-direction: row;
-    padding: 1em;
-    justify-content: space-between;
-    background-color: white;
-}
+
 
 .bottom {
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     justify-content: space-between;
     background-color: rgb(175, 175, 173);
-    padding: 1em;
+    padding: 1em; */
 }
 
 .actioncard {
@@ -33,22 +30,31 @@
 }
 
 .info {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-start; */
 }
 
 .reseaux{
     display:flex;
-    margin: 3em;
+    
 }
-.actioncard p{
-   color:white;
+.icon{
+    width: 4vh;
+    height: 4vh; 
 }
 
-.icon{
-    width: 50%;
-    height: 50%;
+.styleInfobulle{
+    border-radius: 50%;
+    width: 4vh;
+    height: 4vh;
+    font-family: 'Pacifico', cursive;
+    background-color: #b4df60;
+
+}
+.positionBouton{
+    display:flex;
+    margin: 3em;
 }
 
 @media only screen and (max-width: 1100px) {
