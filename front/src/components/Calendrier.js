@@ -38,7 +38,7 @@ class Calendrier extends PureComponent {
   }
   getLocations = () => {
 
-    axios.get('locations/')
+    axios.get('/locations/')
       .then(response => {
         this.setState({
           locations: response.data
