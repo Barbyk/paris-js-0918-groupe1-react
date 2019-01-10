@@ -36,8 +36,7 @@
 
 .navbar{
     display: flex;
-   flex-direction: column;
-    background:linear-gradient(to right, #017a83, #004c52) !important;
+    background:linear-gradient(to right, #017a83, #004c52);
 }
 
 .btn-menu {
