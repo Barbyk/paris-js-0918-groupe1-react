@@ -11,7 +11,8 @@
     align-items: center;
     flex-wrap: wrap;
     min-height: 85vh;
-    background-color: white
+    background-color: white;
+    padding-bottom: 20vh
   }
   .MuiPaper-elevation1-6 {
     box-shadow: 0px !important;

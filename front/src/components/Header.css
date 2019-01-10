@@ -1,14 +1,31 @@
 .nav-link {
-    margin: 0 25px;
-    font-size: 19px;
     font-weight: bold;
 }
-
 .collapse {
     display: flex;
     justify-content: center;
 }
-#logo{
-    background-color: white;
-}
+.logo{
+    height:15vh;
+    margin-left: 1vw;
+    position: absolute;
 
+}
+@media only screen and (max-width: 1000px){
+
+.logo{
+    height:10vh;
+    margin-left:0em ;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    position: relative;
+
+
+    
+}
+.navbar{
+    display: flex;
+   flex-direction: column;
+
+}
+}

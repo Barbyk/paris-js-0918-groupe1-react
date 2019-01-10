@@ -4,7 +4,8 @@
 
 .actioncontain {
     background-color: rgb(168, 206, 228);
-    min-height: 100vh
+    min-height: 100vh;
+    padding-bottom: 20vh
 }
 
 p {
