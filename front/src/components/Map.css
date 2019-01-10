@@ -64,3 +64,8 @@ li {
   }
 
 }
+
+h1 {
+  font-family: 'Happy Monkey', cursive !important;
+  color: #004c52 !important;
+}

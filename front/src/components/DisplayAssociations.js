@@ -66,7 +66,7 @@ export default class DisplayAssociations extends Component {
               <p>tel: {this.props.phone}</p>
             </div>
             <div class="col-sm-12">
-               <Button variant="contained" color="primary" onClick={this.handleToggle}>
+               <Button variant="contained" className='btn-asso' onClick={this.handleToggle}>
                 Informations
               </Button>
 

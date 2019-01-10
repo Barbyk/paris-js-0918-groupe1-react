@@ -3,7 +3,7 @@
 }
 
 .actioncontain {
-    background-color: rgb(168, 206, 228);
+    background-color: white;
     min-height: 100vh
 }
 
@@ -30,10 +30,22 @@ p {
     margin: 10px;
 }
 
-.actionbtn {
+.actionbtn1, .actionbtn2, .actionbtn3 {
     margin: 2.5em;
     box-shadow: 3px 5px;
     cursor: pointer;
+}
+
+.actionbtn1 {
+    background-color: #49BA68 !important;
+}
+
+.actionbtn2 {
+    background-color: #21667F !important;
+}
+
+.actionbtn3 {
+    background-color: #EE5D4B !important;
 }
 
 @media only screen and (max-width: 1100px) {
@@ -52,4 +64,9 @@ p {
         max-width: 30vw;
         max-height: 18vh;
     }
+}
+
+h3 {
+    font-family: 'Happy Monkey', cursive !important;
+  color: #004c52 !important;
 }

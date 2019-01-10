@@ -2,6 +2,15 @@
     margin: 0 25px;
     font-size: 19px;
     font-weight: bold;
+    color: white;
+}
+
+.nav-link:hover {
+    color: #2abbad;
+}
+
+.nav-link {
+    font-family: Pacifico;
 }
 
 .collapse {
@@ -11,4 +20,10 @@
 #logo{
     background-color: white;
 }
+
+.navbar {
+    background-color: #004c52!important;
+}
+
+
 
