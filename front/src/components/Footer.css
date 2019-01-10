@@ -5,9 +5,9 @@
     bottom: 0;
     width: 100%;
     font-family: 'Josefin Sans';
-    color: white;
 }
 .copyright {
     margin-bottom: 0;
     line-height: 100px;
+    color: white;
 }
