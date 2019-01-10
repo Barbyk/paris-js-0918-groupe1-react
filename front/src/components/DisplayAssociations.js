@@ -12,52 +12,10 @@ import migrant from './imgActions/migrant.png';
 import fb from './imgActions/fb.png';
 import tweet from'./imgActions/tweet.png'
 import insta from'./imgActions/insta.png'
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
 
 
 
-const DialogTitle = withStyles(theme => ({
-  root: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
-    margin: 0,
-    padding: theme.spacing.unit * 2,
-  },
-  closeButton: {
-    position: 'absolute',
-    right: theme.spacing.unit,
-    top: theme.spacing.unit,
-    color: theme.palette.grey[500],
-  },
- 
-}))(props => {
-  const { children, classes, onClose } = props;
-  return (
-    <MuiDialogTitle disableTypography className={classes.root}>
-      <Typography variant="h6">{children}</Typography>
-      {onClose ? (
-        <IconButton aria-label="Close" className={classes.closeButton} onClick={onClose}>
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </MuiDialogTitle>
-  );
-});
-
-const DialogContent = withStyles(theme => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing.unit * 2,
-  },
-}))(MuiDialogContent);
-
-
+import { UncontrolledTooltip, Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
 
 
 
@@ -73,16 +31,14 @@ export default class DisplayAssociations extends Component {
   ]
 
 
-  handleClickOpen = () => {
+  handleToggle = () => {
     this.setState({
-      open: true,
+      open: !this.state.open
     });
 
   };
 
-  handleClose = () => {
-    this.setState({ open: false });
-  };
+  
 
 
 
@@ -93,12 +49,12 @@ export default class DisplayAssociations extends Component {
           <div class=" top row">
             <div col-xs-12 col-lg-4 class="entete">
               <img src={this.props.logo} alt="" class="logoasso" />
-              <h1>{this.props.name}</h1>
+              <h3>{this.props.name}</h3>
             </div>
             <div  col-xs-12 offset-lg-8 class="reseaux">
-              <a href={this.props.social_1}><img src={tweet} class="icon " /></a>
-              <a href={this.props.social_2}><img src={fb} class="icon " /></a>
-              <a href={this.props.social_3}><img src={insta} class="icon " /></a>
+              {this.props.social_1?<a href={this.props.social_1}><img src={tweet} class="icon " /></a>:null}
+              {this.props.social_2?<a href={this.props.social_2}><img src={fb} class="icon " /></a>:null}
+              {this.props.social_3?<a href={this.props.social_3}><img src={insta} class="icon " /></a>:null}
             </div>
           </div>
 
@@ -106,33 +62,38 @@ export default class DisplayAssociations extends Component {
             <div class="info offset-sm-12 ">
               <p>adresse: {this.props.address} </p>
               <p>mail: {this.props.mail}</p>
-              <a href={this.props.web_site}><p>site web</p></a>
+              <p>site: <a href={this.props.web_site}>{this.props.web_site}</a></p>
               <p>tel: {this.props.phone}</p>
             </div>
             <div class="col-sm-12">
-               <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
+               <Button variant="contained" className='btn-asso' onClick={this.handleToggle}>
                 Informations
               </Button>
-              <Dialog
-                onClose={this.handleClose}
-                aria-labelledby="customized-dialog-title"
-                open={this.state.open}
-              >
-                <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-                  {this.props.name}
-                </DialogTitle>
-                <DialogContent>
-                  <Typography gutterBottom>
-                    {this.props.description ? this.props.description : "Description à venir."}
-                      <p>{this.props.address}</p>
-                      <p>{this.props.mail}</p>
-                      <a href={this.props.web_site}><p>site web</p></a>
-                      <p>{this.props.phone}</p>
-                      <p>{this.props.icon ? this.props.icon.map((e) =>
-                      <img src={this.tab[e - 1]} alt="" class="icon" />) : null} </p>
-                  </Typography>
-                </DialogContent>
-              </Dialog>
+
+              <Modal isOpen={this.state.open} toggle={this.handleToggle}>
+              <ModalHeader className='modal-titre' toggle={this.handleToggle}>
+                {this.props.name}
+              </ModalHeader>
+              <ModalBody className='modal-corps'>
+                {this.props.description ? this.props.description : "Description à venir."}
+                <p>{this.props.address}</p>
+                <p>{this.props.mail}</p>
+                <a href={this.props.web_site}><p>site web</p></a>
+                <p>{this.props.phone}</p>
+                <p>{this.props.icon ? this.props.icon.map((e) =>
+                <><span id='action-icon'><img src={this.tab[e - 1]} alt="" class="icon" /></span>
+                <UncontrolledTooltip placement="right" target="action-icon">
+                  {this.props.definition[e - 1].definition}
+                </UncontrolledTooltip></>
+                ) : null} </p>
+                
+              </ModalBody>
+              </Modal>
+
+
+              
+                    
+                  
             </div>
           </div>
         </div>

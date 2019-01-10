@@ -14,15 +14,14 @@ class AddLocation extends Component {
         const addInputValue = { ...this.state.addInputValue }
         addInputValue[e.target.name] = e.target.value;
         this.setState({ addInputValue });
-        console.log(addInputValue);
-        
+      
     };
 
 
     submitNewLocation = (e) => {
         e.preventDefault();
         axios
-            .post('http://localhost:3002/locations', this.state.addInputValue)
+            .post('/locations', this.state.addInputValue)
             .then(this.setState({}))
             .then(window.history.back());
             console.log(this.state.addInputValue);

@@ -11,7 +11,7 @@
     align-items: center;
     flex-wrap: wrap;
     min-height: 85vh;
-    background-color: white;
+    background-color: #edf0f4;
     padding-bottom: 20vh
   }
   .MuiPaper-elevation1-6 {
@@ -22,10 +22,12 @@
   .map_list{
     color: inherit;
     transition: color 0.3s;
-    font-family: 'Times New Roman', serif;
-    
+    font-family: sans-serif;
   }
-  
+  .Map-card-1 {
+    background-color: #edf0f4
+
+  }
   .map_list li,a {
     text-decoration: none;
     list-style: none;
@@ -42,14 +44,29 @@
   
 .dep{
     margin-top: 40px;
-    font-family: 'Times New Roman', serif;
+    font-family: sans-serif;
 }
 
-li {
-  font-family: 'Times New Roman', serif;
-  font-size: 120%
+.map_list li {
+  font-family: 'josefin sans' !important;
+  font-size: 140%;
 }
-.mapcard
-{
-  width:80%;
+
+@media only screen and (min-width: 1000px) {
+
+  .mapcard {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .mapcard {
+    width: 100%;
+  }
+
+}
+
+h1 {
+  font-family: 'Happy Monkey', cursive !important;
+  color: #004c52 !important;
 }

@@ -3,13 +3,13 @@
 }
 
 .actioncontain {
-    background-color: rgb(168, 206, 228);
+    background-color: white;
     min-height: 100vh;
     padding-bottom: 20vh
 }
 
 p {
-    color: #15550f;
+    /* color: #15550f; */
     font-weight: bold
 }
 
@@ -25,16 +25,30 @@ p {
     background-color: rgba(177, 177, 189, 0.8);
     margin-top: 2em;
     margin-bottom: 2em;
+    font-family: 'Josefin Sans';
+    font-size: 1.25em;
 }
 
 .btn {
     margin: 10px;
 }
 
-.actionbtn {
+.actionbtn1, .actionbtn2, .actionbtn3 {
     margin: 2.5em;
     box-shadow: 3px 5px;
     cursor: pointer;
+}
+
+.actionbtn1 {
+    background-color: #49BA68 !important;
+}
+
+.actionbtn2 {
+    background-color: #21667F !important;
+}
+
+.actionbtn3 {
+    background-color: #EE5D4B !important;
 }
 
 @media only screen and (max-width: 1100px) {
@@ -46,9 +60,16 @@ p {
 
 @media only screen and (max-width: 500px) {
     .actionlogo {
-        min-width: 30vw;
-        min-height: 18vh;
-        max-width: 30vw;
-        max-height: 18vh;
+        width: 30vw;
+        height: 18vh;
     }
+}
+
+h3 {
+    font-family: 'Happy Monkey', cursive !important;
+  color: #004c52 !important;
+}
+
+.btn-action {
+    background-color: #004c52 !important;
 }

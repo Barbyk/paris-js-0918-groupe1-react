@@ -1,5 +1,16 @@
 .nav-link {
-    font-weight: bold;
+    margin: 0 25px;
+    font-size: 1.50em;
+    color: white;
+
+}
+
+.nav-link:hover {
+    color: #2abbad;
+}
+
+.nav-link {
+    font-family: Pacifico;
 }
 .collapse {
     display: flex;
@@ -8,7 +19,6 @@
 .logo{
     height:15vh;
     margin-left: 1vw;
-    position: absolute;
 
 }
 @media only screen and (max-width: 1000px){
@@ -21,11 +31,18 @@
     position: relative;
 
 
-    
+    }
 }
+
 .navbar{
     display: flex;
    flex-direction: column;
+    background:linear-gradient(to right, #017a83, #004c52) !important;
+}
 
+.btn-menu {
+    font-family: 'Josefin Sans';
+    font-size: 1.25em !important;
 }
-}
+
+
