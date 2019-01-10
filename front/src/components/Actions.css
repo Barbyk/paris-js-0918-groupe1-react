@@ -8,7 +8,7 @@
 }
 
 p {
-    color: #15550f;
+    /* color: #15550f; */
     font-weight: bold
 }
 
@@ -24,6 +24,8 @@ p {
     background-color: rgba(177, 177, 189, 0.8);
     margin-top: 2em;
     margin-bottom: 2em;
+    font-family: 'Josefin Sans';
+    font-size: 1.25em;
 }
 
 .btn {
@@ -69,4 +71,8 @@ p {
 h3 {
     font-family: 'Happy Monkey', cursive !important;
   color: #004c52 !important;
+}
+
+.btn-action {
+    background-color: #004c52 !important;
 }

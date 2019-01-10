@@ -1,8 +1,8 @@
 .nav-link {
     margin: 0 25px;
-    font-size: 19px;
-    font-weight: bold;
+    font-size: 1.50em;
     color: white;
+
 }
 
 .nav-link:hover {
@@ -25,5 +25,9 @@
     background-color: #004c52!important;
 }
 
+.btn-menu {
+    font-family: 'Josefin Sans';
+    font-size: 1.25em !important;
+}
 
 
