@@ -66,15 +66,15 @@ export default class DisplayAssociations extends Component {
               <p>tel: {this.props.phone}</p>
             </div>
             <div class="col-sm-12">
-               <Button variant="contained" color="primary" onClick={this.handleToggle}>
+               <Button variant="contained" className='btn-asso' onClick={this.handleToggle}>
                 Informations
               </Button>
 
               <Modal isOpen={this.state.open} toggle={this.handleToggle}>
-              <ModalHeader toggle={this.handleToggle}>
+              <ModalHeader className='modal-titre' toggle={this.handleToggle}>
                 {this.props.name}
               </ModalHeader>
-              <ModalBody>
+              <ModalBody className='modal-corps'>
                 {this.props.description ? this.props.description : "Description à venir."}
                 <p>{this.props.address}</p>
                 <p>{this.props.mail}</p>
