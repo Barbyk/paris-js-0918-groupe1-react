@@ -8,11 +8,12 @@ class Header extends React.Component {
     render() {
         return(
             <div class="header">
-                <nav className="navbar navbar-expand-lg">
-                    <Link to={"/"}><img src={logo} class="logo"/></Link>
+                <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                   
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
+                    <Link to={"/"}><img src={logo} class="logo"/></Link>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
                         <li className="nav-item">
