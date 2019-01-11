@@ -14,6 +14,7 @@ thead {
 
 .twins {
     margin: 30px 30px;
+    font-family: 'Josefin Sans'
 }
 
 .number_page {
@@ -37,4 +38,14 @@ thead {
     }
     
 
+}
+
+.btn-page {
+    background-color: #004c52 !important;
+    color: white !important;
+}
+
+.btn-page:hover {
+    background-color: white !important;
+    color: #004c52 !important;
 }
