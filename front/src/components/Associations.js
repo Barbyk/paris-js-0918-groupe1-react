@@ -27,7 +27,7 @@ export default class Associations extends Component {
     }
 
     getAsso() {
-        axios.get('http://localhost:3002/assoprofil')
+        axios.get('/assoprofil')
             .then(res => {
                 this.setState({ asso: res.data });
                 this.getAssoPerPage();
@@ -36,7 +36,7 @@ export default class Associations extends Component {
     }
 
     getActions() {
-        axios.get('http://localhost:3002/actions')
+        axios.get('/actions')
             .then(res => this.setState({ actions: res.data }))
 
     }
