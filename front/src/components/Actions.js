@@ -91,12 +91,12 @@ class Actions extends Component {
 
                             <div class='definition  col-sm-12 offset-md-2 col-md-8'>
                                 <ModalHeader>
-                                    <h1 >Action: </h1><h2>{this.state.name}</h2>
+                                    <h2>{this.state.name}</h2>
                                 </ModalHeader>
                                 <ModalBody> <p class="def">{this.state.definition}</p> </ModalBody>
                                 {this.state.definition ? <Link to={'/actions/' + this.state.id}>
                                     <button type="button" class="btngo">Liste des Associations</button></Link> : null}
-                                    <button type="button" class="btnback" onClick={this.onClose}>retour</button>
+                                    <button type="button" class="btnback" onClick={this.onClose}>Retour</button>
 
                             </div>
                         </div>

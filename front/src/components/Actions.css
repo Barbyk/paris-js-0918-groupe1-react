@@ -2,6 +2,10 @@
     cursor: pointer;
 }
 
+.action h3 {
+    font-family: "Happy Monkey";
+    color: #004c52;
+}
 .actioncontain {
     background-color: white;
     min-height: 100vh;
@@ -10,6 +14,7 @@
 
 p {
     /* color: #15550f; */
+    
     font-weight: bold
 }
 
@@ -19,6 +24,9 @@ p {
     padding: 1em
 }
 
+.modal-title {
+    font-family: "Happy Monkey"
+}
 .definition {
     
     font-family: 'Josefin Sans';

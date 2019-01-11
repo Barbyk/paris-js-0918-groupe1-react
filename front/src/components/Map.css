@@ -58,7 +58,7 @@
 @media only screen and (min-width: 1000px) {
 
   .mapcard {
-    width: 50%;
+    width: 55%;
   }
 }
 
@@ -69,7 +69,8 @@
 
 }
 
-h1 {
+.mapcard h1 {
   font-family: 'Happy Monkey', cursive !important;
   color: #004c52 !important;
+  font-size: 2rem;
 }
