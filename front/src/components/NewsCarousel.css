@@ -66,13 +66,5 @@
         margin-top: 10vh;
         border-radius: 30px;
     }
-    .title,
-    .date {
-        font-family: sans-serif;
-        font-size: 6.5vw;
-    }
-    .text {
-        font-family: sans-serif;
-        font-size: 5vw;
-    }
+    
 }
