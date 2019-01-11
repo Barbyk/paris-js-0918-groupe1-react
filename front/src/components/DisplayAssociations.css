@@ -1,81 +1,131 @@
-.icon {
-    width: 5vw;
-    height: 7vh;
-    margin: 1em;
-}
-
-.logoasso{
-    width: 30%;
-    height: 60%;
-}
-
-.top {
-    display: flex;
-    flex-direction: row;
-    padding: 1em;
-    justify-content: space-between;
-    background-color: white;
-}
-
-.bottom {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: rgb(175, 175, 173);
-    padding: 1em;
-}
-
 .actioncard {
     border: 1px solid  #2abbad !important;
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 2em;
 }
+.actioncard p{
+   color:black;
+}
 
-.info {
+
+
+.blockLine  {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+    margin: 1em;
+} 
+
+
+.logoasso{
+    width: 30%;
+    height: 60%;
+}
+
+.entete{
+    width: 25%;
+}
+
+.contact {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    justify-content: center;
+    width: 40%;
+    font-size: 1.7vh;
+
     font-family: 'Josefin Sans'
+
+}
+.divier{
+    border-top: 0.1em solid #004c52;
+    width: 100%;
+    margin-bottom: 2vh;
+}
+.contactIcon{
+    margin-right: 1vh;  
 }
 
 .reseaux{
-    display:flex;
-    margin: 3em;
+    width:7%;
+    display: flex;
+    flex-direction: row;
+    justify-content : space-evenly;
+
 }
-.actioncard p{
-   color:white;
+.reseauIcon{
+    width: 4vh;
+    height: 4vh;
 }
 
-.icon{
-    width: 50%;
-    height: 50%;
-}
-
-@media only screen and (max-width: 1100px) {
-    .info p{
-        font-size: 0px
-    }
-    .reseaux{
-       display: flex;
-       margin: auto;
-    }
-    .entete{
-        display: flex;
-        flex-direction: column;
-        margin: auto;
-     }
-   
-}
 
 .btn-asso {
     background-color: #004c52 !important;
     color: white !important;
 }
+.textbouton{
+    font-size: 1vh;
+}
 
 .btn-asso:hover {
     background-color: white !important;
     color: #004c52 !important;
+}
+
+
+
+.actionIcon{
+    width: 10vh;
+}
+
+@media only screen and (max-width: 1100px) {
+    
+    .info p{
+        font-size: 0px
+    }
+  
+
+   .contact{
+       width: 40%;
+   }
+   .entete{
+       width: 30%;
+   }
+}
+
+@media only screen and (max-width: 768px) {
+
+
+   .reseaux{
+        display:none; 
+    }
+       
+    }
+
+@media only screen and (max-width: 600px) {
+
+.blockLine  {
+    display: flex;
+    flex-direction: column;
+} 
+.entete h3{
+    font-size: 2vh;
+    flex-wrap: nowrap; 
+}
+.entete{
+    width: 100%;
+}
+.contact ,.reseaux{
+    display:none; 
+}
+.logoasso{
+    width: 30%;
+    height: 60%;
+}
+   
 }
 
 .modal-titre {
@@ -85,3 +135,4 @@
 .modal-corps {
     font-family: 'Josefin Sans';
 }
+
