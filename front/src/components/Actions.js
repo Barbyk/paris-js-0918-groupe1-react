@@ -79,13 +79,13 @@ class Actions extends Component {
         if (this.state.isLoading) return "loading"
         else
             return (
-                <div class="container-fluid actioncontain" >
+                <div class="container actioncontain" >
                     <Collapse isOpen={this.state.collapse} >
                         <div class="row">
                             <div class='definition  col-sm-12 offset-md-2 col-md-8'>
                                 <h1 >Action: </h1><h2>{this.state.name}</h2>
                                 <p>{this.state.definition}</p> {this.state.definition ? <Link to={'/actions/' + this.state.id}>
-                                    <button type="button" class="btn btn-success">Liste des Associations</button></Link> : null}
+                                    <button type="button" class="btn btn-success btn-action">Liste des Associations</button></Link> : null}
                             </div>
                         </div>
                     </Collapse>

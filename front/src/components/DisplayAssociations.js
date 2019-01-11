@@ -77,10 +77,10 @@ export default class DisplayAssociations extends Component {
 
               <div class="col-sm-12">
               <Modal isOpen={this.state.open} toggle={this.handleToggle}>
-              <ModalHeader toggle={this.handleToggle}>
+              <ModalHeader className='modal-titre' toggle={this.handleToggle}>
                 {this.props.name}
               </ModalHeader>
-              <ModalBody>
+              <ModalBody className='modal-corps'>
                 {this.props.description ? this.props.description : "Description à venir."}
                 <div className="divier"></div>
                 <p>{this.props.address}</p>

@@ -11,7 +11,8 @@
     align-items: center;
     flex-wrap: wrap;
     min-height: 85vh;
-    background-color: #edf0f4
+    background-color: #edf0f4;
+    padding-bottom: 20vh
   }
   .MuiPaper-elevation1-6 {
     box-shadow: 0px !important;
@@ -46,9 +47,9 @@
     font-family: sans-serif;
 }
 
-li {
-  font-family: sans-serif;
-  font-size: 120%
+.map_list li {
+  font-family: 'josefin sans' !important;
+  font-size: 140%;
 }
 
 @media only screen and (min-width: 1000px) {

@@ -32,9 +32,13 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
     justify-content: center;
     width: 40%;
     font-size: 1.7vh;
+
+    font-family: 'Josefin Sans'
+
 }
 .divier{
     border-top: 0.1em solid #004c52;
@@ -70,6 +74,7 @@
     background-color: white !important;
     color: #004c52 !important;
 }
+
 
 
 .actionIcon{
@@ -122,3 +127,12 @@
 }
    
 }
+
+.modal-titre {
+    font-family: 'Happy Monkey';
+}
+
+.modal-corps {
+    font-family: 'Josefin Sans';
+}
+
