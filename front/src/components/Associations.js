@@ -26,8 +26,8 @@ export default class Associations extends Component {
 
     }
 
-    async getAsso() {
-        await axios.get('/assoprofil')
+    getAsso() {
+        axios.get('/assoprofil')
             .then(res => {
                 this.setState({ asso: res.data });
                 this.getAssoPerPage();
@@ -35,8 +35,8 @@ export default class Associations extends Component {
 
     }
 
-    async getActions() {
-        await axios.get('/actions')
+    getActions() {
+        axios.get('/actions')
             .then(res => this.setState({ actions: res.data }))
 
     }

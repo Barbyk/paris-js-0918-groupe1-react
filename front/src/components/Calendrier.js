@@ -4,7 +4,7 @@ import CalendarToolbar from './CalendarToolbar'
 import moment_timezone from 'moment-timezone';
 import moment from 'moment';
 import Checkbox from './Checkbox'
-import { Modal, ModalBody, ModalFooter, ModalHeader, Button } from 'reactstrap';
+import { Popover, PopoverHeader, PopoverBody, Modal, ModalBody, ModalFooter, ModalHeader, Button } from 'reactstrap';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/fr';
 import axios from 'axios'
@@ -28,7 +28,8 @@ class Calendrier extends PureComponent {
     currentEvent: null,
     location_selected: null,
     locations: [],
-    actions: []
+    actions: [],
+    popoverOpen:false
   }
 
   convertDate = (date) => {
@@ -162,7 +163,11 @@ class Calendrier extends PureComponent {
       });
 
   }
-
+  togglePopover=() => {
+    this.setState({
+      popoverOpen: !this.state.popoverOpen
+    })
+  }
   toggleAddModal = slotInfo => {
     // var startDate = moment(slotInfo.start).format("YYYY-MM-DDTHH:mm");
     // var endDate = moment(slotInfo.end).format("YYYY-MM-DDTHH:mm");
@@ -295,10 +300,18 @@ cal_events:[],
       event_start_on, event_end_on, locations, location_selected } = this.state
     return (
       <div className="calendrier">
-      				<button type="button" onClick={() => this.toggleAddModal()}>Ajouter un évenement</button>
-
-      <Checkbox name="actions" title="Actions" options={this.state.locations} selectedOptions={this.state.actions} handleChange={this.handleActionsCheckBox} isRequired={false} />
-
+        <button type="button" onClick={() => this.toggleAddModal()}>Ajouter un évenement</button>
+        
+        <Popover placement="bottom" isOpen={true} target="popy" toggle={this.togglePopover}>
+          <PopoverHeader>Popover Title</PopoverHeader>
+          <PopoverBody>
+            {/* <Checkbox name="actions" title="Actions" options={this.state.locations} selectedOptions={this.state.actions} handleChange={this.handleActionsCheckBox} isRequired={false} /> */}
+            lndldvlnvd
+          </PopoverBody>
+        </Popover>
+        <div id="popy"><button type="button">
+          Launch Popover
+        </button></div>
        {/*  <div className="dropdown" style={{ fontSize: "2vh" }}>
           <label class="control-label">Lieu de la mauraude </label>
           <select name="locations_id" onChange={this.handleLocationChange} value={this.state.location}>

@@ -62,7 +62,6 @@
 }
 
 .container-fluid {
-    display: flex;
     justify-content: start;
 }
 
