@@ -23,6 +23,15 @@ state = {
      this.getLocations()
  }
 
+ handleChangeDelete = (id) => {
+  const response = window.confirm("Etes-vous certain de vouloir supprimer ?");
+  if (response) {
+    axios
+      .put("/locations/" + id, { "is_active": "0" },{headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
+      .then(window.location.reload())
+  }
+}
 
   render() {
     const tabDepartement = ["75","77","78","91","92","93","94","95"]
@@ -41,7 +50,7 @@ state = {
               {this.state.locations.map((el, index) =>
                 <tr><td>{el.id}</td><td>{el.name}</td><td>{el.img_url}</td>
                   <td>{tabDepartement[el.departements_id-1]}</td><td><Link to={'/modifyLocation/' + el.id}>
-              <button>Modifier</button></Link></td></tr> )}
+              <button>Modifier</button></Link><button onClick={() => this.handleChangeDelete(el.id)}>Supprimer</button></td></tr> )}
             </tbody>
           </table>
       </div>

@@ -80,10 +80,10 @@ export default class DisplayAssociations extends Component {
                 <p>{this.props.mail}</p>
                 <a href={this.props.web_site}><p>site web</p></a>
                 <p>{this.props.phone}</p>
-                <p>{this.props.icon ? this.props.icon.map((e) =>
-                <><span id='action-icon'><img src={this.tab[e - 1]} alt="" class="icon" /></span>
-                <UncontrolledTooltip placement="right" target="action-icon">
-                  {this.props.definition[e - 1].definition}
+                <p>{this.props.icon ? this.props.icon.map((e,i) =>
+                <><span id={"action-icon"+i}><img src={this.tab[e - 1]} alt="" class="icon" /></span>
+                <UncontrolledTooltip placement="right" target={"action-icon"+i}>
+                  {(this.props.definition[e - 1]||[]).definition}
                 </UncontrolledTooltip></>
                 ) : null} </p>
                 

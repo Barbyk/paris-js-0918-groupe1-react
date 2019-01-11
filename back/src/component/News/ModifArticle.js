@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import moment from 'moment';
 import "../assoprofil/ModifyAssoprofil.css"
 import Input from '../Input'
 import withAuth from '../withAuth';
@@ -19,12 +20,22 @@ class ModifArticle extends Component {
             [e.target.name] : e.target.value,} });
     };
 
+    convertDate = (date) => {
+      return moment(date).format("YYYY-MM-DD");
+    }
     getAssoprofil = e => {
         this.setState({ isLoading: true })
         axios
-            .get("http://localhost:3002/news/" + this.props.match.params.id)
-            .then(response => this.setState({ modifyInputValue: response.data[0], isLoading: false }))
+            .get("/news/" + this.props.match.params.id)
+            .then(response => {
+              response.data[0].date = this.convertDate(response.data[0].date)
+              this.setState({ modifyInputValue: response.data[0], isLoading: false })}
             
+            
+            
+            )
+        
+        
         // .then(window.location.reload());
 
     };
@@ -34,10 +45,9 @@ class ModifArticle extends Component {
         e.preventDefault();
 
         axios
-            .put("http://localhost:3002/news/" + this.props.match.params.id, this.state.modifyInputValue)
+            .put("/news/" + this.props.match.params.id, this.state.modifyInputValue)
             .then(window.history.back() );
         alert("Les modifications sont enregistrées")
-        console.log(this.state.modifyInputValue);
         
 
     };

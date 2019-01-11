@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import BigCalendar from 'react-big-calendar'
+import CalendarToolbar from './CalendarToolbar'
 import moment_timezone from 'moment-timezone';
 import moment from 'moment';
 import { Modal, ModalBody, ModalFooter, ModalHeader, Button } from 'reactstrap';
@@ -20,7 +21,9 @@ class Calendrier extends PureComponent {
     isEditModalOpen: false,
     event_start_on: null,
     event_end_on: null,
-    event_title: null,
+    event_title: undefined,
+    description: undefined,
+    asso_name:undefined,
     currentEvent: null,
     location_selected: null,
     locations: []
@@ -74,7 +77,7 @@ class Calendrier extends PureComponent {
     var startDate = moment(this.state.event_start_on).format("YYYY-MM-DD H:mm:ss");
     var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD H:mm:ss");
     axios.post('events', {
-      users_id: 1, locations_id: this.state.location_selected, is_active: 1, title: this.state.event_title,
+      users_id: 1, locations_id: this.state.location_selected, is_active: 1, title: "["+this.state.asso_name+"] "+this.state.event_title, description: this.state.description,
       begin_date: startDate, end_date: endDate
     })
       .then(response => {
@@ -134,11 +137,13 @@ class Calendrier extends PureComponent {
   }
 
   toggleAddModal = slotInfo => {
+    var startDate = moment(slotInfo.start).format("YYYY-MM-DDTHH:mm");
+    var endDate = moment(slotInfo.end).format("YYYY-MM-DDTHH:mm");
     if (!this.state.isEditModalOpen) {
 
       this.setState({
-        event_start_on: slotInfo.start,
-        event_end_on: slotInfo.end,
+        event_start_on: startDate,
+        event_end_on: endDate,
         isAddModalOpen: !this.state.isAddModalOpen,
       });
     }
@@ -146,7 +151,7 @@ class Calendrier extends PureComponent {
 
   toggleEditModal = event => {
     var startDate = moment(event.start).format("YYYY-MM-DDTHH:mm");
-    var endDate = moment_timezone.tz(event.end,'Europe/Paris').format("YYYY-MM-DDTHH:mm");
+    var endDate = moment(event.end).format("YYYY-MM-DDTHH:mm");
     if (!this.state.isAddModalOpen) {
       this.setState({
         currentEvent: event,
@@ -160,7 +165,8 @@ class Calendrier extends PureComponent {
 
   handleInputChange = (e) => {
     this.setState({
-      event_title: e.target.value
+      [e.target.name]: e.target.value,
+
     })
   }
   handleStartChange = (e) => {
@@ -198,23 +204,40 @@ class Calendrier extends PureComponent {
 
   }
 
+  Event({ event }) {
+    return (
+      <span>
+        <strong>{event.title}</strong>
+        {event.description && ':  ' + event.description}
+      </span>
+    )
+  }
+
+  EventAgenda({ event }) {
+    return (
+      <span>
+        <em style={{ color: 'magenta' }}>{event.title}</em>
+        <p>{event.description}</p>
+      </span>
+    )
+  }
+
   render() {
 
-    const { cal_events, event_title, isEditModalOpen, isAddModalOpen,
+    const { cal_events, event_title, asso_name, description, isEditModalOpen, isAddModalOpen,
       event_start_on, event_end_on, locations, location_selected } = this.state
-    const locations_id = parseInt(location_selected)-1
     return (
       <div className="calendrier">
-        <div className="dropdown" style={{ fontSize: "14px" }}>
+        <div className="dropdown" style={{ fontSize: "2vh" }}>
           <label class="control-label">Lieu de la mauraude </label>
           <select name="locations_id" onChange={this.handleLocationChange} value={this.state.location}>
             <option name="locations_id" value="">Sélectionner un lieu</option>
             {locations.map((e, index) => {
-              return (<option name="locations_id" value={index + 1}>{e.name}</option>)
+              return (<option name="locations_id" value={e.id}>{e.name}</option>)
             })}
           </select>
         </div>
-        <div style={{ height: 700 }}>
+        <div style={{ height: "90vh" }}>
           <BigCalendar
             selectable={location_selected ? true : false}
             onSelectEvent={event => this.toggleEditModal(event)}
@@ -229,7 +252,11 @@ class Calendrier extends PureComponent {
             views={['month', 'week', 'day']}
             defaultDate={new Date()}
             eventPropGetter={this.eventStyleGetter}
-
+            components={{
+              event: this.Event,
+              toolbar: CalendarToolbar
+              
+        }}
           />
 
 
@@ -240,7 +267,11 @@ class Calendrier extends PureComponent {
               <label>
                 Nom de l'évenement :
                     </label>
-              <input type="text" name="title" value={event_title} onChange={this.handleInputChange} /><br />
+              <input type="text" name="event_title" value={event_title} onChange={this.handleInputChange} required /><br />
+              <label>
+                Description :
+                    </label>
+              <input type="text" name="description" value={description} onChange={this.handleInputChange} required/><br />
               <label>
                 Début :
                     </label>
@@ -263,15 +294,30 @@ class Calendrier extends PureComponent {
           <Modal isOpen={isAddModalOpen} toggle={this.toggleAddModal}>
             <ModalHeader toggle={this.toggle}>Ajouter un nouvel évenement</ModalHeader>
             <ModalBody>
-              <p> Lieu : {(locations[locations_id]||"").name}</p>
-              <p>de : {event_start_on ? event_start_on.toLocaleString() : ''}</p>
-              <p>à : {event_end_on ? event_end_on.toLocaleString() : ''}</p>
+              <p> Lieu : {(locations.find(x=>x.id==location_selected)||"").name}</p>
+              
 
               <form>
+              <label>
+                Début :
+                    </label>
+              <input type="datetime-local" step="1800" name="date_start" value={event_start_on} onChange={this.handleStartChange} required /><br />
+              <label>
+                Fin :
+                    </label>
+              <input type="datetime-local" step="1800" min={event_start_on} name="date_end" value={event_end_on} onChange={this.handleEndChange} required /><br/>
                 <label>
                   Nom de l'évenement :
                     </label>
-                <input type="text" name="title" onChange={this.handleInputChange} />
+                <input type="text" name="event_title" onChange={this.handleInputChange} />
+                <label>
+                Nom de l'association :
+                    </label>
+              <input type="text" name="asso_name" value={asso_name} onChange={this.handleInputChange} /><br />
+                <label>
+                  Description :
+                    </label>
+                <input type="text" name="description" onChange={this.handleInputChange} />
               </form>
 
             </ModalBody>

@@ -9,3 +9,11 @@
 .calendrier {
   background-color: #edf0f4
 }
+
+.rbc-btn-group {
+  flex-grow: 1
+}
+.rbc-toolbar {
+  font-size: 2vh !important;
+  margin-bottom: 1vh !important;
+}
