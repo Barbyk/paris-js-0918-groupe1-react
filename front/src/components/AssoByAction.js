@@ -96,7 +96,7 @@ render() {
 
 
 if (this.state.asso.length === 0) {
-    return "Loading..."
+    return "Pas d'association pour cette action."
 }
 else {
     return (
@@ -131,6 +131,7 @@ else {
                                 mail={e.mail}
                                 icon={e.actions ? shouldParse(e.actions) : null}
                                 key={e.id}
+                                definition={this.state.actions}
                             />
                         )
 

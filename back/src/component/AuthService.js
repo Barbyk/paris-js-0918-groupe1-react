@@ -1,13 +1,13 @@
 export default class AuthService {
     // Initializing important variables
     constructor(domain) {
-        this.domain = domain || 'http://localhost:3002' // API server domain
+        this.domain = domain || '/' // API server domain
 
     }
 
     login=(username, password) => {
         // Get a token from api server using the fetch api
-        return this.fetch(`${this.domain}/login`, {
+        return this.fetch(`/login`, {
             method: 'POST',
             body: JSON.stringify({
                 username,

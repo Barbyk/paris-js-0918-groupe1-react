@@ -92,7 +92,7 @@ export default class DisplayAssociations extends Component {
       <div class="container-fluid assocontain">
           <div class=" top row">
             <div col-xs-12 col-lg-4 class="entete">
-              <img src={this.props.logo} alt="" class="logoasso" />
+              {this.props.logo?<img src={this.props.logo} alt="" class="logoasso" />:<p></p>}
               <h3>{this.props.name}</h3>
             </div>
             <div  col-xs-12 offset-lg-8 class="reseaux">

@@ -1,6 +1,6 @@
 .nav-link {
     margin: 0 25px;
-    font-size: 19px;
+    font-size: 1em;
     font-weight: bold;
 }
 
@@ -12,6 +12,6 @@
     background-color:#868e95;
 }
 .imglogo{
-    width: 20%;
+    width: 15%;
 }
 

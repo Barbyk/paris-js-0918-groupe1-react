@@ -100,7 +100,7 @@ export default class AssoByDept extends Component {
 
 
         if (this.state.asso.length === 0) {
-            return "Loading..."
+            return <div><p>Pas d'association pour ce département</p></div>
         }
         else {
             return (
@@ -136,6 +136,7 @@ export default class AssoByDept extends Component {
                                     mail={e.mail}
                                     icon={e.actions ? shouldParse(e.actions) : null}
                                     key={e.id}
+                                    definition={this.state.actions}
                                 />
                             </div>)
 

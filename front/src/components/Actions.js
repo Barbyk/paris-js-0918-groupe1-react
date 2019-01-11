@@ -81,7 +81,7 @@ class Actions extends Component {
             return (
                 <div class="container-fluid actioncontain" >
                     <Collapse isOpen={this.state.collapse} >
-                        <div class="row">
+                        <div id="logo" class="row">
                             <div class='definition  col-sm-12 offset-md-2 col-md-8'>
                                 <h1 >Action: </h1><h2>{this.state.name}</h2>
                                 <p>{this.state.definition}</p> {this.state.definition ? <Link to={'/actions/' + this.state.id}>
@@ -97,9 +97,9 @@ class Actions extends Component {
 
                         <div class='col-xs-12 col-md-6 col-lg-4'><a href="#logo"><button type="button" class="rounded-circle actionbtn btn-outline-dark bg-primary" onClick={this.onClick4} ><img src={visite} alt="icon visite" title="visite aux isolés" class='actionlogo'/></button></a><h3>Visite aux isolés</h3></div>
                         <div class='col-xs-12 col-md-6 col-lg-4'><a href="#logo"> <button type="button" class="rounded-circle actionbtn btn-outline-dark bg-primary" onClick={this.onClick5} ><img src={accompagnement} alt="icon accompagnement" title="accompagnement administratif" class='actionlogo'/></button></a><h3>Accompagnement administratif</h3></div>
-                        <div class='col-xs-12 col-md-6 col-lg-4'><a href="#logo"> <button type="button" class="rounded-circle actionbtn btn-outline-dark bg-primary" onClick={this.onClick6} ><img src={culture} alt="icon culture" title="culture et loisirs" class='actionlogo'/></button></a><h3>Culture et loisir</h3></div>
+                        <div class='col-xs-12 col-md-6 col-lg-4'><a href="#logo"> <button type="button" class="rounded-circle actionbtn btn-outline-dark bg-primary" onClick={this.onClick6} ><img src={culture} alt="icon culture" title="culture et loisirs" class='actionlogo'/></button></a><h3>Culture et loisirs</h3></div>
 
-                        <div class='col-xs-12 col-md-6 col-lg-4'><a href="#logo"><button type="button" class="rounded-circle actionbtn btn-outline-dark bg-success" onClick={this.onClick7} ><img src={soutient} alt="icon soutient" title="soutient scolaire" class='actionlogo'/></button></a><h3>Soutient scolaire</h3></div>
+                        <div class='col-xs-12 col-md-6 col-lg-4'><a href="#logo"><button type="button" class="rounded-circle actionbtn btn-outline-dark bg-success" onClick={this.onClick7} ><img src={soutient} alt="icon soutient" title="soutient scolaire" class='actionlogo'/></button></a><h3>Soutien scolaire</h3></div>
                         <div class='col-xs-12 col-md-6 col-lg-4'><a href="#logo"> <button type="button" class="rounded-circle actionbtn btn-outline-dark bg-success" onClick={this.onClick8} ><img src={etranger} alt="icon etranger" title="aide à l'étranger" class='actionlogo'/></button></a><h3>Aide à l'étranger</h3></div>
                         <div class='col-xs-12 col-md-12 col-lg-4'><a href="#logo"><button type="button" class="rounded-circle actionbtn btn-outline-dark bg-success" onClick={this.onClick9} ><img src={migrant} alt="icon migrant" title="aide aux migrants" class='actionlogo' /></button></a><h3>Aide aux migrants</h3></div>
 
