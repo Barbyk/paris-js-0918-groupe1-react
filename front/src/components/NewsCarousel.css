@@ -74,6 +74,7 @@
     .carousel img {
         height: auto;
         margin-top: 20vh;
+        padding-bottom: 16vh;
     }
     .date {
         font-size: 6.5vw;

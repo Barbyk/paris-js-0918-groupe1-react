@@ -302,16 +302,7 @@ cal_events:[],
       <div className="calendrier">
         <button type="button" onClick={() => this.toggleAddModal()}>Ajouter un évenement</button>
         
-        <Popover placement="bottom" isOpen={true} target="popy" toggle={this.togglePopover}>
-          <PopoverHeader>Popover Title</PopoverHeader>
-          <PopoverBody>
-            {/* <Checkbox name="actions" title="Actions" options={this.state.locations} selectedOptions={this.state.actions} handleChange={this.handleActionsCheckBox} isRequired={false} /> */}
-            lndldvlnvd
-          </PopoverBody>
-        </Popover>
-        <div id="popy"><button type="button">
-          Launch Popover
-        </button></div>
+       
        {/*  <div className="dropdown" style={{ fontSize: "2vh" }}>
           <label class="control-label">Lieu de la mauraude </label>
           <select name="locations_id" onChange={this.handleLocationChange} value={this.state.location}>

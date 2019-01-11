@@ -31,9 +31,9 @@ export default class DisplayAssociations extends Component {
   ]
 
 
-  handleClickOpen = () => {
+  handleToggle = () => {
     this.setState({
-      open: true,
+      open: !this.state.open,
     });
 
   };
