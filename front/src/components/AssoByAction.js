@@ -118,7 +118,6 @@ else {
                     // }
                     return (
                             <DisplayAssociations
-                            
                                 name={e.name}
                                 description={e.description}
                                 logo={e.logo}

@@ -16,9 +16,7 @@ import place from '../assets/place.png'
 import mail from '../assets/mail.png'
 import web from '../assets/web.png'
 import phone from '../assets/phone.png'
-
-import { UncontrolledTooltip, Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
-
+import {Button, Modal, ModalHeader, ModalBody, UncontrolledTooltip} from 'reactstrap'
 
 
 export default class DisplayAssociations extends Component {
@@ -33,9 +31,9 @@ export default class DisplayAssociations extends Component {
   ]
 
 
-  handleToggle = () => {
+  handleClickOpen = () => {
     this.setState({
-      open: !this.state.open
+      open: true,
     });
 
   };

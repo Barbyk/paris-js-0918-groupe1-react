@@ -38,6 +38,7 @@ export default class Associations extends Component {
     getActions() {
         axios.get('/actions')
             .then(res => this.setState({ actions: res.data }))
+            
 
     }
 
