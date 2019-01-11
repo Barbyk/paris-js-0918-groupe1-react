@@ -3,6 +3,7 @@ import BigCalendar from 'react-big-calendar'
 import CalendarToolbar from './CalendarToolbar'
 import moment_timezone from 'moment-timezone';
 import moment from 'moment';
+import Checkbox from './Checkbox'
 import { Modal, ModalBody, ModalFooter, ModalHeader, Button } from 'reactstrap';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/fr';
@@ -26,7 +27,8 @@ class Calendrier extends PureComponent {
     asso_name:undefined,
     currentEvent: null,
     location_selected: null,
-    locations: []
+    locations: [],
+    actions: []
   }
 
   convertDate = (date) => {
@@ -72,6 +74,31 @@ class Calendrier extends PureComponent {
         alert(error);
       });
   }
+
+  getMultipleEvents = async (locationid = 0) => {
+
+    await axios.post('/events/multiplelocations/', {id:locationid})
+      .then(response => {
+        if (response.data){
+        let appointments = response.data;
+        if (appointments)
+        for (let i = 0; i < appointments.length; i++) {
+          appointments[i].start = this.convertDate(appointments[i].start)
+          appointments[i].end = this.convertDate(appointments[i].end)
+        }
+        if (appointments)
+        this.setState({
+          cal_events: appointments
+        })
+      }
+      })
+      .catch(function (error) {
+        alert(error);
+      });
+
+    
+  }
+
   createEvent = (element) => {
 
     var startDate = moment(this.state.event_start_on).format("YYYY-MM-DD H:mm:ss");
@@ -137,13 +164,12 @@ class Calendrier extends PureComponent {
   }
 
   toggleAddModal = slotInfo => {
-    var startDate = moment(slotInfo.start).format("YYYY-MM-DDTHH:mm");
-    var endDate = moment(slotInfo.end).format("YYYY-MM-DDTHH:mm");
+    // var startDate = moment(slotInfo.start).format("YYYY-MM-DDTHH:mm");
+    // var endDate = moment(slotInfo.end).format("YYYY-MM-DDTHH:mm");
     if (!this.state.isEditModalOpen) {
 
       this.setState({
-        event_start_on: startDate,
-        event_end_on: endDate,
+  
         isAddModalOpen: !this.state.isAddModalOpen,
       });
     }
@@ -187,6 +213,47 @@ class Calendrier extends PureComponent {
     this.getEvents(e.target.value)
   }
 
+  handleActionsCheckBox=(e)=> {
+    
+    const newSelection = parseInt(e.target.name);
+    let newSelectionArray;
+
+    // if pour les cas de déselection de la checkbox, on enleve la valeur du tableau
+    if ((this.state.actions||[]).indexOf(newSelection) > -1) {
+      newSelectionArray = this.state.actions.filter(s => s !== newSelection)
+    } else {
+      newSelectionArray = [...this.state.actions||[],  newSelection ];
+    }
+
+    this.setState({
+       actions: newSelectionArray 
+    })
+    if (newSelectionArray) { 
+      this.setState({
+
+        event_start_on: undefined,
+    event_end_on: undefined,
+    event_title: undefined,
+    description: undefined,
+    asso_name:undefined,
+    currentEvent: undefined,
+      })
+      
+      this.getMultipleEvents(newSelectionArray) } else {
+        this.setState({
+cal_events:[],
+          event_start_on: undefined,
+      event_end_on: undefined,
+      event_title: undefined,
+      description: undefined,
+      asso_name:undefined,
+      currentEvent: undefined,
+        })
+      this.getEvents(1)
+    }
+
+}
+
   eventStyleGetter = (event, start, end, isSelected) => {
     var backgroundColor = '#' + event.hexColor;
     var style = {
@@ -228,7 +295,11 @@ class Calendrier extends PureComponent {
       event_start_on, event_end_on, locations, location_selected } = this.state
     return (
       <div className="calendrier">
-        <div className="dropdown" style={{ fontSize: "2vh" }}>
+      				<button type="button" onClick={() => this.toggleAddModal()}>Ajouter un évenement</button>
+
+      <Checkbox name="actions" title="Actions" options={this.state.locations} selectedOptions={this.state.actions} handleChange={this.handleActionsCheckBox} isRequired={false} />
+
+       {/*  <div className="dropdown" style={{ fontSize: "2vh" }}>
           <label class="control-label">Lieu de la mauraude </label>
           <select name="locations_id" onChange={this.handleLocationChange} value={this.state.location}>
             <option name="locations_id" value="">Sélectionner un lieu</option>
@@ -236,7 +307,7 @@ class Calendrier extends PureComponent {
               return (<option name="locations_id" value={e.id}>{e.name}</option>)
             })}
           </select>
-        </div>
+        </div> */}
         <div style={{ height: "90vh" }}>
           <BigCalendar
             selectable={location_selected ? true : false}
@@ -246,7 +317,7 @@ class Calendrier extends PureComponent {
             messages={{ next: "Suivant", previous: "Précédent", today: "Aujourd'hui", month: "Mois", week: "Semaine", day: "Jour" }}
             events={cal_events}
             step={30}
-            timeslots={2}
+            timeslots={1}
             scrollToTime={new Date(new Date().setHours(8))}
             defaultView={(window.innerWidth <= 760)?'day':'week'}
             views={['month', 'week', 'day']}
@@ -294,7 +365,16 @@ class Calendrier extends PureComponent {
           <Modal isOpen={isAddModalOpen} toggle={this.toggleAddModal}>
             <ModalHeader toggle={this.toggle}>Ajouter un nouvel évenement</ModalHeader>
             <ModalBody>
-              <p> Lieu : {(locations.find(x=>x.id==location_selected)||"").name}</p>
+              <p> Lieu : 
+              <div className="dropdown" style={{ fontSize: "2vh" }}>
+     
+          <select name="locations_id" onChange={this.handleLocationChange} value={this.state.location}>
+            <option name="locations_id" value="">Sélectionner un lieu</option>
+            {locations.map((e, index) => {
+              return (<option name="locations_id" value={e.id}>{e.name}</option>)
+            })}
+          </select>
+        </div></p>
               
 
               <form>
