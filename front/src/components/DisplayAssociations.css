@@ -8,7 +8,9 @@
    color:black;
 }
 
-
+.back {
+    padding-bottom: 12vh;
+}
 
 .blockLine  {
     display: flex;

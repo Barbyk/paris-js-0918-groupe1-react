@@ -9,7 +9,7 @@
     width: 80%;
     margin-left: auto;
     margin-right: auto;
-    padding-bottom: 20vh;
+    padding-bottom: 12vh;
 }
 
 .carousel .carousel-status {
@@ -31,8 +31,7 @@
 }
 
 .carousel img {
-    height: 69vh;
-    margin-top: 5vh;
+    height: 67vh;
 }
 
 .date {
