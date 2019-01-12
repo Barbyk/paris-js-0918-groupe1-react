@@ -4,6 +4,9 @@
 
   @media screen and (max-width: 640px) {
     select {max-width: 250px}
+    .rbc-toolbar {
+      padding-left: 7vh;
+    }
   }
 
 .calendrier {
@@ -17,4 +20,29 @@
 .rbc-toolbar {
   font-size: 2vh !important;
   margin-bottom: 1vh !important;
+  min-height: 7vh
+}
+
+.dropdown {
+  overflow: hidden;
+}
+
+.btn-filtre {
+  position: absolute;
+  margin-left: 1vh;
+  margin-top: 5vh;
+  left:0 ;
+}
+
+.btn-add {
+  position: absolute;
+  margin-left: 1vh;
+  margin-top: 0.5vh;
+  left:0 ;
+}
+
+.button-cal {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
 }

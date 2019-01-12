@@ -100,7 +100,7 @@ export default class AssoByDept extends Component {
 
 
         if (this.state.asso.length === 0) {
-            return <div><p>Pas d'association pour ce département</p></div>
+            return <div className="twins"><h3>Pas d'association pour ce département</h3></div>
         }
         else {
             return (

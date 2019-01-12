@@ -99,7 +99,7 @@ export default class Associations extends Component {
 
 
         if (this.state.asso.length === 0) {
-            return "Loading..."
+            return <div className="twins"><h3>Loading...</h3></div>
         }
         else {
             return (

@@ -20,6 +20,7 @@ class Calendrier extends PureComponent {
     ],
     isAddModalOpen: false,
     isEditModalOpen: false,
+    isFiltreModalOpen: false,
     event_start_on: null,
     event_end_on: null,
     event_title: undefined,
@@ -179,6 +180,17 @@ class Calendrier extends PureComponent {
       });
     }
   };
+  toggleFiltreModal = slotInfo => {
+    // var startDate = moment(slotInfo.start).format("YYYY-MM-DDTHH:mm");
+    // var endDate = moment(slotInfo.end).format("YYYY-MM-DDTHH:mm");
+    if (!this.state.isEditModalOpen && !this.state.isAddModalOpen) {
+
+      this.setState({
+  
+        isFiltreModalOpen: !this.state.isFiltreModalOpen,
+      });
+    }
+  };
 
   toggleEditModal = event => {
     var startDate = moment(event.start).format("YYYY-MM-DDTHH:mm");
@@ -234,26 +246,10 @@ class Calendrier extends PureComponent {
        actions: newSelectionArray 
     })
     if (newSelectionArray) { 
-      this.setState({
-
-        event_start_on: undefined,
-    event_end_on: undefined,
-    event_title: undefined,
-    description: undefined,
-    asso_name:undefined,
-    currentEvent: undefined,
-      })
+      
       
       this.getMultipleEvents(newSelectionArray) } else {
-        this.setState({
-cal_events:[],
-          event_start_on: undefined,
-      event_end_on: undefined,
-      event_title: undefined,
-      description: undefined,
-      asso_name:undefined,
-      currentEvent: undefined,
-        })
+       
       this.getEvents(1)
     }
 
@@ -296,12 +292,13 @@ cal_events:[],
 
   render() {
 
-    const { cal_events, event_title, asso_name, description, isEditModalOpen, isAddModalOpen,
+    const { cal_events, event_title, asso_name, description, isFiltreModalOpen, isEditModalOpen, isAddModalOpen,
       event_start_on, event_end_on, locations, location_selected } = this.state
     return (
       <div className="calendrier">
-        <button type="button" onClick={() => this.toggleAddModal()}>Ajouter un évenement</button>
-        
+        <button type="button" className="btn-add" onClick={() => this.toggleAddModal()}>Ajouter</button>
+        <Button size="sm" variant="contained" className='btn-filtre btn-asso' onClick={this.toggleFiltreModal}>Filtre</Button>
+
        
        {/*  <div className="dropdown" style={{ fontSize: "2vh" }}>
           <label class="control-label">Lieu de la mauraude </label>
@@ -312,7 +309,7 @@ cal_events:[],
             })}
           </select>
         </div> */}
-        <div style={{ height: "90vh" }}>
+        <div style={{ height: "70vh" }}>
           <BigCalendar
             selectable={location_selected ? true : false}
             onSelectEvent={event => this.toggleEditModal(event)}
@@ -323,7 +320,7 @@ cal_events:[],
             step={30}
             timeslots={1}
             scrollToTime={new Date(new Date().setHours(8))}
-            defaultView={(window.innerWidth <= 760)?'day':'week'}
+            defaultView={(window.innerWidth <= 760)?'month':'month'}
             views={['month', 'week', 'day']}
             defaultDate={new Date()}
             eventPropGetter={this.eventStyleGetter}
@@ -334,7 +331,21 @@ cal_events:[],
         }}
           />
 
+    <Modal isOpen={isFiltreModalOpen} toggle={this.toggleFiltreModal}>
+            <ModalHeader toggle={this.toggleFiltreModal}>Choisir un lieu</ModalHeader>
+            <ModalBody><form>
+              <label>
+                Liste des lieux :
+                    </label>
+              <Checkbox options={this.state.locations} handleChange={this.handleActionsCheckBox} selectedOptions={this.state.selectedOptions} name="actions"/>        
+            </form>
 
+            </ModalBody>
+            {/* <ModalFooter>
+
+              <Button color="secondary" onClick={this.toggleFiltreModal}>Fermer</Button>
+            </ModalFooter> */}
+          </Modal>
 
           <Modal isOpen={isEditModalOpen} toggle={this.toggleEditModal}>
             <ModalHeader toggle={this.toggle}>Modifier l'évenement</ModalHeader>

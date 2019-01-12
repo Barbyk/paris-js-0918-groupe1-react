@@ -96,7 +96,7 @@ render() {
 
 
 if (this.state.asso.length === 0) {
-    return <div><p>Pas d'association pour cette action.</p></div>
+    return <div className="twins"><h3>Pas d'association pour cette action.</h3></div>
 }
 else {
     return (
