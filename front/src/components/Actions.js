@@ -10,8 +10,7 @@ import table from './imgActions/table-solidaire.png';
 import visite from './imgActions/visite.png';
 import soutient from './imgActions/soutient.png';
 import migrant from './imgActions/migrant.png';
-import { Collapse } from "reactstrap";
-import { UncontrolledTooltip, Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 
 
 

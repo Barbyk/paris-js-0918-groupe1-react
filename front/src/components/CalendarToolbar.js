@@ -1,20 +1,19 @@
 import React from 'react';
 import Toolbar from 'react-big-calendar/lib/Toolbar';
 
-export default class CalendarToolbar extends Toolbar {
-	constructor (props) {
-		super(props)
-	}
-	componentDidMount() {
+const CalendarToolbar = (filtre, add ) => {
+	return class BaseToolbar extends Toolbar {
+		componentDidMount() {
 		const view = this.props.view;
 	}
-
 	render() {
 		return (
 			<span className="rbc-toolbar">
-				{/* <span className="rbc-btn-group">
-				<button type="button" onClick={this.props.handleFilter}>Aujourd'hui</button>
-        </span> */}
+				<span className="rbc-btn-group">
+				<button variant="contained" className='btn-asso' onClick={filtre}>Choisir un lieu</button>
+				<button type="button" onClick={add}>Ajouter</button>
+
+        </span> 
 				<span className="rbc-btn-group">
 					<button type="button" onClick={() => this.navigate('PREV')}>Précédent</button>
 					<span className="rbc-toolbar-label"><label>{this.props.label}</label></span>
@@ -28,7 +27,8 @@ export default class CalendarToolbar extends Toolbar {
 					<button type="button" onClick={this.view.bind(null, 'day')}>Jour</button>
 					
 				</span>
-			</span>
-		);
+			</span>);
 	}
-}
+	}}
+
+export default CalendarToolbar;

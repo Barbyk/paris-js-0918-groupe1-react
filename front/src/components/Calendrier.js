@@ -4,7 +4,8 @@ import CalendarToolbar from './CalendarToolbar'
 import moment_timezone from 'moment-timezone';
 import moment from 'moment';
 import Checkbox from './Checkbox'
-import { Popover, PopoverHeader, PopoverBody, Modal, ModalBody, ModalFooter, ModalHeader, Button } from 'reactstrap';
+import {AvForm, AvField} from 'availity-reactstrap-validation'
+import { Modal, ModalBody, ModalHeader, Button } from 'reactstrap';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/fr';
 import axios from 'axios'
@@ -14,6 +15,7 @@ moment_timezone.tz.setDefault('Europe/Paris');
 const localizer = BigCalendar.momentLocalizer(moment_timezone)
 
 class Calendrier extends PureComponent {
+ 
   state = {
     cal_events: [
       //State is updated via componentDidMount
@@ -21,8 +23,8 @@ class Calendrier extends PureComponent {
     isAddModalOpen: false,
     isEditModalOpen: false,
     isFiltreModalOpen: false,
-    event_start_on: null,
-    event_end_on: null,
+    event_start_on: undefined,
+    event_end_on: undefined,
     event_title: undefined,
     description: undefined,
     asso_name:undefined,
@@ -129,7 +131,7 @@ class Calendrier extends PureComponent {
     var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD H:mm:ss");
 
     axios.put('/events/' + this.state.currentEvent.id, {
-      users_id: 1, locations_id: this.state.location_selected, is_active: 1, title: this.state.event_title,
+      users_id: 1, locations_id: this.state.location_selected, is_active: 1, title: this.state.event_title, description:this.state.description,
       begin_date: startDate, end_date: endDate
     })
       .then(response => {
@@ -175,7 +177,8 @@ class Calendrier extends PureComponent {
     if (!this.state.isEditModalOpen) {
 
       this.setState({
-  
+        event_start_on : slotInfo ? moment(slotInfo.start).format("YYYY-MM-DDTHH:mm") : undefined,
+        event_end_on : slotInfo ? moment(slotInfo.end).format("YYYY-MM-DDTHH:mm") : undefined,
         isAddModalOpen: !this.state.isAddModalOpen,
       });
     }
@@ -207,6 +210,7 @@ class Calendrier extends PureComponent {
   };
 
   handleInputChange = (e) => {
+    console.log(e.target.name)
     this.setState({
       [e.target.name]: e.target.value,
 
@@ -293,12 +297,10 @@ class Calendrier extends PureComponent {
   render() {
 
     const { cal_events, event_title, asso_name, description, isFiltreModalOpen, isEditModalOpen, isAddModalOpen,
-      event_start_on, event_end_on, locations, location_selected } = this.state
+      event_start_on, event_end_on, locations, location_selected } = this.state;
     return (
       <div className="calendrier">
-        <button type="button" className="btn-add" onClick={() => this.toggleAddModal()}>Ajouter</button>
-        <Button size="sm" variant="contained" className='btn-filtre btn-asso' onClick={this.toggleFiltreModal}>Filtre</Button>
-
+        
        
        {/*  <div className="dropdown" style={{ fontSize: "2vh" }}>
           <label class="control-label">Lieu de la mauraude </label>
@@ -326,7 +328,7 @@ class Calendrier extends PureComponent {
             eventPropGetter={this.eventStyleGetter}
             components={{
               event: this.Event,
-              toolbar: CalendarToolbar
+              toolbar: CalendarToolbar(this.toggleFiltreModal, this.toggleAddModal)
               
         }}
           />
@@ -349,77 +351,76 @@ class Calendrier extends PureComponent {
 
           <Modal isOpen={isEditModalOpen} toggle={this.toggleEditModal}>
             <ModalHeader toggle={this.toggle}>Modifier l'évenement</ModalHeader>
-            <ModalBody><form>
+            <ModalBody><AvForm onValidSubmit={this.editEvent}>
               <label>
                 Nom de l'évenement :
                     </label>
-              <input type="text" name="event_title" value={event_title} onChange={this.handleInputChange} required /><br />
+              <AvField type="text" name="event_title" value={event_title} onChange={this.handleInputChange} required /><br />
               <label>
                 Description :
                     </label>
-              <input type="text" name="description" value={description} onChange={this.handleInputChange} required/><br />
+              <AvField type="text" name="description" value={description} onChange={this.handleInputChange} required/><br />
               <label>
                 Début :
                     </label>
-              <input type="datetime-local" step="1800" name="date_start" value={event_start_on} onChange={this.handleStartChange} required /><br />
+              <div className="form-group"><input type="datetime-local" className="form-control" step="1800" name="date_start" value={event_start_on} onChange={this.handleStartChange} required /><br /></div>
               <label>
                 Fin :
                     </label>
-              <input type="datetime-local" step="1800" min={event_start_on} name="date_end" value={event_end_on} onChange={this.handleEndChange} required />
-            </form>
-              <Button color="secondary" onClick={this.deleteEvent}>Supprimer du calendrier</Button>
-
+              <div className="form-group"><input type="datetime-local" className="form-control" step="1800" min={event_start_on} name="date_end" value={event_end_on} onChange={this.handleEndChange} required /><br/></div>
+            
+              <Button color="secondary" onClick={this.deleteEvent}>Supprimer du calendrier</Button>{' '}
+              <Button className="btn-asso" color="primary">Enregistrer</Button>{' '}
+              </AvForm>
             </ModalBody>
-            <ModalFooter>
-
-              <Button color="primary" onClick={this.editEvent}>Enregistrer</Button>{' '}
-              <Button color="secondary" onClick={this.toggleEditModal}>Annuler</Button>
-            </ModalFooter>
+            
           </Modal>
 
           <Modal isOpen={isAddModalOpen} toggle={this.toggleAddModal}>
-            <ModalHeader toggle={this.toggle}>Ajouter un nouvel évenement</ModalHeader>
+            <ModalHeader toggle={this.toggleAddModal}>Ajouter un nouvel évenement</ModalHeader>
             <ModalBody>
+              <AvForm onValidSubmit={this.createEvent}>
               <p> Lieu : 
+                
               <div className="dropdown" style={{ fontSize: "2vh" }}>
-     
-          <select name="locations_id" onChange={this.handleLocationChange} value={this.state.location}>
+                   
+
+          <AvField type="select" name="locations_id" onChange={this.handleLocationChange} value={this.state.location_selected} required>
             <option name="locations_id" value="">Sélectionner un lieu</option>
             {locations.map((e, index) => {
               return (<option name="locations_id" value={e.id}>{e.name}</option>)
             })}
-          </select>
+          </AvField>
         </div></p>
               
 
-              <form>
-              <label>
-                Début :
-                    </label>
-              <input type="datetime-local" step="1800" name="date_start" value={event_start_on} onChange={this.handleStartChange} required /><br />
-              <label>
-                Fin :
-                    </label>
-              <input type="datetime-local" step="1800" min={event_start_on} name="date_end" value={event_end_on} onChange={this.handleEndChange} required /><br/>
+              
                 <label>
                   Nom de l'évenement :
                     </label>
-                <input type="text" name="event_title" onChange={this.handleInputChange} />
+                <AvField type="text" name="event_title" onChange={this.handleInputChange} required/>
                 <label>
                 Nom de l'association :
                     </label>
-              <input type="text" name="asso_name" value={asso_name} onChange={this.handleInputChange} /><br />
+              <AvField type="text" name="asso_name" value={asso_name} onChange={this.handleInputChange} required /><br />
                 <label>
                   Description :
                     </label>
-                <input type="text" name="description" onChange={this.handleInputChange} />
-              </form>
-
+                <AvField type="text" name="description" onChange={this.handleInputChange} required/><br/>
+                <label>
+                Début :
+                    </label>
+              <div className="form-group"><input type="datetime-local" step="1800" className="form-control" name="event_start_on" value={event_start_on} onChange={this.handleStartChange} required /><br /></div>
+              <label>
+                Fin :
+                    </label>
+              <div className="form-group"><input type="datetime-local" step="1800" min={event_start_on} name="event_end_on" value={event_end_on} onChange={this.handleEndChange} required /><br/></div>
+              <Button className="btn-asso" >Enregistrer</Button>
+              
+              </AvForm>
             </ModalBody>
-            <ModalFooter>
-              <Button color="primary" onClick={this.createEvent}>Enregistrer</Button>{' '}
-              <Button color="secondary" onClick={this.toggleAddModal}>Annuler</Button>
-            </ModalFooter>
+            
+            
           </Modal>
 
         </div>

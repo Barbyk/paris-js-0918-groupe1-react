@@ -50,9 +50,9 @@ export default class DisplayAssociations extends Component {
               <h3>{this.props.name}</h3>
               <Button size="sm" variant="contained" className='btn-asso' onClick={this.handleToggle}>Plus d'info</Button>
               <div class="reseaux ">
-              {this.props.social_1?<a href={this.props.social_1}><img src={tweet} class="reseauIcon " /></a>:null}
-              {this.props.social_2?<a href={this.props.social_2}><img src={fb} class="reseauIcon " /></a>:null}
-              {this.props.social_3?<a href={this.props.social_3}><img src={insta} class="reseauIcon " /></a>:null}
+              {this.props.social_1?<a href={this.props.social_1}><img src={tweet} class="reseauIcon " alt="twitter"/></a>:null}
+              {this.props.social_2?<a href={this.props.social_2}><img src={fb} class="reseauIcon " alt="fb"/></a>:null}
+              {this.props.social_3?<a href={this.props.social_3}><img src={insta} class="reseauIcon " alt="instagram"/></a>:null}
             </div>
             </div>
             
