@@ -49,6 +49,11 @@ export default class DisplayAssociations extends Component {
               <img src={this.props.logo} alt="" class="logoasso" />
               <h3>{this.props.name}</h3>
               <Button size="sm" variant="contained" className='btn-asso' onClick={this.handleToggle}>Plus d'info</Button>
+              <div class="reseaux ">
+              {this.props.social_1?<a href={this.props.social_1}><img src={tweet} class="reseauIcon " /></a>:null}
+              {this.props.social_2?<a href={this.props.social_2}><img src={fb} class="reseauIcon " /></a>:null}
+              {this.props.social_3?<a href={this.props.social_3}><img src={insta} class="reseauIcon " /></a>:null}
+            </div>
             </div>
             
             <div class="contact offset-sm-12 ">
@@ -63,11 +68,7 @@ export default class DisplayAssociations extends Component {
               <p> <img className="contactIcon" src={ phone } alt="icon phone"/> {this.props.phone}</p>
             </div>  
 
-            <div class="reseaux ">
-              {this.props.social_1?<a href={this.props.social_1}><img src={tweet} class="reseauIcon " /></a>:null}
-              {this.props.social_2?<a href={this.props.social_2}><img src={fb} class="reseauIcon " /></a>:null}
-              {this.props.social_3?<a href={this.props.social_3}><img src={insta} class="reseauIcon " /></a>:null}
-            </div>
+           
             
 
           </div>

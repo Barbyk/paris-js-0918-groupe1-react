@@ -96,11 +96,12 @@ render() {
 
 
 if (this.state.asso.length === 0) {
-    return "Pas d'association pour cette action."
+    return <div><p>Pas d'association pour cette action.</p></div>
 }
 else {
     return (
-        <div class="assocard" >
+        <div className="back container-fluid">
+                <div className="row">
             {/* <table class="table table-striped">
                 <thead>
                 <tr>
@@ -117,6 +118,8 @@ else {
                     // const icon_urls = {
                     // }
                     return (
+                            <div class="assocard col-lg-6 col-sm-12">
+
                             <DisplayAssociations
                                 name={e.name}
                                 description={e.description}
@@ -132,13 +135,15 @@ else {
                                 key={e.id}
                                 definition={this.state.actions}
                             />
-                        )
+                        </div>)
 
 
                 })}
             {/* </tbody>
             </table> */}
-            <div className="nobuttons">
+            
+        </div>
+        <div className="nobuttons">
 
                 <div className="twins"><button type="button" class="btn btn-dark" onClick={this.handleButtonPrevious}>Précédent</button></div>
                 <div className="twins"><p className="number_page">{this.state.currentNumberPage}</p></div>

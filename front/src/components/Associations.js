@@ -103,7 +103,8 @@ export default class Associations extends Component {
         }
         else {
             return (
-                <div className="back">
+                <div className="back container-fluid">
+                <div className="row">
                     {/* <table className="table table-striped">
                         <thead>
                         <tr>
@@ -121,7 +122,7 @@ export default class Associations extends Component {
                             // const icon_urls = {
                             // }
                             return (
-                                <div class="assocard">
+                                <div class="assocard col-lg-6 col-sm-12">
                                     <DisplayAssociations 
                                         name={e.name}
                                         logo={e.logo}
@@ -145,7 +146,7 @@ export default class Associations extends Component {
 
 
                         })}
-                        
+                        </div>
                     {/* </tbody>
                        
         

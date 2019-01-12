@@ -104,7 +104,8 @@ export default class AssoByDept extends Component {
         }
         else {
             return (
-                <div>
+                <div className="back container-fluid">
+                <div className="row">
 
                     {/* <table class="table table-striped">
                 <thead>
@@ -122,7 +123,7 @@ export default class AssoByDept extends Component {
                         // const icon_urls = {
                         // }
                         return (
-                            <div class="assodept">
+                                <div class="assocard col-lg-6 col-sm-12">
                                 <DisplayAssociations
                                     name={e.name}
                                     description={e.description}
@@ -145,15 +146,16 @@ export default class AssoByDept extends Component {
                     {/* </tbody>
             </table> */}
 
-                    <div className="nobuttons">
+                    
+                </div>
+                <div className="nobuttons">
 
                         <div className="twins"><button type="button" class="btn btn-dark" onClick={this.handleButtonPrevious}>Précédent</button></div>
                         <div className="twins"><p className="number_page">{this.state.currentNumberPage}</p></div>
                         <div className="twins"><button type="button" class="btn btn-dark" onClick={this.handleButtonNext}>Suivant</button></div>
 
                     </div>
-                </div>
-
+</div>
             )
         }
     }
