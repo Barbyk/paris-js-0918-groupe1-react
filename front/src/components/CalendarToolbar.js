@@ -3,9 +3,7 @@ import Toolbar from 'react-big-calendar/lib/Toolbar';
 
 const CalendarToolbar = (filtre, add ) => {
 	return class BaseToolbar extends Toolbar {
-		componentDidMount() {
-		const view = this.props.view;
-	}
+		
 	render() {
 		return (
 			<span className="rbc-toolbar">

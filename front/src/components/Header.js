@@ -17,18 +17,18 @@ class Header extends React.Component {
                     <div className="collapse navbar-collapse" id="navbarNav">
                     
                         <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <Link className="nav-link" to={"/"}>Accueil</Link>
+                        <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                            <a className="nav-link" href="/">Accueil</a>
                             {/* <a className="nav-link" href="#">Accueil</a> */}
                         </li>
-                        <li className="nav-item">
-                        <Link className="nav-link" to={"/trouverunemaraude"}>Localisation</Link>
+                        <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                        <a className="nav-link"  href="/trouverunemaraude">Localisation</a>
                         </li>
-                        <li className="nav-item">
-                        <Link className="nav-link" to={"/actions"}>Les actions</Link>
+                        <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                        <a className="nav-link" href="/actions">Les actions</a>
                         </li>
-                        <li className="nav-item">
-                        <Link className="nav-link" to={"/associations"}>Les associations</Link>
+                        <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                        <a className="nav-link" href="/associations">Les associations</a>
                         </li>
                         </ul>
                     </div>

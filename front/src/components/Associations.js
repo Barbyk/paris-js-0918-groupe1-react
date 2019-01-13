@@ -23,7 +23,7 @@ export default class Associations extends Component {
     componentDidMount() {
         this.getAsso()
         this.getActions()
-
+        
     }
 
     getAsso() {
@@ -59,6 +59,7 @@ export default class Associations extends Component {
             isDisplayPrevious: currentNumberPage === 1 ? false : true,
             isDisplayNext: numberResultEnd === asso.length ? false : true
         })
+        window.scrollTo({top: 0, left:0,behavior:'smooth'})
 
     }
 

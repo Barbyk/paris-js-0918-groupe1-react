@@ -9,6 +9,7 @@ import { Modal, ModalBody, ModalHeader, Button } from 'reactstrap';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/fr';
 import axios from 'axios'
+import withAuth from './withAuth'
 import './Calendrier.css'
 
 moment_timezone.tz.setDefault('Europe/Paris');
@@ -414,7 +415,7 @@ class Calendrier extends PureComponent {
               <label>
                 Fin :
                     </label>
-              <div className="form-group"><input type="datetime-local" step="1800" min={event_start_on} name="event_end_on" value={event_end_on} onChange={this.handleEndChange} required /><br/></div>
+              <div className="form-group"><input type="datetime-local" className="form-control" step="1800" min={event_start_on} name="event_end_on" value={event_end_on} onChange={this.handleEndChange} required /><br/></div>
               <Button className="btn-asso" >Enregistrer</Button>
               
               </AvForm>
@@ -428,4 +429,4 @@ class Calendrier extends PureComponent {
     );
   }
 }
-export default Calendrier;
+export default withAuth(Calendrier);
