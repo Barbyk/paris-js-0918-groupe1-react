@@ -2,7 +2,7 @@
 
 .center{
     font-family: 'Raleway', sans-serif;
-    background-color: #1abc9c;
+    background-color: #2abbad;
     position: relative;
     height: 75vh;
     width: 100%;
@@ -41,7 +41,7 @@
 
     height: 35px;
     color: #fff;
-    background-color: #1abc9c;
+    background-color: #004c52;
     border: none;
     letter-spacing: 0.2rem;
     transition: 0.3s opacity ease;

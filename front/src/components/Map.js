@@ -1,17 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
-import PropTypes from 'prop-types';
-import Card from '@material-ui/core/Card';
 import './Map.css';
-
-import { withStyles } from '@material-ui/core/styles';
-
-const styles = {
-    card: {
-      boxShadow: "0px 0px 0px 0px" ,
-      backgroundColor: "#edf0f4"
-  }
-}
 
 class Map extends Component {
      
@@ -26,12 +15,11 @@ class Map extends Component {
 
   render() {
     const target = this.state.target 
-    const { classes } = this.props;
           
     return (
       <div className="map_view">
         
-        <Card className={classes.card} class="mapcard" >
+        <div className="mapcard" >
         <div className="block_map">
             <div className="dep">
             <h1>{this.state.target ? this.state.target : "Trouver une association près de chez moi" }</h1>
@@ -523,7 +511,7 @@ class Map extends Component {
     </svg>
     </div>
     </div>
-    </Card>
+    </div>
     {/* <div className="map_list">
     <Card className={classes.card} >
     <h1>Départements </h1>
@@ -546,7 +534,5 @@ class Map extends Component {
     )
   }
 }
-  Map.propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
-export default  withStyles(styles)(Map);
+ 
+export default  Map;
