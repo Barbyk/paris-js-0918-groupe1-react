@@ -334,13 +334,13 @@ class Calendrier extends PureComponent {
         }}
           />
 
-    <Modal isOpen={isFiltreModalOpen} toggle={this.toggleFiltreModal}>
+          <Modal isOpen={isFiltreModalOpen} toggle={this.toggleFiltreModal}>
             <ModalHeader toggle={this.toggleFiltreModal}>Choisir un lieu</ModalHeader>
             <ModalBody><form>
               <label>
                 Liste des lieux :
                     </label>
-              <Checkbox options={this.state.locations} handleChange={this.handleActionsCheckBox} selectedOptions={this.state.selectedOptions} name="actions"/>        
+              <Checkbox options={this.state.locations} handleChange={this.handleActionsCheckBox} selectedOptions={this.state.selectedOptions} name="actions" />
             </form>
 
             </ModalBody>
@@ -386,42 +386,39 @@ class Calendrier extends PureComponent {
               <div className="dropdown" style={{ fontSize: "2vh" }}>
                    
 
-          <AvField type="select" name="locations_id" onChange={this.handleLocationChange} value={this.state.location_selected} required>
-            <option name="locations_id" value="">Sélectionner un lieu</option>
-            {locations.map((e, index) => {
-              return (<option name="locations_id" value={e.id}>{e.name}</option>)
-            })}
-          </AvField>
-        </div></p>
-              
-
-              
+                    <AvField type="select" name="locations_id" onChange={this.handleLocationChange} value={this.state.location_selected} required>
+                      <option name="locations_id" value="">Sélectionner un lieu</option>
+                      {locations.map((e, index) => {
+                        return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                      })}
+                    </AvField>
+                  </div></p>
                 <label>
                   Nom de l'évenement :
                     </label>
-                <AvField type="text" name="event_title" onChange={this.handleInputChange} required/>
+                <AvField type="text" name="event_title" onChange={this.handleInputChange} required />
                 <label>
-                Nom de l'association :
+                  Nom de l'association :
                     </label>
-              <AvField type="text" name="asso_name" value={asso_name} onChange={this.handleInputChange} required /><br />
+                <AvField type="text" name="asso_name" value={asso_name} onChange={this.handleInputChange} required /><br />
                 <label>
                   Description :
                     </label>
-                <AvField type="text" name="description" onChange={this.handleInputChange} required/><br/>
+                <AvField type="text" name="description" onChange={this.handleInputChange} required /><br />
                 <label>
-                Début :
+                  Début :
                     </label>
-              <div className="form-group"><input type="datetime-local" step="1800" className="form-control" name="event_start_on" value={event_start_on} onChange={this.handleStartChange} required /><br /></div>
-              <label>
-                Fin :
+                <div className="form-group"><input type="datetime-local" step="1800" className="form-control" name="event_start_on" value={event_start_on} onChange={this.handleStartChange} required /><br /></div>
+                <label>
+                  Fin :
                     </label>
-              <div className="form-group"><input type="datetime-local" className="form-control" step="1800" min={event_start_on} name="event_end_on" value={event_end_on} onChange={this.handleEndChange} required /><br/></div>
-              <Button className="btn-asso" >Enregistrer</Button>
-              
+                <div className="form-group"><input type="datetime-local" className="form-control" step="1800" min={event_start_on} name="event_end_on" value={event_end_on} onChange={this.handleEndChange} required /><br /></div>
+                <Button className="btn-asso" >Enregistrer</Button>
+
               </AvForm>
             </ModalBody>
-            
-            
+
+
           </Modal>
 
         </div>

@@ -23,7 +23,7 @@ export default class Associations extends Component {
     componentDidMount() {
         this.getAsso()
         this.getActions()
-        
+
     }
 
     getAsso() {
@@ -38,14 +38,14 @@ export default class Associations extends Component {
     getActions() {
         axios.get('/actions')
             .then(res => this.setState({ actions: res.data }))
-            
+
 
     }
 
     getAssoPerPage() {
         const { currentNumberPage } = this.state;
         const { asso } = this.state;
-        let numberResultStart  = (
+        let numberResultStart = (
             currentNumberPage - 1) * numberAssoPerPage;
         let numberResultEnd = currentNumberPage * numberAssoPerPage;
         if (numberResultEnd > asso.length) {
@@ -59,7 +59,7 @@ export default class Associations extends Component {
             isDisplayPrevious: currentNumberPage === 1 ? false : true,
             isDisplayNext: numberResultEnd === asso.length ? false : true
         })
-        window.scrollTo({top: 0, left:0,behavior:'smooth'})
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
 
     }
 
@@ -91,12 +91,12 @@ export default class Associations extends Component {
 
     render() {
         const shouldParse = (el) => {
-            if (!Array.isArray(el)){
-              return JSON.parse(el)
-            }else{
-              return el
+            if (!Array.isArray(el)) {
+                return JSON.parse(el)
+            } else {
+                return el
             }
-          }
+        }
 
 
         if (this.state.asso.length === 0) {
@@ -105,8 +105,8 @@ export default class Associations extends Component {
         else {
             return (
                 <div className="back container-fluid">
-                <div className="row">
-                    {/* <table className="table table-striped">
+                    <div className="row">
+                        {/* <table className="table table-striped">
                         <thead>
                         <tr>
                         <th scope="col">Nom de l'association</th>
@@ -117,14 +117,14 @@ export default class Associations extends Component {
                         </tr>
                         </thead>
                     <tbody> */}
-                    
+
                         {this.state.assoPerPage.map(e => {
 
                             // const icon_urls = {
                             // }
                             return (
                                 <div class="assocard col-lg-6 col-sm-12">
-                                    <DisplayAssociations 
+                                    <DisplayAssociations
                                         name={e.name}
                                         logo={e.logo}
                                         address={e.address}
@@ -139,23 +139,23 @@ export default class Associations extends Component {
                                         key={e.id}
                                         definition={this.state.actions}
                                     />
-                                   </div>
-                    
-                                   
-                                  
-                                )
+                                </div>
+
+
+
+                            )
 
 
                         })}
-                        </div>
+                    </div>
                     {/* </tbody>
                        
         
                     </table> */}
-                     
-         
-        
-          
+
+
+
+
                     <div className="nobuttons">
 
                         <div className="twins"><button type="button" class="btn btn-dark btn-page" onClick={this.handleButtonPrevious}>Précédent</button></div>

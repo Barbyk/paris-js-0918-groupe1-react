@@ -105,9 +105,9 @@ export default class AssoByDept extends Component {
         else {
             return (
                 <div className="back container-fluid">
-                <div className="row">
+                    <div className="row">
 
-                    {/* <table class="table table-striped">
+                        {/* <table class="table table-striped">
                 <thead>
                 <tr>
                 <th>Nom de l'association</th>
@@ -118,44 +118,44 @@ export default class AssoByDept extends Component {
                 </tr>
                 </thead>
             <tbody> */}
-                    {this.state.assoPerPage.map(e => {
+                        {this.state.assoPerPage.map(e => {
 
-                        // const icon_urls = {
-                        // }
-                        return (
+                            // const icon_urls = {
+                            // }
+                            return (
                                 <div class="assocard col-lg-6 col-sm-12">
-                                <DisplayAssociations
-                                    name={e.name}
-                                    description={e.description}
-                                    logo={e.logo}
-                                    address={e.address}
-                                    social_1={e.social_network_url_1}
-                                    social_2={e.social_network_url_2}
-                                    social_3={e.social_network_url_3}
-                                    phone={e.phone_number}
-                                    web_site={e.web_site}
-                                    mail={e.mail}
-                                    icon={e.actions ? shouldParse(e.actions) : null}
-                                    key={e.id}
-                                    definition={this.state.actions}
-                                />
-                            </div>)
+                                    <DisplayAssociations
+                                        name={e.name}
+                                        description={e.description}
+                                        logo={e.logo}
+                                        address={e.address}
+                                        social_1={e.social_network_url_1}
+                                        social_2={e.social_network_url_2}
+                                        social_3={e.social_network_url_3}
+                                        phone={e.phone_number}
+                                        web_site={e.web_site}
+                                        mail={e.mail}
+                                        icon={e.actions ? shouldParse(e.actions) : null}
+                                        key={e.id}
+                                        definition={this.state.actions}
+                                    />
+                                </div>)
 
 
-                    })}
-                    {/* </tbody>
+                        })}
+                        {/* </tbody>
             </table> */}
 
-                    
-                </div>
-                <div className="nobuttons">
+
+                    </div>
+                    <div className="nobuttons">
 
                         <div className="twins"><button type="button" class="btn btn-dark" onClick={this.handleButtonPrevious}>Précédent</button></div>
                         <div className="twins"><p className="number_page">{this.state.currentNumberPage}</p></div>
                         <div className="twins"><button type="button" class="btn btn-dark" onClick={this.handleButtonNext}>Suivant</button></div>
 
                     </div>
-</div>
+                </div>
             )
         }
     }

@@ -11,11 +11,7 @@ import visite from './imgActions/visite.png';
 import soutient from './imgActions/soutient.png';
 import migrant from './imgActions/migrant.png';
 import { Modal, ModalBody, ModalHeader } from 'reactstrap';
-
-
-
 import './Actions.css'
-
 
 
 class Actions extends Component {
@@ -95,7 +91,7 @@ class Actions extends Component {
                                 <ModalBody> <p class="def">{this.state.definition}</p> </ModalBody>
                                 {this.state.definition ? <Link to={'/actions/' + this.state.id}>
                                     <button type="button" class="btngo">Liste des Associations</button></Link> : null}
-                                    <button type="button" class="btnback" onClick={this.onClose}>Retour</button>
+                                <button type="button" class="btnback" onClick={this.onClose}>Retour</button>
 
                             </div>
                         </div>
