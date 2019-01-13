@@ -19,9 +19,7 @@ p {
 }
 
 .actionlogo {
-    width: 8vw;
     height: 18vh;
-    padding: 1em
 }
 
 .modal-title {
@@ -62,17 +60,21 @@ p {
 }
 
 
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 1400px) {
     .actionlogo {
-        width: 16vw;
-        height: 20vh;
+        width: auto;
+        max-width: 18vh;
+        min-width: 13vw;
+        min-height: 18vh;
     }
 }
 
+
 @media only screen and (max-width: 500px) {
     .actionlogo {
-        width: 30vw;
-        height: 18vh;
+        width: auto;
+        min-width: 17vw;
+        min-height: 16vh;
     }
     .definition
     {
