@@ -55,10 +55,10 @@ class Actions extends Component {
     }
 
     onClick8 = () => {
-        this.setState({ name: this.state.actionList[7].name, definition: this.state.actionList[7].definition, id: 8, collapse: true, })
+        this.setState({ name: this.state.actionList[7].name, definition: this.state.actionList[7].definition, id: 8, open: true, })
     }
     onClick9 = () => {
-        this.setState({ name: this.state.actionList[8].name, definition: this.state.actionList[8].definition, id: 9, collapse: true, })
+        this.setState({ name: this.state.actionList[8].name, definition: this.state.actionList[8].definition, id: 9, open: true, })
     }
 
 
@@ -80,7 +80,7 @@ class Actions extends Component {
         else
             return (
                 <div class="container actioncontain" >
-                    <Modal isOpen={this.state.open} >
+                    <Modal isOpen={this.state.open} centered>
 
                         <div class="row">
 

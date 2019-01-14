@@ -74,18 +74,18 @@ export default class DisplayAssociations extends Component {
           </div>
 
           <div class="col-sm-12">
-            <Modal isOpen={this.state.open} toggle={this.handleToggle}>
+            <Modal isOpen={this.state.open} toggle={this.handleToggle} centered>
               <ModalHeader className='modal-titre' toggle={this.handleToggle}>
                 {this.props.name}
               </ModalHeader>
               <ModalBody className='modal-corps'>
                 {this.props.description ? this.props.description : "Description à venir."}
-                <div className="divier"></div>
+                {/* <div className="divier"></div>
                 <p>{this.props.address}</p>
                 <p>{this.props.mail}</p>
                 <a href={this.props.web_site}><p>site web</p></a>
                 <p>{this.props.phone}</p>
-                <div className="divier"></div>
+                <div className="divier"></div> */}
                 <p>{this.props.icon ? this.props.icon.map((e, index) =>
                   <><span id={'action-icon' + index}><img src={this.tab[e - 1]} alt="" className="actionIcon" /></span>
                     <UncontrolledTooltip placement="right" target={"action-icon" + index}>

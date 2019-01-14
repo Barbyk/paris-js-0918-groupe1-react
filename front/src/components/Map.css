@@ -1,5 +1,5 @@
 .map path:hover,.map path.active {
-    fill:rgb(100, 165, 173);
+    fill:  #96d34e;
     transition: fill 0.3s;
   }
   
@@ -10,9 +10,10 @@
     align-content: center;
     align-items: center;
     flex-wrap: wrap;
-    min-height: 80vh;
+    min-height: 50vh;
+    max-height:75vh;
     background-color: #edf0f4;
-    padding-bottom: 20vh
+    padding-bottom: 10vh
   }
   .MuiPaper-elevation1-6 {
     box-shadow: 0px !important;
