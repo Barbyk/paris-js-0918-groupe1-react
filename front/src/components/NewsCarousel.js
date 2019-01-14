@@ -16,11 +16,8 @@ class NewsCarousel extends React.Component {
                                 <img class='imgcarousel' alt="caroussel" src={e.img_url} />
                                 <div class='news'>
                                 <div class="container-fluid">
-                                
-                                <span className='date'>{moment(e.date).format('DD/MM/YYYY')}</span>
-                                
-                                <span className='text'>{e.text}</span>
-                               
+                                <div className='date'>{moment(e.date).format('DD/MM/YYYY')}</div>
+                                <div className='text'>{e.text}</div>
                                 </div>
                                 </div>
                             </div> )  
