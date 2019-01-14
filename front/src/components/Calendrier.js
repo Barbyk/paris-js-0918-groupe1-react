@@ -340,7 +340,7 @@ class Calendrier extends PureComponent {
               <label>
                 Liste des lieux :
                     </label>
-              <Checkbox options={this.state.locations} handleChange={this.handleActionsCheckBox} selectedOptions={this.state.selectedOptions} name="actions" />
+              <Checkbox options={this.state.locations} handleChange={this.handleActionsCheckBox} selectedOptions={this.state.actions} name="actions" />
             </form>
 
             </ModalBody>
