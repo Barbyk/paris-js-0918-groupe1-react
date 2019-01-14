@@ -9,16 +9,20 @@
     width: 80%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5vh;
-    padding-bottom: 20vh;
-  
+    padding-bottom: 12vh;
+}
+
+.carousel .carousel-status {
+    font-size: 0px
 }
 
 .news {
-    margin-top: -9em;
-    padding: 0.5em;
-    position: relative;
-    background-color: rgb(0, 0, 0, 0.5)
+    margin-top: -20vh;
+    padding: 0.5vh;
+    position: absolute;
+    background-color: rgb(0, 0, 0, 0.5);
+    width: 100%;
+    bottom: 0
 }
 
 .text {
@@ -27,52 +31,56 @@
 }
 
 .carousel img {
-    height: 69vh;
-    margin-top: 10vh;
-    
-   
+    height: 67vh;
 }
 
 .date {
     color: white;
     border-width: 0px 3px 0px 0px;
     border-style: solid;
-    padding: 10px
+    padding: 10px;
+    text-align: center;
+    font-family: 'Josefin sans', sans-serif;
+    font-size: 2vw;
 }
 
 .text {
-    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Josefin sans', sans-serif;
     font-size: 2vw;
+    padding-left: 3vw
 }
 
 .carousel .control-dots {
     background-color: rgb(255, 255, 0, 0);
     position: relative;
-    
-
 }
 
 .carousel .slide {
     background: rgba(24, 110, 185, 0);
+    text-align: left;
+}
+
+.news .container-fluid {
+    justify-content: start;
+    display: flex;
 }
 
 @media only screen and (max-width: 600px) {
     .carousel-global {
         width: 100%;
     }
-    .imgcaroussel {
-        height: 100vh;
-        max-width: 70%;
-        margin-top: 10vh;
-        border-radius: 30px;
+
+    .carousel img {
+        height: auto;
+        margin-top: 0vh;
+        padding-bottom: 16vh;
     }
-    .title,
     .date {
-        font-family: sans-serif;
         font-size: 6.5vw;
+        text-align: center
     }
     .text {
-        font-family: sans-serif;
         font-size: 5vw;
+        padding-left: 2vh
     }
 }

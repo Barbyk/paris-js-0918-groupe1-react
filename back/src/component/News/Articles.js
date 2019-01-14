@@ -21,7 +21,7 @@ class Articles extends Component {
     getAssoprofil = e => {
         this.setState({ isLoading: true })
         axios
-            .get("http://localhost:3002/news")
+            .get("/news")
             .then(response => this.setState({ assoProfil: response.data, isLoading: false }))
 
 
@@ -31,7 +31,7 @@ class Articles extends Component {
         const response = window.confirm("Etes-vous certain de vouloir supprimer ?");
         if (response) {
             axios
-                .put("http://localhost:3002/news/" + id, { "is_active": "0" })
+                .put("/news/" + id, { "is_active": "0" })
                 .then(window.location.reload())
         }
     }

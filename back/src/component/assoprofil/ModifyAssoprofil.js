@@ -173,7 +173,7 @@ class ModifyNewAssoprofil extends Component {
                         name="description"
                         value={this.state.modifyInputValue.description}
                         onChange={this.handleChange}
-                        required
+                        
                     />
                 </div>
                 <Input name="address" label="Adresse" value={this.state.modifyInputValue.address} handleChange={this.handleChange} isRequired={false}/>

@@ -53,7 +53,7 @@ class AddArticle extends Component {
     postArticle = async (e) => {
         e.preventDefault();
         await axios
-            .post('http://localhost:3002/news',this.state.news,{headers: {
+            .post('/news',this.state.news,{headers: {
                 'Authorization': 'Bearer ' + sessionStorage.getItem("id_token")} })
             .then(window.history.back() );
         alert("L'article a bien été enregistré")

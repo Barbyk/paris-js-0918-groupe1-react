@@ -13,21 +13,22 @@ class Header extends React.Component {
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <Link to={"/"}><img src={logo} class="logo"/></Link>
+                    <Link to={"/"}><img src={logo} class="logo" alt='Logo'/></Link>
                     <div className="collapse navbar-collapse" id="navbarNav">
+                    
                         <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <Link className="nav-link" to={"/"}>Accueil</Link>
+                        <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                            <a className="nav-link" href="/">Accueil</a>
                             {/* <a className="nav-link" href="#">Accueil</a> */}
                         </li>
-                        <li className="nav-item">
-                        <Link className="nav-link" to={"/trouverunemaraude"}>Trouver une maraude</Link>
+                        <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                        <a className="nav-link"  href="/trouverunemaraude">Localisation</a>
                         </li>
-                        <li className="nav-item">
-                        <Link className="nav-link" to={"/actions"}>Les actions</Link>
+                        <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                        <a className="nav-link" href="/actions">Les actions</a>
                         </li>
-                        <li className="nav-item">
-                        <Link className="nav-link" to={"/associations"}>Les associations</Link>
+                        <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                        <a className="nav-link" href="/associations">Les associations</a>
                         </li>
                         </ul>
                     </div>

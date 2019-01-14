@@ -100,13 +100,14 @@ export default class AssoByDept extends Component {
 
 
         if (this.state.asso.length === 0) {
-            return "Loading..."
+            return <div className="twins"><h3>Pas d'association pour ce département</h3></div>
         }
         else {
             return (
-                <div>
+                <div className="back container-fluid">
+                    <div className="row">
 
-                    {/* <table class="table table-striped">
+                        {/* <table class="table table-striped">
                 <thead>
                 <tr>
                 <th>Nom de l'association</th>
@@ -117,33 +118,36 @@ export default class AssoByDept extends Component {
                 </tr>
                 </thead>
             <tbody> */}
-                    {this.state.assoPerPage.map(e => {
+                        {this.state.assoPerPage.map(e => {
 
-                        // const icon_urls = {
-                        // }
-                        return (
-                            <div class="assodept">
-                                <DisplayAssociations
-                                    name={e.name}
-                                    description={e.description}
-                                    logo={e.logo}
-                                    address={e.address}
-                                    social_1={e.social_network_url_1}
-                                    social_2={e.social_network_url_2}
-                                    social_3={e.social_network_url_3}
-                                    phone={e.phone_number}
-                                    web_site={e.web_site}
-                                    mail={e.mail}
-                                    icon={e.actions ? shouldParse(e.actions) : null}
-                                    key={e.id}
-                                />
-                            </div>)
+                            // const icon_urls = {
+                            // }
+                            return (
+                                <div class="assocard col-lg-6 col-sm-12">
+                                    <DisplayAssociations
+                                        name={e.name}
+                                        description={e.description}
+                                        logo={e.logo}
+                                        address={e.address}
+                                        social_1={e.social_network_url_1}
+                                        social_2={e.social_network_url_2}
+                                        social_3={e.social_network_url_3}
+                                        phone={e.phone_number}
+                                        web_site={e.web_site}
+                                        mail={e.mail}
+                                        icon={e.actions ? shouldParse(e.actions) : null}
+                                        key={e.id}
+                                        definition={this.state.actions}
+                                    />
+                                </div>)
 
 
-                    })}
-                    {/* </tbody>
+                        })}
+                        {/* </tbody>
             </table> */}
 
+
+                    </div>
                     <div className="nobuttons">
 
                         <div className="twins"><button type="button" class="btn btn-dark" onClick={this.handleButtonPrevious}>Précédent</button></div>
@@ -152,7 +156,6 @@ export default class AssoByDept extends Component {
 
                     </div>
                 </div>
-
             )
         }
     }

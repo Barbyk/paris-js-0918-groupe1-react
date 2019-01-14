@@ -1,29 +1,39 @@
 import React, { PureComponent } from 'react';
 import BigCalendar from 'react-big-calendar'
+import CalendarToolbar from './CalendarToolbar'
 import moment_timezone from 'moment-timezone';
 import moment from 'moment';
-import { Modal, ModalBody, ModalFooter, ModalHeader, Button } from 'reactstrap';
+import Checkbox from './Checkbox'
+import {AvForm, AvField} from 'availity-reactstrap-validation'
+import { Modal, ModalBody, ModalHeader, Button } from 'reactstrap';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/fr';
 import axios from 'axios'
+import withAuth from './withAuth'
 import './Calendrier.css'
 
 moment_timezone.tz.setDefault('Europe/Paris');
 const localizer = BigCalendar.momentLocalizer(moment_timezone)
 
 class Calendrier extends PureComponent {
+ 
   state = {
     cal_events: [
       //State is updated via componentDidMount
     ],
     isAddModalOpen: false,
     isEditModalOpen: false,
-    event_start_on: null,
-    event_end_on: null,
-    event_title: null,
+    isFiltreModalOpen: false,
+    event_start_on: undefined,
+    event_end_on: undefined,
+    event_title: undefined,
+    description: undefined,
+    asso_name:undefined,
     currentEvent: null,
     location_selected: null,
-    locations: []
+    locations: [],
+    actions: [],
+    popoverOpen:false
   }
 
   convertDate = (date) => {
@@ -38,7 +48,7 @@ class Calendrier extends PureComponent {
   }
   getLocations = () => {
 
-    axios.get('locations/')
+    axios.get('/locations/')
       .then(response => {
         this.setState({
           locations: response.data
@@ -69,12 +79,37 @@ class Calendrier extends PureComponent {
         alert(error);
       });
   }
+
+  getMultipleEvents = async (locationid = 0) => {
+
+    await axios.post('/events/multiplelocations/', {id:locationid})
+      .then(response => {
+        if (response.data){
+        let appointments = response.data;
+        if (appointments)
+        for (let i = 0; i < appointments.length; i++) {
+          appointments[i].start = this.convertDate(appointments[i].start)
+          appointments[i].end = this.convertDate(appointments[i].end)
+        }
+        if (appointments)
+        this.setState({
+          cal_events: appointments
+        })
+      }
+      })
+      .catch(function (error) {
+        alert(error);
+      });
+
+    
+  }
+
   createEvent = (element) => {
 
     var startDate = moment(this.state.event_start_on).format("YYYY-MM-DD H:mm:ss");
     var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD H:mm:ss");
     axios.post('events', {
-      users_id: 1, locations_id: this.state.location_selected, is_active: 1, title: this.state.event_title,
+      users_id: 1, locations_id: this.state.location_selected, is_active: 1, title: "["+this.state.asso_name+"] "+this.state.event_title, description: this.state.description,
       begin_date: startDate, end_date: endDate
     })
       .then(response => {
@@ -97,7 +132,7 @@ class Calendrier extends PureComponent {
     var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD H:mm:ss");
 
     axios.put('/events/' + this.state.currentEvent.id, {
-      users_id: 1, locations_id: this.state.location_selected, is_active: 1, title: this.state.event_title,
+      users_id: 1, locations_id: this.state.location_selected, is_active: 1, title: this.state.event_title, description:this.state.description,
       begin_date: startDate, end_date: endDate
     })
       .then(response => {
@@ -132,21 +167,38 @@ class Calendrier extends PureComponent {
       });
 
   }
-
+  togglePopover=() => {
+    this.setState({
+      popoverOpen: !this.state.popoverOpen
+    })
+  }
   toggleAddModal = slotInfo => {
+    // var startDate = moment(slotInfo.start).format("YYYY-MM-DDTHH:mm");
+    // var endDate = moment(slotInfo.end).format("YYYY-MM-DDTHH:mm");
     if (!this.state.isEditModalOpen) {
 
       this.setState({
-        event_start_on: slotInfo.start,
-        event_end_on: slotInfo.end,
+        event_start_on : slotInfo ? moment(slotInfo.start).format("YYYY-MM-DDTHH:mm") : undefined,
+        event_end_on : slotInfo ? moment(slotInfo.end).format("YYYY-MM-DDTHH:mm") : undefined,
         isAddModalOpen: !this.state.isAddModalOpen,
+      });
+    }
+  };
+  toggleFiltreModal = slotInfo => {
+    // var startDate = moment(slotInfo.start).format("YYYY-MM-DDTHH:mm");
+    // var endDate = moment(slotInfo.end).format("YYYY-MM-DDTHH:mm");
+    if (!this.state.isEditModalOpen && !this.state.isAddModalOpen) {
+
+      this.setState({
+  
+        isFiltreModalOpen: !this.state.isFiltreModalOpen,
       });
     }
   };
 
   toggleEditModal = event => {
     var startDate = moment(event.start).format("YYYY-MM-DDTHH:mm");
-    var endDate = moment_timezone.tz(event.end,'Europe/Paris').format("YYYY-MM-DDTHH:mm");
+    var endDate = moment(event.end).format("YYYY-MM-DDTHH:mm");
     if (!this.state.isAddModalOpen) {
       this.setState({
         currentEvent: event,
@@ -159,8 +211,10 @@ class Calendrier extends PureComponent {
   };
 
   handleInputChange = (e) => {
+    console.log(e.target.name)
     this.setState({
-      event_title: e.target.value
+      [e.target.name]: e.target.value,
+
     })
   }
   handleStartChange = (e) => {
@@ -181,6 +235,31 @@ class Calendrier extends PureComponent {
     this.getEvents(e.target.value)
   }
 
+  handleActionsCheckBox=(e)=> {
+    
+    const newSelection = parseInt(e.target.name);
+    let newSelectionArray;
+
+    // if pour les cas de déselection de la checkbox, on enleve la valeur du tableau
+    if ((this.state.actions||[]).indexOf(newSelection) > -1) {
+      newSelectionArray = this.state.actions.filter(s => s !== newSelection)
+    } else {
+      newSelectionArray = [...this.state.actions||[],  newSelection ];
+    }
+
+    this.setState({
+       actions: newSelectionArray 
+    })
+    if (newSelectionArray) { 
+      
+      
+      this.getMultipleEvents(newSelectionArray) } else {
+       
+      this.getEvents(1)
+    }
+
+}
+
   eventStyleGetter = (event, start, end, isSelected) => {
     var backgroundColor = '#' + event.hexColor;
     var style = {
@@ -198,23 +277,42 @@ class Calendrier extends PureComponent {
 
   }
 
+  Event({ event }) {
+    return (
+      <span>
+        <strong>{event.title}</strong>
+        {event.description && ':  ' + event.description}
+      </span>
+    )
+  }
+
+  EventAgenda({ event }) {
+    return (
+      <span>
+        <em style={{ color: 'magenta' }}>{event.title}</em>
+        <p>{event.description}</p>
+      </span>
+    )
+  }
+
   render() {
 
-    const { cal_events, event_title, isEditModalOpen, isAddModalOpen,
-      event_start_on, event_end_on, locations, location_selected } = this.state
-    const locations_id = parseInt(location_selected)-1
+    const { cal_events, event_title, asso_name, description, isFiltreModalOpen, isEditModalOpen, isAddModalOpen,
+      event_start_on, event_end_on, locations, location_selected } = this.state;
     return (
       <div className="calendrier">
-        <div className="dropdown" style={{ fontSize: "14px" }}>
+        
+       
+       {/*  <div className="dropdown" style={{ fontSize: "2vh" }}>
           <label class="control-label">Lieu de la mauraude </label>
           <select name="locations_id" onChange={this.handleLocationChange} value={this.state.location}>
             <option name="locations_id" value="">Sélectionner un lieu</option>
             {locations.map((e, index) => {
-              return (<option name="locations_id" value={index + 1}>{e.name}</option>)
+              return (<option name="locations_id" value={e.id}>{e.name}</option>)
             })}
           </select>
-        </div>
-        <div style={{ height: 700 }}>
+        </div> */}
+        <div style={{ height: "70vh" }}>
           <BigCalendar
             selectable={location_selected ? true : false}
             onSelectEvent={event => this.toggleEditModal(event)}
@@ -223,62 +321,104 @@ class Calendrier extends PureComponent {
             messages={{ next: "Suivant", previous: "Précédent", today: "Aujourd'hui", month: "Mois", week: "Semaine", day: "Jour" }}
             events={cal_events}
             step={30}
-            timeslots={2}
+            timeslots={1}
             scrollToTime={new Date(new Date().setHours(8))}
-            defaultView={(window.innerWidth <= 760)?'day':'week'}
+            defaultView={(window.innerWidth <= 760)?'month':'month'}
             views={['month', 'week', 'day']}
             defaultDate={new Date()}
             eventPropGetter={this.eventStyleGetter}
-
+            components={{
+              event: this.Event,
+              toolbar: CalendarToolbar(this.toggleFiltreModal, this.toggleAddModal)
+              
+        }}
           />
 
+          <Modal isOpen={isFiltreModalOpen} toggle={this.toggleFiltreModal}>
+            <ModalHeader toggle={this.toggleFiltreModal}>Choisir un lieu</ModalHeader>
+            <ModalBody><form>
+              <label>
+                Liste des lieux :
+                    </label>
+              <Checkbox options={this.state.locations} handleChange={this.handleActionsCheckBox} selectedOptions={this.state.actions} name="actions" />
+            </form>
 
+            </ModalBody>
+            {/* <ModalFooter>
+
+              <Button color="secondary" onClick={this.toggleFiltreModal}>Fermer</Button>
+            </ModalFooter> */}
+          </Modal>
 
           <Modal isOpen={isEditModalOpen} toggle={this.toggleEditModal}>
             <ModalHeader toggle={this.toggle}>Modifier l'évenement</ModalHeader>
-            <ModalBody><form>
+            <ModalBody><AvForm onValidSubmit={this.editEvent}>
               <label>
                 Nom de l'évenement :
                     </label>
-              <input type="text" name="title" value={event_title} onChange={this.handleInputChange} /><br />
+              <AvField type="text" name="event_title" value={event_title} onChange={this.handleInputChange} required /><br />
+              <label>
+                Description :
+                    </label>
+              <AvField type="text" name="description" value={description} onChange={this.handleInputChange} required/><br />
               <label>
                 Début :
                     </label>
-              <input type="datetime-local" step="1800" name="date_start" value={event_start_on} onChange={this.handleStartChange} required /><br />
+              <div className="form-group"><input type="datetime-local" className="form-control" step="1800" name="date_start" value={event_start_on} onChange={this.handleStartChange} required /><br /></div>
               <label>
                 Fin :
                     </label>
-              <input type="datetime-local" step="1800" min={event_start_on} name="date_end" value={event_end_on} onChange={this.handleEndChange} required />
-            </form>
-              <Button color="secondary" onClick={this.deleteEvent}>Supprimer du calendrier</Button>
-
+              <div className="form-group"><input type="datetime-local" className="form-control" step="1800" min={event_start_on} name="date_end" value={event_end_on} onChange={this.handleEndChange} required /><br/></div>
+            
+              <Button color="secondary" onClick={this.deleteEvent}>Supprimer du calendrier</Button>{' '}
+              <Button className="btn-asso" color="primary">Enregistrer</Button>{' '}
+              </AvForm>
             </ModalBody>
-            <ModalFooter>
-
-              <Button color="primary" onClick={this.editEvent}>Enregistrer</Button>{' '}
-              <Button color="secondary" onClick={this.toggleEditModal}>Annuler</Button>
-            </ModalFooter>
+            
           </Modal>
 
           <Modal isOpen={isAddModalOpen} toggle={this.toggleAddModal}>
-            <ModalHeader toggle={this.toggle}>Ajouter un nouvel évenement</ModalHeader>
+            <ModalHeader toggle={this.toggleAddModal}>Ajouter un nouvel évenement</ModalHeader>
             <ModalBody>
-              <p> Lieu : {(locations[locations_id]||"").name}</p>
-              <p>de : {event_start_on ? event_start_on.toLocaleString() : ''}</p>
-              <p>à : {event_end_on ? event_end_on.toLocaleString() : ''}</p>
+              <AvForm onValidSubmit={this.createEvent}>
+              <p> Lieu : 
+                
+              <div className="dropdown" style={{ fontSize: "2vh" }}>
+                   
 
-              <form>
+                    <AvField type="select" name="locations_id" onChange={this.handleLocationChange} value={this.state.location_selected} required>
+                      <option name="locations_id" value="">Sélectionner un lieu</option>
+                      {locations.map((e, index) => {
+                        return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                      })}
+                    </AvField>
+                  </div></p>
                 <label>
                   Nom de l'évenement :
                     </label>
-                <input type="text" name="title" onChange={this.handleInputChange} />
-              </form>
+                <AvField type="text" name="event_title" onChange={this.handleInputChange} required />
+                <label>
+                  Nom de l'association :
+                    </label>
+                <AvField type="text" name="asso_name" value={asso_name} onChange={this.handleInputChange} required /><br />
+                <label>
+                  Description :
+                    </label>
+                <AvField type="text" name="description" onChange={this.handleInputChange} required /><br />
+                <label>
+                  Début :
+                    </label>
+                <div className="form-group"><input type="datetime-local" step="1800" className="form-control" name="event_start_on" value={event_start_on} onChange={this.handleStartChange} required /><br /></div>
+                <label>
+                  Fin :
+                    </label>
+                <div className="form-group"><input type="datetime-local" className="form-control" step="1800" min={event_start_on} name="event_end_on" value={event_end_on} onChange={this.handleEndChange} required /><br /></div>
+                <Button className="btn-asso" >Enregistrer</Button>
 
+              </AvForm>
             </ModalBody>
-            <ModalFooter>
-              <Button color="primary" onClick={this.createEvent}>Enregistrer</Button>{' '}
-              <Button color="secondary" onClick={this.toggleAddModal}>Annuler</Button>
-            </ModalFooter>
+
+
           </Modal>
 
         </div>
@@ -286,4 +426,4 @@ class Calendrier extends PureComponent {
     );
   }
 }
-export default Calendrier;
+export default withAuth(Calendrier);

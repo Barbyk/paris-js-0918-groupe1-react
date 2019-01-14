@@ -1,17 +1,42 @@
-.assodept {
-    margin-right: 10em;
-    margin-left: 10em;
-    margin-top: 2em;
-    margin-bottom: 2em
+/* table {
+    width: 100%;
 }
 
-@media only screen and (max-width: 1100px){
-    .assodept {
-        margin-right: 1em;
-        margin-left: 1em;
-        margin-top: 1em;
-        margin-bottom: 1em
-    }
-    
+thead {
+    border-bottom: 3px solid rgb(100, 165, 173) !important
+} */
 
+.nobuttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.twins {
+    margin: 30px 30px;
+    font-family: 'Josefin Sans'
+}
+
+.number_page {
+    font-size: 150%;
+}
+
+.back .row {
+    justify-content: center;
+}
+
+
+.back {
+    padding-bottom: 12vh;
+    padding-top: 4vh;
+}
+
+.btn-page {
+    background-color: #004c52 !important;
+    color: white !important;
+}
+
+.btn-page:hover {
+    background-color: white !important;
+    color: #004c52 !important;
 }

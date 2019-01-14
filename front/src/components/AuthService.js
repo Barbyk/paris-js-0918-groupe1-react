@@ -7,22 +7,18 @@ export default class AuthService {
 
     login=(username, password) => {
         // Get a token from api server using the fetch api
-        return this.fetch(`/login`, {
-            method: 'POST',
-            body: JSON.stringify({
-                username,
-                password
-            })
-        }).then(res => {
-            this.setToken(res.token) // Setting the token in localStorage
-            return Promise.resolve(res);
-        })
+        if (username === 'cal' && password === 'cal') {
+            this.setToken('cal') // Setting the token in localStorage
+            return true
+        } else {
+            return false
+        }
+         
     }
 
     loggedIn=()=> {
         // Checks if there is a saved token and it's still valid
         const token = this.getToken() // GEtting token from localstorage
-        console.log(token)
         return !!token // handwaiving here
     }
 

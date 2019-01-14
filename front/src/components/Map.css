@@ -10,7 +10,7 @@
     align-content: center;
     align-items: center;
     flex-wrap: wrap;
-    min-height: 85vh;
+    min-height: 80vh;
     background-color: #edf0f4;
     padding-bottom: 20vh
   }
@@ -23,6 +23,9 @@
     color: inherit;
     transition: color 0.3s;
     font-family: sans-serif;
+  }
+  .map_list ul {
+    margin-left: -3vw;
   }
   .Map-card-1 {
     background-color: #edf0f4
@@ -55,7 +58,7 @@
 @media only screen and (min-width: 1000px) {
 
   .mapcard {
-    width: 50%;
+    width: 55%;
   }
 }
 
@@ -66,7 +69,8 @@
 
 }
 
-h1 {
+.mapcard h1 {
   font-family: 'Happy Monkey', cursive !important;
   color: #004c52 !important;
+  font-size: 2rem;
 }

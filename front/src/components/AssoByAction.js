@@ -96,11 +96,12 @@ render() {
 
 
 if (this.state.asso.length === 0) {
-    return "Loading..."
+    return <div className="twins"><h3>Pas d'association pour cette action.</h3></div>
 }
 else {
     return (
-        <div class="assocard" >
+        <div className="back container-fluid">
+                <div className="row">
             {/* <table class="table table-striped">
                 <thead>
                 <tr>
@@ -117,8 +118,9 @@ else {
                     // const icon_urls = {
                     // }
                     return (
+                            <div class="assocard col-lg-6 col-sm-12">
+
                             <DisplayAssociations
-                            
                                 name={e.name}
                                 description={e.description}
                                 logo={e.logo}
@@ -131,14 +133,17 @@ else {
                                 mail={e.mail}
                                 icon={e.actions ? shouldParse(e.actions) : null}
                                 key={e.id}
+                                definition={this.state.actions}
                             />
-                        )
+                        </div>)
 
 
                 })}
             {/* </tbody>
             </table> */}
-            <div className="nobuttons">
+            
+        </div>
+        <div className="nobuttons">
 
                 <div className="twins"><button type="button" class="btn btn-dark" onClick={this.handleButtonPrevious}>Précédent</button></div>
                 <div className="twins"><p className="number_page">{this.state.currentNumberPage}</p></div>

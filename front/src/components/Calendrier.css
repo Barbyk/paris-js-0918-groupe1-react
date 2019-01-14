@@ -4,8 +4,24 @@
 
   @media screen and (max-width: 640px) {
     select {max-width: 250px}
+    
   }
 
 .calendrier {
-  background-color: #edf0f4
+  background-color: #edf0f4;
+  padding-bottom: 10vh
 }
+
+.rbc-btn-group {
+  flex-grow: 1
+}
+.rbc-toolbar {
+  font-size: 2vh !important;
+  margin-bottom: 1vh !important;
+}
+
+.dropdown select {
+  overflow: hidden;
+  max-width: 100%;
+}
+

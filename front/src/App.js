@@ -11,7 +11,7 @@ import Map from './components/Map'
 import Calendrier from './components/Calendrier'
 import AssoByDept from './components/AssoByDept'
 import AssoByAction from './components/AssoByAction'
-
+import Login from './components/Login'
 
 class App extends Component {
   render() {
@@ -20,7 +20,7 @@ class App extends Component {
         <Header />
         <Switch>
             <Route exact path='/' component={Home} />
-
+            <Route exact path="/login" component={Login}/>
             <Route exact path='/calendrier' component={Calendrier} />
 
             <Route path="/associations" component ={Associations} />
