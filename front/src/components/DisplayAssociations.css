@@ -1,144 +1,132 @@
 .actioncard {
-    border: 1px solid  #2abbad !important;
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 2em;
+  border: 1px solid #2abbad !important;
+  border-radius: 12px;
+  overflow: hidden;
+  /* margin-bottom: 2em; */
 }
-.actioncard p{
-   color:black;
+.actioncard p {
+  color: black;
 }
-
-
-.blockLine  {
-    display: flex;
-    flex-direction: row;
-    justify-content:space-around;
-    align-items: center;
-    margin: 1em;
-} 
-
-
-.logoasso{
-    width: 30%;
-    height: 60%;
+.assocard {
+  margin-bottom: 2em;
+}
+.blockLine {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1em;
 }
 
-.entete{
-    width: 25%;
+.logoasso {
+  width: 30%;
+  height: 60%;
+}
+
+.entete {
+  width: 25%;
 }
 
 .contact {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    overflow: hidden;
-    justify-content: center;
-    width: 58%;
-    font-size: 1vh;
-    white-space: nowrap;
-    font-family: 'Josefin Sans'
-
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  justify-content: center;
+  width: 58%;
+  font-size: 1vh;
+  white-space: nowrap;
+  font-family: "Josefin Sans";
 }
-.divier{
-    border-top: 0.1em solid #004c52;
-    width: 100%;
-    margin-bottom: 2vh;
+.divier {
+  border-top: 0.1em solid #004c52;
+  width: 100%;
+  margin-bottom: 2vh;
 }
 .contact p {
-    font-size: 1.6em;
+  font-size: 2em;
 }
-.contactIcon{
-    margin-right: 1vh;  
-}
-
-.reseaux{
-    padding-top:1vh;
-    display: flex;
-    flex-direction: row;
-    justify-content : space-evenly;
-
-}
-.reseauIcon{
-    width: 4vh;
-    height: 4vh;
+.contactIcon {
+  margin-right: 1vh;
 }
 
+.reseaux {
+  padding-top: 1vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.reseauIcon {
+  width: 4vh;
+  height: 4vh;
+}
 
 .btn-asso {
-    background-color: #004c52 !important;
-    color: white !important;
+  background-color: #004c52 !important;
+  color: white !important;
 }
-.textbouton{
-    font-size: 1vh;
+.textbouton {
+  font-size: 1vh;
 }
 
 .btn-asso:hover {
-    background-color: white !important;
-    color: #004c52 !important;
+  background-color: white !important;
+  color: #004c52 !important;
 }
 
-
-
-.actionIcon{
-    width: 10vh;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.actionIcon {
+  width: 10vh;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media only screen and (max-width: 1100px) {
-    
-    .info p{
-        font-size: 0px
-    }
-  
+  .info p {
+    font-size: 0px;
+  }
 
-   
-   .entete{
-       width: 30%;
-   }
+  .entete {
+    width: 30%;
+  }
 }
 
 @media only screen and (max-width: 768px) {
-
-
-   .reseaux{
-        display:none; 
-    }
-    .contact p {
-        font-size: 1.7em;
-    }
-    }
+  .reseaux {
+    display: none;
+  }
+  /* .contact p {
+    font-size: 1.7em;
+  } */
+}
 
 @media only screen and (max-width: 600px) {
-
-.blockLine  {
+  .blockLine {
     display: flex;
     flex-direction: column;
-} 
-.entete h3{
+  }
+  .entete h3 {
     font-size: 4vh;
-    flex-wrap: nowrap; 
-}
-.entete{
+    flex-wrap: nowrap;
+  }
+  .entete {
     width: 100%;
-}
-.contact ,.reseaux{
-    display:none; 
-    width: 70%
-}
-.logoasso{
+  }
+  .contact,
+  .reseaux {
+    display: none;
+    width: 70%;
+  }
+  .logoasso {
     width: 30%;
     height: 60%;
-}
-   
+  }
 }
 
 .modal-titre {
-    font-family: 'Happy Monkey';
+  font-family: "Happy Monkey";
 }
 
 .modal-corps {
-    font-family: 'Josefin Sans';
+  font-family: "Josefin Sans";
 }
-

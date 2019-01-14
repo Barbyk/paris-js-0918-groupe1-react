@@ -1,86 +1,87 @@
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans");
 .item {
-    background-color: rgb(166, 219, 240, 0)
+  background-color: rgb(166, 219, 240, 0);
 }
 
 /* @media only screen and (min-width: 1000px) { */
 
 .carousel-global {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 12vh;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  /* padding-bottom: 12vh; */
+  margin-top: 15px;
 }
 
 .carousel .carousel-status {
-    font-size: 0px
+  font-size: 0px;
 }
 
 .news {
-    margin-top: -20vh;
-    padding: 0.5vh;
-    position: absolute;
-    background-color: rgb(0, 0, 0, 0.5);
-    width: 100%;
-    bottom: 0
+  margin-top: -20vh;
+  padding: 0.5vh;
+  position: absolute;
+  background-color: rgb(0, 0, 0, 0.5);
+  width: 100%;
+  bottom: 0;
 }
 
 .text {
-    color: white;
-    text-shadow: 2px 2px black;
+  color: white;
+  text-shadow: 2px 2px black;
 }
 
 .carousel img {
-    height: 67vh;
+  height: 67vh;
 }
 
 .date {
-    color: white;
-    border-width: 0px 3px 0px 0px;
-    border-style: solid;
-    padding: 10px;
-    text-align: center;
-    font-family: 'Josefin sans', sans-serif;
-    font-size: 2vw;
+  color: white;
+  border-width: 0px 3px 0px 0px;
+  border-style: solid;
+  padding: 10px;
+  text-align: center;
+  font-family: "Josefin sans", sans-serif;
+  font-size: 2vw;
 }
 
 .text {
-    font-family: 'Josefin sans', sans-serif;
-    font-size: 2vw;
-    padding-left: 3vw
+  font-family: "Josefin sans", sans-serif;
+  font-size: 2vw;
+  padding-left: 3vw;
 }
 
 .carousel .control-dots {
-    background-color: rgb(255, 255, 0, 0);
-    position: relative;
+  background-color: rgb(255, 255, 0, 0);
+  position: relative;
 }
 
 .carousel .slide {
-    background: rgba(24, 110, 185, 0);
-    text-align: left;
+  background: rgba(24, 110, 185, 0);
+  text-align: left;
 }
 
 .news .container-fluid {
-    justify-content: start;
-    display: flex;
+  justify-content: start;
+  display: flex;
 }
 
 @media only screen and (max-width: 600px) {
-    .carousel-global {
-        width: 100%;
-    }
+  .carousel-global {
+    width: 100%;
+  }
 
-    .carousel img {
-        height: auto;
-        margin-top: 0vh;
-        padding-bottom: 16vh;
-    }
-    .date {
-        font-size: 6.5vw;
-        text-align: center
-    }
-    .text {
-        font-size: 5vw;
-        padding-left: 2vh
-    }
+  .carousel img {
+    height: auto;
+    margin-top: 0vh;
+    padding-bottom: 16vh;
+  }
+  .date {
+    font-size: 6.5vw;
+    text-align: center;
+  }
+  .text {
+    font-size: 5vw;
+    padding-left: 2vh;
+  }
 }

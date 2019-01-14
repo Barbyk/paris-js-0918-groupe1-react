@@ -1,87 +1,78 @@
 .map {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .action h3 {
-    font-family: "Happy Monkey";
-    color: #004c52;
+  font-family: "Happy Monkey";
+  color: #004c52;
 }
 .actioncontain {
-    background-color: white;
-    min-height: 100vh;
-    padding-bottom: 20vh
+  background-color: white;
+  min-height: 100vh;
+  padding-bottom: 20vh;
 }
 
 p {
-    /* color: #15550f; */
-    
-    font-weight: bold
+  /* color: #15550f; */
+
+  font-weight: bold;
 }
 
 .actionlogo {
-    height: 18vh;
+  height: 18vh;
 }
 
 .modal-title {
-    font-family: "Happy Monkey"
+  font-family: "Happy Monkey";
 }
 .definition {
-    
-    font-family: 'Josefin Sans';
-    display: flex;
-    flex-direction: column;
-    margin:20px;
-    font-size: 1.5vw;
-    
+  font-family: "Josefin Sans";
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  font-size: 1.5vw;
 }
-.def{
-    font-size: 2vh;
+.def {
+  font-size: 2vh;
 }
 
 .btngo {
-  
-    background-color: rgb(151, 212, 79);
-    width:100%;
-    color:white
-    
+  background-color: rgb(151, 212, 79);
+  width: 100%;
+  color: white;
 }
-.btnback{
-    background-color: #004c52;
-    width:100%;
-    margin-top: 2vh;
-    color:white
-    
+.btnback {
+  background-color: #004c52;
+  width: 100%;
+  margin-top: 2vh;
+  color: white;
 }
 
 .bt {
-    margin: 2.5vw;
-    box-shadow: 3px 5px;
-    cursor: pointer;
+  margin: 2.5vw;
+  box-shadow: 3px 5px;
+  cursor: pointer;
 }
-
 
 @media only screen and (max-width: 1400px) {
-    .actionlogo {
-        width: auto;
-        max-width: 18vh;
-        min-width: 13vw;
-        min-height: 18vh;
-    }
+  /* .actionlogo {
+    width: auto;
+    max-width: 18vh;
+    min-width: 13vw;
+    min-height: 18vh;
+  } */
 }
-
 
 @media only screen and (max-width: 500px) {
-    .actionlogo {
-        width: auto;
-        min-width: 17vw;
-        min-height: 16vh;
-    }
-    .definition
-    {
-        font-size:5vw;
-    }
-    .def{
-        font-size:5vw
-    }
+  /* .actionlogo {
+    width: auto;
+    min-width: 17vw;
+    min-height: 16vh;
+  } */
+  .definition {
+    font-size: 5vw;
+  }
+  .def {
+    font-size: 5vw;
+  }
 }
-

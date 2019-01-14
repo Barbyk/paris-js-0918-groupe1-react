@@ -1,13 +1,13 @@
-.footer {
-    flex-shrink: 0 !important;
-    background-color: #004c52;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    font-family: 'Josefin Sans';
+footer {
+  flex-shrink: 0 !important;
+  background-color: #004c52;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  font-family: "Josefin Sans";
 }
 .copyright {
-    margin-bottom: 0;
-    line-height: 100px;
-    color: white;
+  /* margin-bottom: 0; */
+  line-height: 50px;
+  color: white;
 }
