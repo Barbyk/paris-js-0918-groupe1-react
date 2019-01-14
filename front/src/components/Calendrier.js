@@ -132,7 +132,7 @@ class Calendrier extends PureComponent {
     var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD H:mm:ss");
 
     axios.put('/events/' + this.state.currentEvent.id, {
-      users_id: 1, locations_id: this.state.location_selected, is_active: 1, title: this.state.event_title, description:this.state.description,
+      users_id: 1, is_active: 1, title: this.state.event_title, description:this.state.description,
       begin_date: startDate, end_date: endDate
     })
       .then(response => {
@@ -211,7 +211,6 @@ class Calendrier extends PureComponent {
   };
 
   handleInputChange = (e) => {
-    console.log(e.target.name)
     this.setState({
       [e.target.name]: e.target.value,
 
@@ -229,10 +228,22 @@ class Calendrier extends PureComponent {
   }
 
   handleLocationChange = (e) => {
+    const newSelection = parseInt(e.target.value);
+    let newSelectionArray;
+
+    newSelectionArray = [...this.state.actions||[],  newSelection ];
+    
+
     this.setState({
-      location_selected: e.target.value
+       actions: newSelectionArray,
+       location_selected : e.target.value
     })
-    this.getEvents(e.target.value)
+    if (newSelectionArray.length > 0) { 
+   
+      this.getMultipleEvents(newSelectionArray) } else {
+       
+      this.getEvents(0)
+    }
   }
 
   handleActionsCheckBox=(e)=> {
@@ -250,12 +261,11 @@ class Calendrier extends PureComponent {
     this.setState({
        actions: newSelectionArray 
     })
-    if (newSelectionArray) { 
-      
-      
+    if (newSelectionArray.length > 0) { 
+   
       this.getMultipleEvents(newSelectionArray) } else {
        
-      this.getEvents(1)
+      this.getMultipleEvents([0])
     }
 
 }
@@ -296,9 +306,8 @@ class Calendrier extends PureComponent {
   }
 
   render() {
-
     const { cal_events, event_title, asso_name, description, isFiltreModalOpen, isEditModalOpen, isAddModalOpen,
-      event_start_on, event_end_on, locations, location_selected } = this.state;
+      event_start_on, event_end_on, locations, currentEvent } = this.state;
     return (
       <div className="calendrier">
         
@@ -314,7 +323,7 @@ class Calendrier extends PureComponent {
         </div> */}
         <div style={{ height: "70vh" }}>
           <BigCalendar
-            selectable={location_selected ? true : false}
+            selectable={true}
             onSelectEvent={event => this.toggleEditModal(event)}
             onSelectSlot={(slotInfo) => this.toggleAddModal(slotInfo)}
             localizer={localizer}
@@ -337,12 +346,8 @@ class Calendrier extends PureComponent {
           <Modal isOpen={isFiltreModalOpen} toggle={this.toggleFiltreModal}>
             <ModalHeader toggle={this.toggleFiltreModal}>Choisir un lieu</ModalHeader>
             <ModalBody><form>
-              <label>
-                Liste des lieux :
-                    </label>
               <Checkbox options={this.state.locations} handleChange={this.handleActionsCheckBox} selectedOptions={this.state.actions} name="actions" />
             </form>
-
             </ModalBody>
             {/* <ModalFooter>
 
@@ -353,22 +358,23 @@ class Calendrier extends PureComponent {
           <Modal isOpen={isEditModalOpen} toggle={this.toggleEditModal}>
             <ModalHeader toggle={this.toggle}>Modifier l'évenement</ModalHeader>
             <ModalBody><AvForm onValidSubmit={this.editEvent}>
+            <p> Lieu : {(locations[(currentEvent||"").locations_id-1]||"").name}</p>
               <label>
                 Nom de l'évenement :
                     </label>
-              <AvField type="text" name="event_title" value={event_title} onChange={this.handleInputChange} required /><br />
+              <AvField type="text" name="event_title" value={event_title} onChange={this.handleInputChange} required />
               <label>
                 Description :
                     </label>
-              <AvField type="text" name="description" value={description} onChange={this.handleInputChange} required/><br />
+              <AvField type="text" name="description" value={description} onChange={this.handleInputChange}/>
               <label>
                 Début :
                     </label>
-              <div className="form-group"><input type="datetime-local" className="form-control" step="1800" name="date_start" value={event_start_on} onChange={this.handleStartChange} required /><br /></div>
+              <div className="form-group"><input type="datetime-local" className="form-control" step="1800" name="date_start" value={event_start_on} onChange={this.handleStartChange} required /></div>
               <label>
                 Fin :
                     </label>
-              <div className="form-group"><input type="datetime-local" className="form-control" step="1800" min={event_start_on} name="date_end" value={event_end_on} onChange={this.handleEndChange} required /><br/></div>
+              <div className="form-group"><input type="datetime-local" className="form-control" step="1800" min={event_start_on} name="date_end" value={event_end_on} onChange={this.handleEndChange} required /></div>
             
               <Button color="secondary" onClick={this.deleteEvent}>Supprimer du calendrier</Button>{' '}
               <Button className="btn-asso" color="primary">Enregistrer</Button>{' '}
@@ -386,7 +392,8 @@ class Calendrier extends PureComponent {
               <div className="dropdown" style={{ fontSize: "2vh" }}>
                    
 
-                    <AvField type="select" name="locations_id" onChange={this.handleLocationChange} value={this.state.location_selected} required>
+                    <AvField type="select" name="locations_id" onChange={this.handleLocationChange} value={this.state.location_selected} required validate={{
+              required: {value: true, errorMessage: "Veuillez séléctionner un lieu"}}}>
                       <option name="locations_id" value="">Sélectionner un lieu</option>
                       {locations.map((e, index) => {
                         return (<option name="locations_id" value={e.id}>{e.name}</option>)
@@ -396,23 +403,25 @@ class Calendrier extends PureComponent {
                 <label>
                   Nom de l'évenement :
                     </label>
-                <AvField type="text" name="event_title" onChange={this.handleInputChange} required />
+                <AvField type="text" name="event_title" onChange={this.handleInputChange} required validate={{
+              required: {value: true, errorMessage: "Veuillez saisir une valeur"}}}/>
                 <label>
                   Nom de l'association :
                     </label>
-                <AvField type="text" name="asso_name" value={asso_name} onChange={this.handleInputChange} required /><br />
+                <AvField type="text" name="asso_name" value={asso_name} onChange={this.handleInputChange} required validate={{
+              required: {value: true, errorMessage: "Veuillez saisir une valeur"}}}/>
                 <label>
                   Description :
                     </label>
-                <AvField type="text" name="description" onChange={this.handleInputChange} required /><br />
+                <AvField type="text" name="description" onChange={this.handleInputChange} />
                 <label>
                   Début :
                     </label>
-                <div className="form-group"><input type="datetime-local" step="1800" className="form-control" name="event_start_on" value={event_start_on} onChange={this.handleStartChange} required /><br /></div>
+                <div className="form-group"><input type="datetime-local" step="1800" className="form-control" name="event_start_on" value={event_start_on} onChange={this.handleStartChange} required/></div>
                 <label>
                   Fin :
                     </label>
-                <div className="form-group"><input type="datetime-local" className="form-control" step="1800" min={event_start_on} name="event_end_on" value={event_end_on} onChange={this.handleEndChange} required /><br /></div>
+                <div className="form-group"><input type="datetime-local" className="form-control" step="1800" min={event_start_on} name="event_end_on" value={event_end_on} onChange={this.handleEndChange} required /></div>
                 <Button className="btn-asso" >Enregistrer</Button>
 
               </AvForm>
