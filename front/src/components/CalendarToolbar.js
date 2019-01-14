@@ -8,8 +8,8 @@ const CalendarToolbar = (filtre, add) => {
 			return (
 				<span className="rbc-toolbar">
 					<span className="rbc-btn-group">
-						<button variant="contained" className='btn-asso' onClick={filtre}>Choisir un lieu</button>
-						<button type="button" onClick={add}>Ajouter</button>
+						{/* <button variant="contained" className='btn-asso' onClick={filtre}>Choisir un lieu</button> */}
+						<button type="button" className='btn-asso' onClick={add}>Ajouter</button>
 
 					</span>
 					<span className="rbc-btn-group">

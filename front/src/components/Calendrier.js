@@ -228,7 +228,7 @@ class Calendrier extends PureComponent {
   }
 
   handleLocationChange = (e) => {
-    const newSelection = parseInt(e.target.value);
+   /*  const newSelection = parseInt(e.target.value);
     let newSelectionArray;
 
     newSelectionArray = [...this.state.actions||[],  newSelection ];
@@ -243,7 +243,12 @@ class Calendrier extends PureComponent {
       this.getMultipleEvents(newSelectionArray) } else {
        
       this.getEvents(0)
-    }
+    } */
+    this.setState({
+      actions: e.target.value,
+      location_selected: e.target.value
+    })
+this.getEvents(e.target.value)
   }
 
   handleActionsCheckBox=(e)=> {
@@ -310,7 +315,24 @@ class Calendrier extends PureComponent {
       event_start_on, event_end_on, locations, currentEvent } = this.state;
     return (
       <div className="calendrier">
-        
+        <div className="dropdown" style={{ fontSize: "2vh" }}>
+                   
+        <label class="control-label">Lieu de la mauraude</label>{" "}
+                   <select name="locations_id" onChange={this.handleLocationChange} value={this.state.location_selected}  >
+
+                     <option name="locations_id" value="">Sélectionner un lieu</option>
+                     <optgroup label="Paris Nord">
+                     {locations.filter(x=>x.departements_id===1).map((e, index) => {
+                       return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                     })}
+                     </optgroup>
+                     <optgroup label="Paris Sud">
+                     {locations.filter(x=>x.departements_id===2).map((e, index) => {
+                       return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                     })}
+                     </optgroup>
+                   </select>
+                 </div>
        
        {/*  <div className="dropdown" style={{ fontSize: "2vh" }}>
           <label class="control-label">Lieu de la mauraude </label>
@@ -394,10 +416,18 @@ class Calendrier extends PureComponent {
 
                     <AvField type="select" name="locations_id" onChange={this.handleLocationChange} value={this.state.location_selected} required validate={{
               required: {value: true, errorMessage: "Veuillez séléctionner un lieu"}}}>
+
                       <option name="locations_id" value="">Sélectionner un lieu</option>
-                      {locations.map((e, index) => {
+                      <optgroup label="Paris Nord">
+                      {locations.filter(x=>x.departements_id===1).map((e, index) => {
                         return (<option name="locations_id" value={e.id}>{e.name}</option>)
                       })}
+                      </optgroup>
+                      <optgroup label="Paris Sud">
+                      {locations.filter(x=>x.departements_id===2).map((e, index) => {
+                        return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                      })}
+                      </optgroup>
                     </AvField>
                   </div></p>
                 <label>
