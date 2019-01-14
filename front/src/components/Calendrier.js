@@ -314,7 +314,7 @@ class Calendrier extends PureComponent {
         </div> */}
         <div style={{ height: "70vh" }}>
           <BigCalendar
-            selectable={location_selected ? true : false}
+            selectable={true}
             onSelectEvent={event => this.toggleEditModal(event)}
             onSelectSlot={(slotInfo) => this.toggleAddModal(slotInfo)}
             localizer={localizer}

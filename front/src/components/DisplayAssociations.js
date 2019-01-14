@@ -51,10 +51,10 @@ export default class DisplayAssociations extends Component {
   render() {
     return (
       <div className="actioncard">
-        <div class="container-fluid assocontain">
-          <div class="blockLine">
-            <div class="entete ">
-              <img src={this.props.logo} alt="" class="logoasso" />
+        <div className="container-fluid assocontain">
+          <div className="blockLine">
+            <div className="entete">
+              <img src={this.props.logo} alt="Logo Asso" className="logoasso" />
               <h3>{this.props.name}</h3>
               <Button
                 size="sm"
@@ -64,26 +64,26 @@ export default class DisplayAssociations extends Component {
               >
                 Plus d'info
               </Button>
-              <div class="reseaux ">
+              <div className="reseaux ">
                 {this.props.social_1 ? (
                   <a href={this.props.social_1}>
-                    <img src={tweet} class="reseauIcon " alt="twitter" />
+                    <img src={tweet} className="reseauIcon " alt="twitter" />
                   </a>
                 ) : null}
                 {this.props.social_2 ? (
                   <a href={this.props.social_2}>
-                    <img src={fb} class="reseauIcon " alt="fb" />
+                    <img src={fb} className="reseauIcon " alt="fb" />
                   </a>
                 ) : null}
                 {this.props.social_3 ? (
                   <a href={this.props.social_3}>
-                    <img src={insta} class="reseauIcon " alt="instagram" />
+                    <img src={insta} className="reseauIcon " alt="instagram" />
                   </a>
                 ) : null}
               </div>
             </div>
 
-            <div class="contact offset-sm-12 ">
+            <div className="contact offset-sm-12 ">
               <h4>Contact</h4>
               <div className="divier" />
               <p>
@@ -103,7 +103,7 @@ export default class DisplayAssociations extends Component {
               <p>
                 {" "}
                 <img className="contactIcon" src={web} alt="icon web" />{" "}
-                <a href={this.props.web_site}>
+                <a href={this.props.web_site} target="_blanck">
                   {this.props.web_site
                     ? this.props.web_site
                     : "site web non disponble"}
@@ -122,7 +122,7 @@ export default class DisplayAssociations extends Component {
             </div>
           </div>
 
-          <div class="col-sm-12">
+          <div className="col-sm-12">
             <Modal isOpen={this.state.open} toggle={this.handleToggle} centered>
               <ModalHeader className="modal-titre" toggle={this.handleToggle}>
                 {this.props.name}

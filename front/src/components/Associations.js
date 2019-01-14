@@ -113,7 +113,7 @@ export default class Associations extends Component {
               // const icon_urls = {
               // }
               return (
-                <div class="assocard col-lg-6 col-sm-12">
+                <div className="assocard col-lg-6 col-sm-12">
                   <DisplayAssociations
                     name={e.name}
                     logo={e.logo}
@@ -142,7 +142,7 @@ export default class Associations extends Component {
             <div className="twins">
               <button
                 type="button"
-                class="btn btn-dark btn-page"
+                className="btn btn-dark btn-page"
                 onClick={this.handleButtonPrevious}
               >
                 Précédent
@@ -156,7 +156,7 @@ export default class Associations extends Component {
             <div className="twins">
               <button
                 type="button"
-                class="btn btn-dark btn-page"
+                className="btn btn-dark btn-page"
                 onClick={this.handleButtonNext}
               >
                 Suivant
