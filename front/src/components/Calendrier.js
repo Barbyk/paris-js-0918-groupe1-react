@@ -326,8 +326,28 @@ this.getEvents(e.target.value)
                        return (<option name="locations_id" value={e.id}>{e.name}</option>)
                      })}
                      </optgroup>
-                     <optgroup label="Paris Sud">
+                     <optgroup label="Paris Nord">
                      {locations.filter(x=>x.departements_id===2).map((e, index) => {
+                       return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                     })}
+                     </optgroup>
+                     <optgroup label="Paris Est">
+                     {locations.filter(x=>x.departements_id===3).map((e, index) => {
+                       return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                     })}
+                     </optgroup>
+                     <optgroup label="Paris Ouest">
+                     {locations.filter(x=>x.departements_id===4).map((e, index) => {
+                       return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                     })}
+                     </optgroup>
+                     <optgroup label="Paris Sud">
+                     {locations.filter(x=>x.departements_id===5).map((e, index) => {
+                       return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                     })}
+                     </optgroup>
+                     <optgroup label="Banlieue">
+                     {locations.filter(x=>x.departements_id===6).map((e, index) => {
                        return (<option name="locations_id" value={e.id}>{e.name}</option>)
                      })}
                      </optgroup>

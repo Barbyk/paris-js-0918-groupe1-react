@@ -7,36 +7,36 @@ thead {
 } */
 
 .nobuttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
-.twins {
+/* .twins {
     margin: 30px 30px;
     font-family: 'Josefin Sans'
-}
+} */
 
 .number_page {
-    font-size: 150%;
+  /* font-size: 150%; */
+  padding: 0 25px;
 }
 
 .back .row {
-    justify-content: center;
+  justify-content: center;
 }
 
-
 .back {
-    padding-bottom: 12vh;
-    padding-top: 4vh;
+  padding-bottom: 12vh;
+  padding-top: 4vh;
 }
 
 .btn-page {
-    background-color: #004c52 !important;
-    color: white !important;
+  background-color: #004c52 !important;
+  color: white !important;
 }
 
 .btn-page:hover {
-    background-color: white !important;
-    color: #004c52 !important;
+  background-color: white !important;
+  color: #004c52 !important;
 }

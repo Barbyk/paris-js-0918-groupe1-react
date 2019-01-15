@@ -1,33 +1,55 @@
-import React, { Component } from 'react';
-import {Link} from "react-router-dom";
-import './Map.css';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "./Map.css";
 
 class Map extends Component {
-     
-    state= {active : "", target : undefined}
+  state = { active: "", target: undefined };
 
-    handleHover = (e) => {
-            this.setState({ active : "active",target: e.target.id   }) 
-    }
-    getDep = (e) => {
-        this.setState({target: e.target.id })
-    }
+  handleHover = e => {
+    this.setState({ active: "active", target: e.target.id });
+  };
+  getDep = e => {
+    this.setState({ target: e.target.id });
+  };
 
   render() {
-    const target = this.state.target 
-          
+    const target = this.state.target;
+
     return (
       <div className="map_view">
-        
-        <div className="mapcard" >
-        <div className="block_map">
-            <div className="dep">
-            <h1>{this.state.target ? this.state.target : "Trouver une association près de chez moi" }</h1>
-            </div>
-        <div className="map" id="map">
-         <svg version="1.1" id="Plan_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px"
-         width="100%" height="100%" viewBox="0 0 842 595" enableBackground="new 0 0 842 595" >
-    <Link to = {"/trouverunemaraude/75"} ><path onMouseOver={ this.getDep }  id="Paris - 75" onMouseOut={ () => this.setState({ target : "" })} className={ target==="Paris" ? this.state.active : "" } fillRule="evenodd" clipRule="evenodd" fill="darkgrey" stroke="#FFFFFF" strokeWidth="2" strokeMiterlimit="22.9256" d="
+        <div className="mapcard">
+          <div className="block_map">
+            <h1 className="dep">
+              {this.state.target
+                ? this.state.target
+                : "Trouver une association près de chez moi"}
+            </h1>
+
+            <div className="map" id="map">
+              <svg
+                version="1.1"
+                id="Plan_1"
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="100%"
+                height="100%"
+                viewBox="0 0 842 595"
+                enableBackground="new 0 0 842 595"
+              >
+                <Link to={"/trouverunemaraude/75"}>
+                  <path
+                    onMouseOver={this.getDep}
+                    id="Paris - 75"
+                    onMouseOut={() => this.setState({ target: "" })}
+                    className={target === "Paris" ? this.state.active : ""}
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    fill="darkgrey"
+                    stroke="#FFFFFF"
+                    strokeWidth="2"
+                    strokeMiterlimit="22.9256"
+                    d="
         M365.675,200.243l-7.47,4.338c-0.324,0.437-0.959,0.972-1.399,1.322c-0.4,0.318-1.064,0.729-1.373,1.111
         c-0.806,1-1.675,2.104-2.56,2.989l-8.932-2.297c-1.144,1.589-2.328,3.234-3.579,4.281c-3.077,2.572-4.977,5.65-4.302,10.05
         c0.051,0.332,0.055,0.667,0.027,1.004l8.921,0.927c0.197,1.137-0.349,2.941,0.422,3.862c1.026,1.226,2.654,0.583,3.668,1.19
@@ -37,8 +59,24 @@ class Map extends Component {
         c0.931,0.713,2.464,1.286,3.616,0.846c3.257-1.245,7.125-4.185,6.44-8.173c-0.585-3.411-6.367-4.038-9.159-3.677
         c-2.416,0.312-2.974,1.502-4.83,2.486c-0.977,0.519-1.413-0.208-2.455-0.555l0.105-2.248l0,0c0-1.303-0.422-2.57-0.422-3.915
         c0-1.575,0.13-3.122,0.079-4.682c-0.032-0.992-0.336-1.883-0.475-2.856c-0.164-1.497-2.042-3.932-3.563-4.232
-        c-1.667-2.349-1.468-4.236-1.742-7.009c-2.904-2.084-8.098-0.825-11.666-1.084L365.675,200.243L365.675,200.243z"/></Link>
-    <Link to={"/trouverunemaraude/92"} ><path onMouseOver={ this.getDep }  id="Hauts-de-Seine - 92"onMouseOut={ () => this.setState({ target : "" })} className={ target==="Hauts-de-Seine" ? this.state.active : "" } fillRule="evenodd" clipRule="evenodd" fill="darkgrey" stroke="#FFFFFF" strokeWidth="2" strokeMiterlimit="22.9256" d="
+        c-1.667-2.349-1.468-4.236-1.742-7.009c-2.904-2.084-8.098-0.825-11.666-1.084L365.675,200.243L365.675,200.243z"
+                  />
+                </Link>
+                <Link to={"/trouverunemaraude/92"}>
+                  <path
+                    onMouseOver={this.getDep}
+                    id="Hauts-de-Seine - 92"
+                    onMouseOut={() => this.setState({ target: "" })}
+                    className={
+                      target === "Hauts-de-Seine" ? this.state.active : ""
+                    }
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    fill="darkgrey"
+                    stroke="#FFFFFF"
+                    strokeWidth="2"
+                    strokeMiterlimit="22.9256"
+                    d="
         M365.675,200.243l-7.47,4.338c-0.324,0.437-0.959,0.972-1.399,1.322c-0.4,0.318-1.064,0.729-1.373,1.111
         c-0.806,1-1.675,2.104-2.56,2.989l-8.932-2.297c-1.144,1.589-2.328,3.234-3.579,4.281c-3.077,2.572-4.977,5.65-4.302,10.05
         c0.051,0.332,0.055,0.667,0.027,1.004l8.921,0.927c0.197,1.137-0.349,2.941,0.422,3.862c1.026,1.226,2.654,0.583,3.668,1.19
@@ -62,8 +100,24 @@ class Map extends Component {
         c1.658-0.315,3.379-1.231,5.159-2.506l0,0c2.181-1.603,4.642-3.873,6.005-5.375c2.652-2.924,6.037-5.298,9.344-7.459
         c2.513-1.643,5.128-3.426,8.182-4.443c0.965-0.321,2.089-0.516,3.22-0.591l0,0c4.039-0.27,8.74,0.933,11.72,2.892
         c2.017,1.326,3.698,1.952,2.771,4.946c-0.895,2.892-2.934,3.962-4.303,6.427c-0.267,0.481-1.227,1.049-2.364,1.598L365.675,200.243
-        L365.675,200.243z"/></Link>
-    <Link to={"/trouverunemaraude/94"} ><path onMouseOver={ this.getDep }  id="Val-de-Marne - 94"onMouseOut={ () => this.setState({ target : "" })} className={ target==="Val-de-Marne" ? this.state.active : ""} fillRule="evenodd" clipRule="evenodd" fill="darkgrey" stroke="#FFFFFF" strokeWidth="2" strokeMiterlimit="22.9256" d="
+        L365.675,200.243z"
+                  />
+                </Link>
+                <Link to={"/trouverunemaraude/94"}>
+                  <path
+                    onMouseOver={this.getDep}
+                    id="Val-de-Marne - 94"
+                    onMouseOut={() => this.setState({ target: "" })}
+                    className={
+                      target === "Val-de-Marne" ? this.state.active : ""
+                    }
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    fill="darkgrey"
+                    stroke="#FFFFFF"
+                    strokeWidth="2"
+                    strokeMiterlimit="22.9256"
+                    d="
         M365.701,269.037c-0.222-0.821-3.266-3.933-4.091-4.206c0-0.06-0.026-0.073-0.026-0.132c1.789-0.442,2.972-5.562,3.774-7.115
         c0.769-1.49,1.187-2.957,1.135-4.655c-0.035-1.15-0.792-2.454-0.792-3.333c0.417-1.151-0.483-1.829,0-2.83
         c0.307-0.635,1.161-1.465,1.161-2.168c0-1.089-2.383-1.604-1.425-3.227c0.264-0.446,1.031-0.709,1.452-1.031
@@ -89,8 +143,24 @@ class Map extends Component {
         c-0.66-0.704-1.719-4.059-3.148-3.638c-1.963,0.578-2.228,2.343-4.091,2.989c-1.112,0.386-1.583,1.131-2.824,0.635
         c-0.665-0.266-3.533-0.337-3.616-0.556c-0.346-0.915,0.725-3.024,0.528-3.333c-0.5-0.782-1.029-0.886-1.029-1.931
         c0-0.977,0.065-1.815-0.026-2.804l0.026-2.592c-1.336,0-3.07,0.804-4.435,1.032c-1.604,0.267-3.015,0.542-4.592,0.979
-        c-1.045,0.289-2.139-0.225-3.062-0.688L365.701,269.037L365.701,269.037z"/></Link>
-    <Link to={"/trouverunemaraude/93"}><path onMouseOver={ this.getDep }  id="Seine-Saint-Denis - 93"onMouseOut={ () => this.setState({ target : "" })} className={ target==="Seine-Saint-Denis" ? this.state.active : "" } fillRule="evenodd" clipRule="evenodd" fill="darkgrey" stroke="#FFFFFF" strokeWidth="2" strokeMiterlimit="22.9256" d="
+        c-1.045,0.289-2.139-0.225-3.062-0.688L365.701,269.037L365.701,269.037z"
+                  />
+                </Link>
+                <Link to={"/trouverunemaraude/93"}>
+                  <path
+                    onMouseOver={this.getDep}
+                    id="Seine-Saint-Denis - 93"
+                    onMouseOut={() => this.setState({ target: "" })}
+                    className={
+                      target === "Seine-Saint-Denis" ? this.state.active : ""
+                    }
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    fill="darkgrey"
+                    stroke="#FFFFFF"
+                    strokeWidth="2"
+                    strokeMiterlimit="22.9256"
+                    d="
         M365.675,200.243l10.32-0.238c3.568,0.259,8.762-1,11.666,1.084c0.274,2.772,0.075,4.66,1.742,7.009
         c1.521,0.3,3.399,2.735,3.563,4.232c0.139,0.974,0.443,1.864,0.475,2.856c0.051,1.56-0.079,3.106-0.079,4.682
         c0,1.344,0.422,2.612,0.422,3.915l0,0l4.381-1.323c1.366-0.16,2.158-0.603,3.59-0.317c1.348,0.27,1.494-1.035,2.586-1.111
@@ -115,8 +185,22 @@ class Map extends Component {
         c-0.812,0.72-1.279,2.759-2.085,3.703c-1.322,1.546-1.975-0.358-3.801-0.026c-1.635,0.297-4.406-1.875-6.308-2.274
         c-1.221-0.644-2.67-0.843-3.643,0.449c-0.749,0.996-0.739,2.579-0.739,3.782l0.263,1.367l0,0c4.039-0.27,8.74,0.933,11.72,2.892
         c2.017,1.326,3.698,1.952,2.771,4.946c-0.895,2.892-2.934,3.962-4.303,6.427c-0.267,0.481-1.227,1.049-2.364,1.598L365.675,200.243
-        L365.675,200.243z"/></Link>
-    <Link to={"/trouverunemaraude/91"}  ><path onMouseOver={ this.getDep }  id="Essonne - 91"onMouseOut={ () => this.setState({ target : "" })} className={ target==="Essonne" ? this.state.active : "" } fillRule="evenodd" clipRule="evenodd" fill="darkgrey" stroke="#FFFFFF" strokeWidth="2" strokeMiterlimit="22.9256" d="
+        L365.675,200.243z"
+                  />
+                </Link>
+                <Link to={"/trouverunemaraude/91"}>
+                  <path
+                    onMouseOver={this.getDep}
+                    id="Essonne - 91"
+                    onMouseOut={() => this.setState({ target: "" })}
+                    className={target === "Essonne" ? this.state.active : ""}
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    fill="darkgrey"
+                    stroke="#FFFFFF"
+                    strokeWidth="2"
+                    strokeMiterlimit="22.9256"
+                    d="
         M334.055,257.373c0.9,0.197,1.043,0.041,1.848-0.238c0.532-0.184,1.485-1.111,1.9-1.111c0.05,0.067,0.04,0.104,0.105,0.158
         c0.226,2.521,3.16,2.829,4.064,4.576c0.732,1.414,1.739,0.983,3.088,0.767c1.454-0.233,2.943,0.186,4.381,0.186
         c1.766,0.883,1.826,1.615,3.167,2.962c0.555,0.557,1.41,1.836,1.795,2.513c0.72,1.265-1.703,2.664-2.745,3.174
@@ -196,8 +280,22 @@ class Map extends Component {
         c0.26,0.13,1.564-1.74,1.953-2.037c0.677-0.517,1.595-2.193,2.613-1.825c0.678,0.245,2.491,1.589,2.64,2.328
         c0.516,0.13,1.61-0.441,1.9-0.926c0.503-0.841,0.396-3.131,0.396-4.179c0-1.324-1.478-2.545-1.478-3.359
         c1.169-0.289,2.167-0.778,3.51-0.979c0.456,0.286,0.771,0.348,1.003,0.847c0.288,0.617,0.516,1.107,1.241,1.296
-        c0.832,0.217,1.663-0.075,2.481-0.238L334.055,257.373L334.055,257.373z"/></Link>
-    <Link to={"/trouverunemaraude/78"} ><path onMouseOver={ this.getDep }  id="Yvelines - 78"onMouseOut={ () => this.setState({ target : "" })} className={ target==="Yvelines" ? this.state.active : "" } fillRule="evenodd" clipRule="evenodd" fill="darkgrey" stroke="#FFFFFF" strokeWidth="2" strokeMiterlimit="22.9256" d="
+        c0.832,0.217,1.663-0.075,2.481-0.238L334.055,257.373L334.055,257.373z"
+                  />
+                </Link>
+                <Link to={"/trouverunemaraude/78"}>
+                  <path
+                    onMouseOver={this.getDep}
+                    id="Yvelines - 78"
+                    onMouseOut={() => this.setState({ target: "" })}
+                    className={target === "Yvelines" ? this.state.active : ""}
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    fill="darkgrey"
+                    stroke="#FFFFFF"
+                    strokeWidth="2"
+                    strokeMiterlimit="22.9256"
+                    d="
         M329.633,195.7c-1.78,1.275-3.501,2.191-5.159,2.506c-1.738,0.331-4.941,1.438-5.807,3.042c-1.205,2.232-2.073,4.441-2.983,6.745
         c-0.663,1.68-1.118,3.344-2.276,4.554l1.484,3.725c0.027,1.069,0.982,1.194-0.396,1.746c-2.123,0.849,0.924,3.378,0.924,4.523
         c0,0.766-2.126,0.804-2.613,1.904c-1.05,2.373,2.137,3.36,1.478,5.316c-0.356,1.058-0.883,1.472-0.844,2.671
@@ -287,8 +385,22 @@ class Map extends Component {
         c0.896,0,4.361-3.018,4.645-3.888l0.026,0.027c0.929,0,1.93,3.721,1.821,4.549c-0.205,1.567-1.95,3.422-0.95,5.105l0.554,2.233
         c2.082,0.218,4.105,0.611,6.309,0.967c5.567,0.9,9.951,3.991,9.951,10.157c0,1.721-0.37,2.982-1.096,4.143l5.135,2.125
         c1.039,0.816,3.221-0.234,3.694,1.058c0.547,1.495,0.497,2.451-0.079,3.809c-1.119,2.638,0.449,3.645,0.449,6.11
-        c0,1.221-0.5,1.502-0.95,2.46C328.86,192.08,329.633,194.892,329.633,195.7L329.633,195.7z"/></Link>
-    <Link to={"/trouverunemaraude/95"} ><path onMouseOver={ this.getDep }  id="Val-d'Oise - 95"onMouseOut={ () => this.setState({ target : "" })} className={ target==="Val-d'Oise" ? this.state.active : "" } fillRule="evenodd" clipRule="evenodd" fill="darkgrey" stroke="#FFFFFF" strokeWidth="2" strokeMiterlimit="22.9256" d="
+        c0,1.221-0.5,1.502-0.95,2.46C328.86,192.08,329.633,194.892,329.633,195.7L329.633,195.7z"
+                  />
+                </Link>
+                <Link to={"/trouverunemaraude/95"}>
+                  <path
+                    onMouseOver={this.getDep}
+                    id="Val-d'Oise - 95"
+                    onMouseOut={() => this.setState({ target: "" })}
+                    className={target === "Val-d'Oise" ? this.state.active : ""}
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    fill="darkgrey"
+                    stroke="#FFFFFF"
+                    strokeWidth="2"
+                    strokeMiterlimit="22.9256"
+                    d="
         M435.672,152l-1.215,2.301c-1.352,0.603-3.498-0.555-4.962-0.555c0,1.818-3.271,4.139-3.959,6.374
         c-0.51,1.654-0.155,3.841-2.085,4.761c-1.215,0.58-2.499,0.914-3.511,1.825c-1.33,1.196-2.719,2.699-4.249,3.57
         c-1.79,1.018-2.686,1.134-4.144,2.777c-1.99,1.94-3.803,2.883-6.651,2.883c-2.627,0-4.822-1.249-7.153-1.428
@@ -358,8 +470,24 @@ class Map extends Component {
         c0.173,0.348,1.01,2.122,1.267,2.037c0.974-0.322,1.923-1.218,2.798-1.507c0,1.126,0.178,1.865,0.502,2.936
         c0.144,0.144,1.013,0.913,1.055,1.084c0.348,0.087-0.615,0.553-0.686,0.582l-1.637,0.688c-1.404,0.59-2.075,1.394-3.009,2.619
         c-1.661,2.181-1.396,5.597-4.382,6.189c-1.535,0.304-2.243,1.623-4.038,1.587c-0.679-0.014-2.112-0.549-2.612-0.423
-        c-0.325,1.314,0.883,3.243,1.266,4.417c0.793,0,1.783-0.389,2.561-0.608L435.672,152L435.672,152z"/></Link>
-    <Link to={"/trouverunemaraude/77"} ><path onMouseOver={ this.getDep }  id="Seine-et-Marne - 77"onMouseOut={ () => this.setState({ target : "" })} className={ target==="Seine-et-Marne" ? this.state.active : "" } fillRule="evenodd" clipRule="evenodd" fill="darkgrey" stroke="#FFFFFF" strokeWidth="2" strokeMiterlimit="22.9256" d="
+        c-0.325,1.314,0.883,3.243,1.266,4.417c0.793,0,1.783-0.389,2.561-0.608L435.672,152L435.672,152z"
+                  />
+                </Link>
+                <Link to={"/trouverunemaraude/77"}>
+                  <path
+                    onMouseOver={this.getDep}
+                    id="Seine-et-Marne - 77"
+                    onMouseOut={() => this.setState({ target: "" })}
+                    className={
+                      target === "Seine-et-Marne" ? this.state.active : ""
+                    }
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    fill="darkgrey"
+                    stroke="#FFFFFF"
+                    strokeWidth="2"
+                    strokeMiterlimit="22.9256"
+                    d="
         M390.437,456.637c0.207,0.602,0.324,1.188,0.444,1.777c0.307,1.496,2.132,3.318,3.035,4.574c1.15,1.6,2.031,3.932,1.954,5.926
         c-0.095,2.434-0.942,3.859-0.766,6.453c0.202,2.957,0.072,7.939,3.828,8.621c0.955,0.174,2.365,0.504,2.8,1.414l1.687-0.17
         c0.614,0.467,1.003,1.771,1.794,1.586c1.465-0.342,3.419-1.17,4.698-1.957c1.22-0.748,2.011,1.514,3.062,1.773
@@ -507,12 +635,14 @@ class Map extends Component {
         c1.216,2.303-1.321,0.133-1.979,0.133c-0.767,0-1.374,1.48-1.953,1.957l-1.188,0.979c-0.951,0.783,2.654,1.393,2.56,1.852
         c-0.143,0.699,0.186,2.266-0.053,2.697c-0.237,0.43-1.648-0.816-2.138-0.396c-6.689,5.748,5.521,7.143-3.774,7.143
         c-2.151,0-3.089,1.34-4.883,1.824l-4.064,0.662c0.107,1.676,1.727,2.734,2.851,3.809C389.847,455.4,390.232,456.137,390.437,456.637
-        L390.437,456.637z"/></Link>
-    </svg>
-    </div>
-    </div>
-    </div>
-    {/* <div className="map_list">
+        L390.437,456.637z"
+                  />
+                </Link>
+              </svg>
+            </div>
+          </div>
+        </div>
+        {/* <div className="map_list">
     <Card className={classes.card} >
     <h1>Départements </h1>
     <ul>
@@ -529,10 +659,9 @@ class Map extends Component {
     </ul>
     </Card>
     </div> */}
-   
       </div>
-    )
+    );
   }
 }
- 
-export default  Map;
+
+export default Map;

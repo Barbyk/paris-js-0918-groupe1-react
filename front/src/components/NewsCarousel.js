@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 import "../../node_modules/react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
-import './NewsCarousel.css';
-import moment from 'moment'
+import { Carousel } from "react-responsive-carousel";
+import "./NewsCarousel.css";
+import moment from "moment";
 
 class NewsCarousel extends React.Component {
     render() {
