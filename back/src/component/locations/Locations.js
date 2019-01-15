@@ -34,7 +34,7 @@ state = {
 }
 
   render() {
-    const tabDepartement = ["75","77","78","91","92","93","94","95"]
+    const tabDepartement = ["Paris Centre","Paris Nord","Paris Est","Paris Sud","Paris Ouest","Banlieue"]
     if (!this.state.isLoading)
 
     return (
@@ -44,7 +44,7 @@ state = {
           <caption>Edition des localisations</caption>
           <thead>
             <tr><th> Id </th><th> Nom </th><th> Image du lieu </th>
-            <th> Departement </th></tr>
+            <th> Catégorie </th></tr>
             </thead>
             <tbody>
               {this.state.locations.map((el, index) =>

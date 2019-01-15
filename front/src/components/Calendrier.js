@@ -3,7 +3,7 @@ import BigCalendar from 'react-big-calendar'
 import CalendarToolbar from './CalendarToolbar'
 import moment_timezone from 'moment-timezone';
 import moment from 'moment';
-import Checkbox from './Checkbox'
+// import Checkbox from './Checkbox'
 import {AvForm, AvField} from 'availity-reactstrap-validation'
 import { Modal, ModalBody, ModalHeader, Button } from 'reactstrap';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -132,7 +132,7 @@ class Calendrier extends PureComponent {
     var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD H:mm:ss");
 
     axios.put('/events/' + this.state.currentEvent.id, {
-      users_id: 1, is_active: 1, title: this.state.event_title, description:this.state.description,
+      users_id: 1, is_active: 1, locations_id: this.state.location_selected, title: this.state.event_title, description:this.state.description,
       begin_date: startDate, end_date: endDate
     })
       .then(response => {
@@ -173,8 +173,7 @@ class Calendrier extends PureComponent {
     })
   }
   toggleAddModal = slotInfo => {
-    // var startDate = moment(slotInfo.start).format("YYYY-MM-DDTHH:mm");
-    // var endDate = moment(slotInfo.end).format("YYYY-MM-DDTHH:mm");
+
     if (!this.state.isEditModalOpen) {
 
       this.setState({
@@ -185,8 +184,7 @@ class Calendrier extends PureComponent {
     }
   };
   toggleFiltreModal = slotInfo => {
-    // var startDate = moment(slotInfo.start).format("YYYY-MM-DDTHH:mm");
-    // var endDate = moment(slotInfo.end).format("YYYY-MM-DDTHH:mm");
+
     if (!this.state.isEditModalOpen && !this.state.isAddModalOpen) {
 
       this.setState({
@@ -216,11 +214,13 @@ class Calendrier extends PureComponent {
 
     })
   }
+
   handleStartChange = (e) => {
     this.setState({
       event_start_on: e.target.value
     })
   }
+
   handleEndChange = (e) => {
     this.setState({
       event_end_on: e.target.value
@@ -248,10 +248,10 @@ class Calendrier extends PureComponent {
       actions: e.target.value,
       location_selected: e.target.value
     })
-this.getEvents(e.target.value)
+    this.getEvents(e.target.value)
   }
 
-  handleActionsCheckBox=(e)=> {
+  handleActionsCheckBox = (e) => {
     
     const newSelection = parseInt(e.target.name);
     let newSelectionArray;
@@ -291,7 +291,7 @@ this.getEvents(e.target.value)
     };
 
   }
-
+  // extension du composent Event pour afficher le titre et la description
   Event({ event }) {
     return (
       <span>
@@ -301,60 +301,53 @@ this.getEvents(e.target.value)
     )
   }
 
-  EventAgenda({ event }) {
-    return (
-      <span>
-        <em style={{ color: 'magenta' }}>{event.title}</em>
-        <p>{event.description}</p>
-      </span>
-    )
-  }
-
   render() {
-    const { cal_events, event_title, asso_name, description, isFiltreModalOpen, isEditModalOpen, isAddModalOpen,
+    const { cal_events, asso_name, isEditModalOpen, isAddModalOpen,
       event_start_on, event_end_on, locations, currentEvent } = this.state;
+    
     return (
       <div className="calendrier">
         <div className="dropdown" style={{ fontSize: "2vh" }}>
                    
-        <label class="control-label">Lieu de la mauraude</label>{" "}
-                   <select name="locations_id" onChange={this.handleLocationChange} value={this.state.location_selected}  >
+          <label class="control-label">Lieu de la mauraude</label>{" "}
+          <select name="locations_id" onChange={this.handleLocationChange} value={this.state.location_selected}  >
 
-                     <option name="locations_id" value="">Sélectionner un lieu</option>
-                     <optgroup label="Paris Nord">
-                     {locations.filter(x=>x.departements_id===1).map((e, index) => {
-                       return (<option name="locations_id" value={e.id}>{e.name}</option>)
-                     })}
-                     </optgroup>
-                     <optgroup label="Paris Nord">
-                     {locations.filter(x=>x.departements_id===2).map((e, index) => {
-                       return (<option name="locations_id" value={e.id}>{e.name}</option>)
-                     })}
-                     </optgroup>
-                     <optgroup label="Paris Est">
-                     {locations.filter(x=>x.departements_id===3).map((e, index) => {
-                       return (<option name="locations_id" value={e.id}>{e.name}</option>)
-                     })}
-                     </optgroup>
-                     <optgroup label="Paris Ouest">
-                     {locations.filter(x=>x.departements_id===4).map((e, index) => {
-                       return (<option name="locations_id" value={e.id}>{e.name}</option>)
-                     })}
-                     </optgroup>
-                     <optgroup label="Paris Sud">
-                     {locations.filter(x=>x.departements_id===5).map((e, index) => {
-                       return (<option name="locations_id" value={e.id}>{e.name}</option>)
-                     })}
-                     </optgroup>
-                     <optgroup label="Banlieue">
-                     {locations.filter(x=>x.departements_id===6).map((e, index) => {
-                       return (<option name="locations_id" value={e.id}>{e.name}</option>)
-                     })}
-                     </optgroup>
-                   </select>
-                 </div>
-       
-       {/*  <div className="dropdown" style={{ fontSize: "2vh" }}>
+            <option name="locations_id" value="">Sélectionner un lieu</option>
+
+            <optgroup label="Paris Nord">
+              {locations.filter(x => x.departements_id === 2).map((e, index) => {
+                return (<option name="locations_id" value={e.id}>{e.name}</option>)
+              })}
+            </optgroup>
+            <optgroup label="Paris Est">
+              {locations.filter(x => x.departements_id === 3).map((e, index) => {
+                return (<option name="locations_id" value={e.id}>{e.name}</option>)
+              })}
+            </optgroup>
+            <optgroup label="Paris Centre">
+              {locations.filter(x => x.departements_id === 1).map((e, index) => {
+                return (<option name="locations_id" value={e.id}>{e.name}</option>)
+              })}
+            </optgroup>
+            <optgroup label="Paris Ouest">
+              {locations.filter(x => x.departements_id === 5).map((e, index) => {
+                return (<option name="locations_id" value={e.id}>{e.name}</option>)
+              })}
+            </optgroup>
+            <optgroup label="Paris Sud">
+              {locations.filter(x => x.departements_id === 4).map((e, index) => {
+                return (<option name="locations_id" value={e.id}>{e.name}</option>)
+              })}
+            </optgroup>
+            <optgroup label="Banlieue">
+              {locations.filter(x => x.departements_id === 6).map((e, index) => {
+                return (<option name="locations_id" value={e.id}>{e.name}</option>)
+              })}
+            </optgroup>
+          </select>
+        </div>
+
+        {/*  <div className="dropdown" style={{ fontSize: "2vh" }}>
           <label class="control-label">Lieu de la mauraude </label>
           <select name="locations_id" onChange={this.handleLocationChange} value={this.state.location}>
             <option name="locations_id" value="">Sélectionner un lieu</option>
@@ -385,30 +378,27 @@ this.getEvents(e.target.value)
         }}
           />
 
-          <Modal isOpen={isFiltreModalOpen} toggle={this.toggleFiltreModal}>
+          {/* <Modal isOpen={isFiltreModalOpen} toggle={this.toggleFiltreModal}>
             <ModalHeader toggle={this.toggleFiltreModal}>Choisir un lieu</ModalHeader>
             <ModalBody><form>
               <Checkbox options={this.state.locations} handleChange={this.handleActionsCheckBox} selectedOptions={this.state.actions} name="actions" />
             </form>
             </ModalBody>
-            {/* <ModalFooter>
-
-              <Button color="secondary" onClick={this.toggleFiltreModal}>Fermer</Button>
-            </ModalFooter> */}
-          </Modal>
+           
+          </Modal> */}
 
           <Modal isOpen={isEditModalOpen} toggle={this.toggleEditModal}>
             <ModalHeader toggle={this.toggle}>Modifier l'évenement</ModalHeader>
             <ModalBody><AvForm onValidSubmit={this.editEvent}>
-            <p> Lieu : {(locations[(currentEvent||"").locations_id-1]||"").name}</p>
+            <p> Lieu : {(locations.find(x=>x.id===(currentEvent||"").locations_id)||"").name}</p>
               <label>
                 Nom de l'évenement :
                     </label>
-              <AvField type="text" name="event_title" value={event_title} onChange={this.handleInputChange} required />
+              <AvField type="text" name="event_title" value={(currentEvent||"").title} onChange={this.handleInputChange} required />
               <label>
                 Description :
                     </label>
-              <AvField type="text" name="description" value={description} onChange={this.handleInputChange}/>
+              <AvField type="text" name="description" value={(currentEvent||"").description} onChange={this.handleInputChange}/>
               <label>
                 Début :
                     </label>
@@ -435,18 +425,39 @@ this.getEvents(e.target.value)
                    
 
                     <AvField type="select" name="locations_id" onChange={this.handleLocationChange} value={this.state.location_selected} required validate={{
-              required: {value: true, errorMessage: "Veuillez séléctionner un lieu"}}}>
+                      required: { value: true, errorMessage: "Veuillez séléctionner un lieu" }
+                    }}>
 
                       <option name="locations_id" value="">Sélectionner un lieu</option>
                       <optgroup label="Paris Nord">
-                      {locations.filter(x=>x.departements_id===1).map((e, index) => {
-                        return (<option name="locations_id" value={e.id}>{e.name}</option>)
-                      })}
+                        {locations.filter(x => x.departements_id === 2).map((e, index) => {
+                          return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                        })}
+                      </optgroup>
+                      <optgroup label="Paris Est">
+                        {locations.filter(x => x.departements_id === 3).map((e, index) => {
+                          return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                        })}
+                      </optgroup>
+                      <optgroup label="Paris Centre">
+                        {locations.filter(x => x.departements_id === 1).map((e, index) => {
+                          return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                        })}
+                      </optgroup>
+                      <optgroup label="Paris Ouest">
+                        {locations.filter(x => x.departements_id === 5).map((e, index) => {
+                          return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                        })}
                       </optgroup>
                       <optgroup label="Paris Sud">
-                      {locations.filter(x=>x.departements_id===2).map((e, index) => {
-                        return (<option name="locations_id" value={e.id}>{e.name}</option>)
-                      })}
+                        {locations.filter(x => x.departements_id === 4).map((e, index) => {
+                          return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                        })}
+                      </optgroup>
+                      <optgroup label="Banlieue">
+                        {locations.filter(x => x.departements_id === 6).map((e, index) => {
+                          return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                        })}
                       </optgroup>
                     </AvField>
                   </div></p>
@@ -476,7 +487,6 @@ this.getEvents(e.target.value)
 
               </AvForm>
             </ModalBody>
-
 
           </Modal>
 
