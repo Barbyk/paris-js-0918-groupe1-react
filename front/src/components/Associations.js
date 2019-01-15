@@ -90,7 +90,7 @@ export default class Associations extends Component {
     if (this.state.asso.length === 0) {
       return (
         <div className="twins">
-          <h3>Loading...</h3>
+           <i className="fa fa-spinner fa-spin" /><h3>Chargement... </h3>
         </div>
       );
     } else {

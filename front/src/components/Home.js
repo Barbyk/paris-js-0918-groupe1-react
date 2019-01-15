@@ -23,7 +23,7 @@ class Home extends React.Component {
 
     render() {
         if (this.state.news.length === 0) {
-            return "Loading..."
+            return <div style={{ margin: '30px 30px', fontFamily: 'Josefin Sans'}}><i className="fa fa-spinner fa-spin" /><h3>Chargement ...</h3></div>
         }
         else {
         return(

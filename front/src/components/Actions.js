@@ -117,7 +117,7 @@ class Actions extends Component {
   }
 
   render() {
-    if (this.state.isLoading) return "loading";
+    if (this.state.isLoading) return <div className="loading"><i className="fa fa-spinner fa-spin" /><h3>Chargement ...</h3></div>;
     else
       return (
         <div className="container actioncontain">

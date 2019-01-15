@@ -55,6 +55,11 @@ p {
   -webkit-appearance: none;
 }
 
+.loading {
+  margin: 30px 30px;
+  font-family: 'Josefin Sans'
+}
+
 @media only screen and (max-width: 1400px) {
   /* .actionlogo {
     width: auto;
