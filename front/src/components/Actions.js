@@ -176,7 +176,7 @@ class Actions extends Component {
                     />
                   </button>
                 </a>
-                <h3>Table solidaire</h3>
+                <h3>Tables solidaires</h3>
               </div>
               <div className="col-xs-12 col-md-6 col-lg-4">
                 <a href="#logo">
@@ -203,7 +203,7 @@ class Actions extends Component {
                     />
                   </button>
                 </a>
-                <h3>Visite aux isolés</h3>
+                <h3>Visites aux isolés</h3>
               </div>
               <div className="col-xs-12 col-md-6 col-lg-4">
                 <a href="#logo">

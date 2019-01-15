@@ -66,17 +66,17 @@ export default class DisplayAssociations extends Component {
               </Button>
               <div className="reseaux ">
                 {this.props.social_1 ? (
-                  <a href={this.props.social_1}>
+                  <a href={this.props.social_1} target="_blanck">
                     <img src={tweet} className="reseauIcon " alt="twitter" />
                   </a>
                 ) : null}
                 {this.props.social_2 ? (
-                  <a href={this.props.social_2}>
+                  <a href={this.props.social_2} target="_blanck">
                     <img src={fb} className="reseauIcon " alt="fb" />
                   </a>
                 ) : null}
                 {this.props.social_3 ? (
-                  <a href={this.props.social_3}>
+                  <a href={this.props.social_3} target="_blanck">
                     <img src={insta} className="reseauIcon " alt="instagram" />
                   </a>
                 ) : null}
