@@ -56,7 +56,7 @@ class Calendrier extends PureComponent {
 
       })
       .catch(function (error) {
-        alert(error);
+        alert("Une erreur est survenue, veuillez revenir ultérieurement");
       });
   }
 
@@ -76,7 +76,7 @@ class Calendrier extends PureComponent {
 
       })
       .catch(function (error) {
-        alert(error);
+        alert('Une erreur est survenue, veuillez recommencer ultérieurement');
       });
   }
 
@@ -121,6 +121,7 @@ class Calendrier extends PureComponent {
 
       })
       .catch(function (error) {
+        alert('Une erreur est survenue. Veuillez recommencer !')
         console.log(error);
       });
 
@@ -144,6 +145,7 @@ class Calendrier extends PureComponent {
 
       })
       .catch(function (error) {
+        alert('Une erreur est survenue. Veuillez recommencer !')
         console.log(error);
       });
 
@@ -163,6 +165,7 @@ class Calendrier extends PureComponent {
 
       })
       .catch(function (error) {
+        alert('Une erreur est survenue. Veuillez recommencer !')
         console.log(error);
       });
 
