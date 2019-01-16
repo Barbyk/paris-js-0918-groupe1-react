@@ -10,7 +10,9 @@ import Dropzone from 'react-dropzone'
 
 class ModifyNewAssoprofil extends Component {
     state = {
-        modifyInputValue: { is_visible: "1",actions:[]  },
+        modifyInputValue: { is_visible: "1",actions:[], name:'', description:'', address:'', logo:'', social_network_url_1:'',
+        social_network_url_2:'', social_network_url_3:'', phone_number:'', web_site:'',
+        mail:'', departements_id:''  },
         actionsOptions: ["Maraudes mobiles","Tables solidaires","Colis alimentaires","Visites aux isolés","Accompagnement administratif",
     "Cultures et loisirs","Soutien scolaire","Actions de l'étranger","Aide aux migrants"], files : []
     };

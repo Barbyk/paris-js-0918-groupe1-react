@@ -108,11 +108,11 @@ export default class AssoByAction extends Component {
                 </tr>
                 </thead> */}
             {/* <tbody> */}
-            {this.state.assoPerPage.map(e => {
+            {this.state.assoPerPage.map((e,index) => {
               // const icon_urls = {
               // }
               return (
-                <div class="assocard col-lg-6 col-sm-12">
+                <div key={index} className="assocard col-lg-6 col-sm-12">
                   <DisplayAssociations
                     name={e.name}
                     description={e.description}
@@ -138,7 +138,7 @@ export default class AssoByAction extends Component {
             <div className="twins">
               <button
                 type="button"
-                class="btn btn-dark"
+                className="btn btn-dark"
                 onClick={this.handleButtonPrevious}
               >
                 Précédent
@@ -150,7 +150,7 @@ export default class AssoByAction extends Component {
             <div className="twins">
               <button
                 type="button"
-                class="btn btn-dark"
+                className="btn btn-dark"
                 onClick={this.handleButtonNext}
               >
                 Suivant

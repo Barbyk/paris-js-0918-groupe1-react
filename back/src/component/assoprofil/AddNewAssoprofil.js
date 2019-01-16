@@ -162,7 +162,7 @@ class AddNewAssoprofil extends Component {
           <fieldset><legend>Ajouter une association</legend></fieldset>
           <Input name="name" label="Nom*" value={this.state.addInputValue.name} handleChange={this.handleChange} isRequired={"required"} />
           <div className="form-group">
-            <label class="control-label">Description*</label>
+            <label className="control-label">Description*</label>
             <textarea
               rows={5} cols={1}
               className="form-control"

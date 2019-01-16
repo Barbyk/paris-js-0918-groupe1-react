@@ -9,7 +9,7 @@ import TextField from '@material-ui/core/TextField';
 
 class ModifArticle extends Component {
     state = {
-        modifyInputValue: { is_active: "1" }, files : []
+        modifyInputValue: { is_active: "1", title:'', date:'' }, files : []
     };
 
     componentDidMount() {

@@ -125,7 +125,7 @@ class Actions extends Component {
             <div className="row">
               <div className="definition  col-sm-12 offset-md-2 col-md-8">
                 <ModalHeader>
-                  <h2>{this.state.name}</h2>
+                  {this.state.name}
                 </ModalHeader>
                 <ModalBody>
                   {" "}

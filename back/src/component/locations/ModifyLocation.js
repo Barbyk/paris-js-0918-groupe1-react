@@ -8,7 +8,7 @@ import withAuth from '../withAuth';
 class ModifyLocation extends Component {
 
     state = {
-        modifyInputValue: { is_active: "1" }
+        modifyInputValue: { is_active: "1", name:'', img_url:'' }
     };
 
     submitModifyLocation = e => {

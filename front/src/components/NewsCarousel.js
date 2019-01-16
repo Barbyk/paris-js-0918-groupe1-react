@@ -8,14 +8,14 @@ class NewsCarousel extends React.Component {
     render() {
         
         return (
-            <div class="carousel-global">
+            <div className="carousel-global">
             <Carousel autoPlay infiniteLoop={true} showThumbs={false} useKeyboardArrows={true}>
-                {this.props.news.map(e => {
-                    return ( <div className='item'>
+                {this.props.news.map((e,index) => {
+                    return ( <div key={index} className='item'>
                             
-                                <img class='imgcarousel' alt="caroussel" src={e.img_url} />
-                                <div class='news'>
-                                <div class="container-fluid">
+                                <img className='imgcarousel' alt="caroussel" src={e.img_url} />
+                                <div className='news'>
+                                <div className="container-fluid">
                                 <div className='date'>{moment(e.date).format('DD/MM/YYYY')}</div>
                                 <div className='text'>{e.text}</div>
                                 </div>
