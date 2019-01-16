@@ -1,112 +1,103 @@
-import React, { Component } from 'react'
-import axios from 'axios';
-import DisplayAssociations from './DisplayAssociations'
-import "./Associations.css"
+import React, { Component } from "react";
+import axios from "axios";
+import DisplayAssociations from "./DisplayAssociations";
+import "./Associations.css";
 
-
-const numberAssoPerPage = 10
+const numberAssoPerPage = 10;
 
 export default class Associations extends Component {
+  state = {
+    asso: [],
+    actions: [],
+    currentNumberPage: 1,
+    assoPerPage: [],
+    numberResultStart: 0,
+    numberResultEnd: 0,
+    isDisplayNext: false,
+    isDisplayPrevious: false
+  };
 
-    state = {
-        asso: [],
-        actions: [],
-        currentNumberPage: 1,
-        assoPerPage: [],
-        numberResultStart: 0,
-        numberResultEnd: 0,
-        isDisplayNext: false,
-        isDisplayPrevious: false
+  componentDidMount() {
+    this.getAsso();
+    this.getActions();
+  }
 
+  getAsso() {
+    axios.get("/assoprofil").then(res => {
+      this.setState({ asso: res.data });
+      this.getAssoPerPage();
+    });
+  }
+
+  getActions() {
+    axios.get("/actions").then(res => this.setState({ actions: res.data }));
+  }
+
+  getAssoPerPage() {
+    const { currentNumberPage } = this.state;
+    const { asso } = this.state;
+    let numberResultStart = (currentNumberPage - 1) * numberAssoPerPage;
+    let numberResultEnd = currentNumberPage * numberAssoPerPage;
+    if (numberResultEnd > asso.length) {
+      numberResultEnd = asso.length;
     }
+    const pageArray = asso.slice(numberResultStart, numberResultEnd);
+    this.setState({
+      assoPerPage: pageArray,
+      numberResultStart: numberResultStart,
+      numberResultEnd: numberResultEnd,
+      isDisplayPrevious: currentNumberPage === 1 ? false : true,
+      isDisplayNext: numberResultEnd === asso.length ? false : true
+    });
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }
 
-    componentDidMount() {
-        this.getAsso()
-        this.getActions()
-
+  handleButtonPrevious = () => {
+    const { currentNumberPage } = this.state;
+    if (currentNumberPage > 1) {
+      this.setState(
+        {
+          currentNumberPage: currentNumberPage - 1,
+          assoPerPage: []
+        },
+        this.getAssoPerPage
+      );
     }
+  };
 
-    getAsso() {
-        axios.get('/assoprofil')
-            .then(res => {
-                this.setState({ asso: res.data });
-                this.getAssoPerPage();
-            })
-
+  handleButtonNext = () => {
+    const { currentNumberPage } = this.state;
+    if (this.state.asso.length / numberAssoPerPage > currentNumberPage) {
+      this.setState(
+        {
+          currentNumberPage: currentNumberPage + 1,
+          assoPerPage: []
+        },
+        this.getAssoPerPage
+      );
     }
+  };
 
-    getActions() {
-        axios.get('/actions')
-            .then(res => this.setState({ actions: res.data }))
+  render() {
+    const shouldParse = el => {
+      if (!Array.isArray(el)) {
+        return JSON.parse(el);
+      } else {
+        return el;
+      }
+    };
 
-
-    }
-
-    getAssoPerPage() {
-        const { currentNumberPage } = this.state;
-        const { asso } = this.state;
-        let numberResultStart = (
-            currentNumberPage - 1) * numberAssoPerPage;
-        let numberResultEnd = currentNumberPage * numberAssoPerPage;
-        if (numberResultEnd > asso.length) {
-            numberResultEnd = asso.length
-        }
-        const pageArray = asso.slice(numberResultStart, numberResultEnd);
-        this.setState({
-            assoPerPage: pageArray,
-            numberResultStart: numberResultStart,
-            numberResultEnd: numberResultEnd,
-            isDisplayPrevious: currentNumberPage === 1 ? false : true,
-            isDisplayNext: numberResultEnd === asso.length ? false : true
-        })
-        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
-
-    }
-
-    handleButtonPrevious = () => {
-        const { currentNumberPage } = this.state;
-        if (currentNumberPage > 1) {
-            this.setState({
-                currentNumberPage: currentNumberPage - 1,
-                assoPerPage: []
-            },
-                this.getAssoPerPage
-            );
-
-        }
-    }
-
-    handleButtonNext = () => {
-        const { currentNumberPage } = this.state;
-        if (this.state.asso.length / numberAssoPerPage > currentNumberPage) {
-            this.setState({
-                currentNumberPage: currentNumberPage + 1,
-                assoPerPage: []
-            },
-                this.getAssoPerPage
-            );
-
-        }
-    }
-
-    render() {
-        const shouldParse = (el) => {
-            if (!Array.isArray(el)) {
-                return JSON.parse(el)
-            } else {
-                return el
-            }
-        }
-
-
-        if (this.state.asso.length === 0) {
-            return <div className="twins"><h3>Loading...</h3></div>
-        }
-        else {
-            return (
-                <div className="back container-fluid">
-                    <div className="row">
-                        {/* <table className="table table-striped">
+    if (this.state.asso.length === 0) {
+      return (
+        <div className="twins">
+           <i className="fa fa-spinner fa-spin" /><h3>Chargement... </h3>
+        </div>
+      );
+    } else {
+      return (
+        <div className="back container-fluid">
+          <div className="row">
+            {/* <table className="table table-striped">
                         <thead>
                         <tr>
                         <th scope="col">Nom de l'association</th>
@@ -118,55 +109,62 @@ export default class Associations extends Component {
                         </thead>
                     <tbody> */}
 
-                        {this.state.assoPerPage.map(e => {
-
-                            // const icon_urls = {
-                            // }
-                            return (
-                                <div class="assocard col-lg-6 col-sm-12">
-                                    <DisplayAssociations
-                                        name={e.name}
-                                        logo={e.logo}
-                                        address={e.address}
-                                        description={e.description}
-                                        social_1={e.social_network_url_1}
-                                        social_2={e.social_network_url_2}
-                                        social_3={e.social_network_url_3}
-                                        phone={e.phone_number}
-                                        web_site={e.web_site}
-                                        mail={e.mail}
-                                        icon={e.actions ? shouldParse(e.actions) : null}
-                                        key={e.id}
-                                        definition={this.state.actions}
-                                    />
-                                </div>
-
-
-
-                            )
-
-
-                        })}
-                    </div>
-                    {/* </tbody>
+            {this.state.assoPerPage.map(e => {
+              // const icon_urls = {
+              // }
+              return (
+                <div className="assocard col-lg-6 col-sm-12">
+                  <DisplayAssociations
+                    name={e.name}
+                    logo={e.logo}
+                    address={e.address}
+                    description={e.description}
+                    social_1={e.social_network_url_1}
+                    social_2={e.social_network_url_2}
+                    social_3={e.social_network_url_3}
+                    phone={e.phone_number}
+                    web_site={e.web_site}
+                    mail={e.mail}
+                    icon={e.actions ? shouldParse(e.actions) : null}
+                    key={e.id}
+                    definition={this.state.actions}
+                  />
+                </div>
+              );
+            })}
+          </div>
+          {/* </tbody>
                        
         
                     </table> */}
 
-
-
-
-                    <div className="nobuttons">
-
-                        <div className="twins"><button type="button" class="btn btn-dark btn-page" onClick={this.handleButtonPrevious}>Précédent</button></div>
-                        <div className="twins"><p className="number_page">{this.state.currentNumberPage}</p></div>
-                        <div className="twins"><button type="button" class="btn btn-dark btn-page" onClick={this.handleButtonNext}>Suivant</button></div>
-
-                    </div>
-                </div>
-
-            )
-        }
+          <div className="nobuttons">
+            <div className="twins">
+              <button
+                type="button"
+                className="btn btn-dark btn-page"
+                onClick={this.handleButtonPrevious}
+              >
+                Précédent
+              </button>
+            </div>
+            <div className="twins">
+              <span className="number_page">
+                {this.state.currentNumberPage}
+              </span>
+            </div>
+            <div className="twins">
+              <button
+                type="button"
+                className="btn btn-dark btn-page"
+                onClick={this.handleButtonNext}
+              >
+                Suivant
+              </button>
+            </div>
+          </div>
+        </div>
+      );
     }
+  }
 }
-

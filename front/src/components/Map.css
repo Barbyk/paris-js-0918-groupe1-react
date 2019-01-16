@@ -1,76 +1,78 @@
-.map path:hover,.map path.active {
-    fill:rgb(100, 165, 173);
-    transition: fill 0.3s;
-  }
-  
-  .map_view{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    min-height: 80vh;
-    background-color: #edf0f4;
-    padding-bottom: 20vh
-  }
-  .MuiPaper-elevation1-6 {
-    box-shadow: 0px !important;
-  }
-  
+.map path:hover,
+.map path.active {
+  fill: #96d34e;
+  transition: fill 0.3s;
+}
 
-  .map_list{
-    color: inherit;
-    transition: color 0.3s;
-    font-family: sans-serif;
-  }
-  .map_list ul {
-    margin-left: -3vw;
-  }
-  .Map-card-1 {
-    background-color: #edf0f4
+.map {
+  margin-top: -4vh;
+}
 
-  }
-  .map_list li,a {
-    text-decoration: none;
-    list-style: none;
-    color: rgb(98, 103, 201);
-  }
-  
-  .map_list a:hover{
+.map_view {
+ 
+  /* align-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 50vh;
+  max-height: 75vh; */
+  height: 80vh;
+  background-color: #edf0f4;
+  padding-bottom: 10vh;
+}
+.MuiPaper-elevation1-6 {
+  box-shadow: 0px !important;
+}
+
+.map_list {
+  color: inherit;
+  transition: color 0.3s;
+  font-family: sans-serif;
+}
+.map_list ul {
+  margin-left: -3vw;
+}
+.Map-card-1 {
+  background-color: #edf0f4;
+}
+.map_list li,
+a {
+  text-decoration: none;
+  list-style: none;
+  color: rgb(98, 103, 201);
+}
+
+.map_list a:hover {
   color: red;
-  }
-  
-  .block_map{
-    text-align: center;
-  }
-  
-.dep{
-    margin-top: 40px;
-    font-family: sans-serif;
+}
+
+.block_map {
+  text-align: center;
+}
+
+.mapcard h1 {
+  font-family: "Happy Monkey", cursive !important;
+  color: #004c52 !important;
+  font-size: 2rem;
+  padding: 1vh;
+  font-family: sans-serif;
 }
 
 .map_list li {
-  font-family: 'josefin sans' !important;
+  font-family: "josefin sans" !important;
   font-size: 140%;
 }
 
-@media only screen and (min-width: 1000px) {
-
-  .mapcard {
-    width: 55%;
+@media only screen and (min-width: 600px) {
+  .map {
+    height: 31vw;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .mapcard {
-    width: 100%;
+  .map {
+    height: 71vw;
   }
-
-}
-
-.mapcard h1 {
-  font-family: 'Happy Monkey', cursive !important;
-  color: #004c52 !important;
-  font-size: 2rem;
+  .mapcard h1{
+    font-size: 1.5em;
+  }
 }

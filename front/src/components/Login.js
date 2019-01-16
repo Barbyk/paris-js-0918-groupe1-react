@@ -25,7 +25,7 @@ class Login extends Component {
         else {
         if (Auth.login((this.state.username||""),(this.state.password||"")))
             
-               this.props.history.replace('/');
+               this.props.history.replace('/calendrier');
             else alert ("Identifiants incorrects !")
         
         }

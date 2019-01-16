@@ -12,6 +12,7 @@ import Calendrier from './components/Calendrier'
 import AssoByDept from './components/AssoByDept'
 import AssoByAction from './components/AssoByAction'
 import Login from './components/Login'
+import Error404 from './components/Error404'
 
 class App extends Component {
   render() {
@@ -29,6 +30,7 @@ class App extends Component {
             <Route path ="/trouverunemaraude/:id" component = { AssoByDept } />
             <Route  exact path ="/actions" component = { Actions } />
             <Route path ="/actions/:id" component = { AssoByAction } />
+            <Route component={Error404} />
         </Switch>
         <Footer />
       </div>

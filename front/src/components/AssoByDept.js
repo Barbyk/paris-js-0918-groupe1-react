@@ -151,7 +151,7 @@ export default class AssoByDept extends Component {
                     <div className="nobuttons">
 
                         <div className="twins"><button type="button" class="btn btn-dark" onClick={this.handleButtonPrevious}>Précédent</button></div>
-                        <div className="twins"><p className="number_page">{this.state.currentNumberPage}</p></div>
+                        <div className="twins"><span className="number_page">{this.state.currentNumberPage}</span></div>
                         <div className="twins"><button type="button" class="btn btn-dark" onClick={this.handleButtonNext}>Suivant</button></div>
 
                     </div>

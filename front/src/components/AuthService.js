@@ -7,7 +7,7 @@ export default class AuthService {
 
     login=(username, password) => {
         // Get a token from api server using the fetch api
-        if (username === 'cal' && password === 'cal') {
+        if (password === 'maraudonscal') {
             this.setToken('cal') // Setting the token in localStorage
             return true
         } else {
