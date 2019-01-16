@@ -13,7 +13,8 @@ state = {
 }
  getLocations =() => {
      axios
-        .get ('/locations')
+        .get ('/locations',{headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
         .then (reponse => this.setState ({locations : reponse.data, isLoading: false}))
         .then(console.log(this.state.locations))
         

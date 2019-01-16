@@ -46,7 +46,6 @@ class AddArticle extends Component {
         const news = { ...this.state.news }
         news[e.target.name] = e.target.value;
         this.setState({ news });
-        console.log(this.state.news);
         
     }
 
@@ -54,10 +53,9 @@ class AddArticle extends Component {
         e.preventDefault();
         await axios
             .post('/news',this.state.news,{headers: {
-                'Authorization': 'Bearer ' + sessionStorage.getItem("id_token")} })
+                'Authorization': 'Bearer ' + localStorage.getItem("id_token")} })
             .then(window.history.back() );
         alert("L'article a bien été enregistré")
-        console.log(this.state.news);
         
     };
         
@@ -80,12 +78,12 @@ class AddArticle extends Component {
           formData.append("file", image);
           formData.append("tags", 'image article'); // Add tags for the images - {Array}
           formData.append("upload_preset", "wj40wyla"); // Replace the preset name with your own
-          formData.append("api_key", "823679753155951"); // Replace API key with your own Cloudinary API key
+          formData.append("api_key", `${process.env.REACT_APP_CLOUDINARY_API_KEY}`); // Replace API key with your own Cloudinary API key
           formData.append("timestamp", (Date.now() / 1000) | 0);
     
           // Replace cloudinary upload URL with yours
           return axios.post(
-            "https://api.cloudinary.com/v1_1/dna4dgicb/image/upload",
+            `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_API_SECRET}/image/upload`,
             formData, 
             { headers: { "X-Requested-With": "XMLHttpRequest" }})
             .then(response => this.setState({ news :{ ...this.state.news,img_url : response.data.url} }))

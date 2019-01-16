@@ -15,7 +15,8 @@ class ModifyLocation extends Component {
         e.preventDefault();
 
         axios
-            .put("/locations/" + this.props.match.params.id, this.state.modifyInputValue)
+            .put("/locations/" + this.props.match.params.id, this.state.modifyInputValue,{headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
             .then(window.history.back());
             
             
@@ -40,9 +41,9 @@ class ModifyLocation extends Component {
     getLocation = e => {
         this.setState({ isLoading: true })
         axios
-            .get("/locations/" + this.props.match.params.id)
+            .get("/locations/" + this.props.match.params.id,{headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
             .then(response => this.setState({ modifyInputValue: response.data[0], isLoading: false }))
-            console.log();
         
         // .then(window.location.reload());
 
