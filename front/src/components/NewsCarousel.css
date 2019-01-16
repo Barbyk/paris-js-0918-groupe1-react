@@ -74,7 +74,7 @@
         /* padding-bottom: 12vh; */
     }
     .carousel-slider {
-        background-color: #2abbad;
+        background-color: rgb(42, 187, 172);
     }
     .news .container-fluid {
         flex-direction: column;

@@ -137,7 +137,8 @@ export default class DisplayAssociations extends Component {
                 <a href={this.props.web_site}><p>site web</p></a>
                 <p>{this.props.phone}</p>
                 <div className="divier"></div> */}
-                <p>
+                <div class=" container  d-flex justify-content-around">
+                <div class="row justify-content-center">
                   {this.props.icon
                     ? this.props.icon.map((e, index) => (
                         <>
@@ -157,7 +158,7 @@ export default class DisplayAssociations extends Component {
                         </>
                       ))
                     : null}{" "}
-                </p>
+                </div></div>
               </ModalBody>
             </Modal>
           </div>
