@@ -15,7 +15,7 @@ class Home extends React.Component {
     }
 
     getNews() {
-        axios.get('/news')
+        axios.get('/api/news')
         .then(res => this.setState({news: res.data}))
         
         
