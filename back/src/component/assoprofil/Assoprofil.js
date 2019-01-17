@@ -20,7 +20,12 @@ class Assoprofil extends Component {
       .get("/assoprofil",{headers: {
         'Authorization': 'Bearer ' + localStorage.getItem("id_token")}
       })
-      .then(response => this.setState({ assoProfil: response.data, isLoading: false }))
+      .then(response => {
+        if (response.status === 401) 
+          localStorage.removeItem("id_token")
+        this.setState({ assoProfil: response.data, isLoading: false })
+    
+    })
 
   };
 
