@@ -20,13 +20,14 @@ class Assoprofil extends Component {
       .get("/assoprofil",{headers: {
         'Authorization': 'Bearer ' + localStorage.getItem("id_token")}
       })
-      .then(response => {
-        if (response.status === 401) 
+      .then(response => this.setState({ assoProfil: response.data, isLoading: false }))
+      .catch(function (error) {
+        if (error.response.status === 401) {
           localStorage.removeItem("id_token")
-        this.setState({ assoProfil: response.data, isLoading: false })
-    
-    })
-
+          window.location.reload()
+        }
+      });
+  
   };
 
   handleChangeDelete = (id) => {
