@@ -134,7 +134,7 @@ class Actions extends Component {
                 {this.state.definition ? (
                   <Link to={"/actions/" + this.state.id}>
                     <button type="button" className="btngo">
-                      Liste des Associations
+                      Trouver une association
                     </button>
                   </Link>
                 ) : null}

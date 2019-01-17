@@ -31,14 +31,14 @@ export default class DisplayAssociations extends Component {
 
   // à faire: recuperer toutes les autres icones d'actions et les importer ici
   tab = [
-    colis,
-    accompagnement,
-    culture,
-    etranger,
     maraude,
     table,
+    colis,
     visite,
+    accompagnement,
+    culture,
     soutient,
+    etranger,
     migrant
   ];
 

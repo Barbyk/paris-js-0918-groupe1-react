@@ -34,7 +34,7 @@ class Assoprofil extends Component {
     const response = window.confirm("Etes-vous certain de vouloir supprimer ?");
     if (response) {
       axios
-        .put("/assoprofil/" + id, { "is_visible": "0" },{headers: {
+        .put("/assoprofil/" + id, {...this.state.assoProfil[id-1], actions:[], "is_visible": "0" },{headers: {
           'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
         .then(window.location.reload())
     }
@@ -58,8 +58,8 @@ class Assoprofil extends Component {
           <Link to={'/addNewAssoprofil'}><button>Ajouter une Association</button></Link>
           <table className="table">
             <caption>Edition des associations</caption>
-            <thead><tr><th> Id </th><th> Nom </th><th> Description </th><th> Adresse </th><th> Logo </th><th> Réseau Social Url 1 </th><th> Réseau Social Url 2 </th>
-              <th> Réseau Social Url 3 </th><th> Téléphone </th><th> Site Internet </th><th> Mail </th><th> Departements Id </th><th>Actions</th><th> Bouton </th></tr></thead>
+            <thead><tr><th> Id </th><th> Nom </th><th> Description </th><th> Adresse </th><th> Logo </th><th> Twitter </th><th> Facebook </th>
+              <th> Instagram </th><th> Téléphone </th><th> Site Internet </th><th> Mail </th><th> Departements Id </th><th>Actions</th><th> Bouton </th></tr></thead>
             <tbody>
               {this.state.assoProfil.map((el, index) =>
                 <tr key={index}><td>{el.id}</td><td>{el.name}</td><td>{el.description}</td><td>{el.address}</td><td><img src={el.logo} alt=""/></td>
