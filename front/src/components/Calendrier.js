@@ -30,7 +30,7 @@ class Calendrier extends PureComponent {
     description: undefined,
     asso_name:undefined,
     currentEvent: null,
-    location_selected: null,
+    location_selected: undefined,
     locations: [],
     actions: [],
     popoverOpen:false
@@ -56,7 +56,7 @@ class Calendrier extends PureComponent {
 
       })
       .catch(function (error) {
-        alert(error);
+        alert("Une erreur est survenue, veuillez revenir ultérieurement");
       });
   }
 
@@ -76,7 +76,7 @@ class Calendrier extends PureComponent {
 
       })
       .catch(function (error) {
-        alert(error);
+        alert('Une erreur est survenue, veuillez recommencer ultérieurement');
       });
   }
 
@@ -121,6 +121,7 @@ class Calendrier extends PureComponent {
 
       })
       .catch(function (error) {
+        alert('Une erreur est survenue. Veuillez recommencer !')
         console.log(error);
       });
 
@@ -144,6 +145,7 @@ class Calendrier extends PureComponent {
 
       })
       .catch(function (error) {
+        alert('Une erreur est survenue. Veuillez recommencer !')
         console.log(error);
       });
 
@@ -163,6 +165,7 @@ class Calendrier extends PureComponent {
 
       })
       .catch(function (error) {
+        alert('Une erreur est survenue. Veuillez recommencer !')
         console.log(error);
       });
 
@@ -309,39 +312,39 @@ class Calendrier extends PureComponent {
       <div className="calendrier">
         <div className="dropdown" style={{ fontSize: "2vh" }}>
                    
-          <label class="control-label">Lieu de la mauraude</label>{" "}
+          <label className="control-label">Lieu de la mauraude</label>{" "}
           <select name="locations_id" onChange={this.handleLocationChange} value={this.state.location_selected}  >
 
             <option name="locations_id" value="">Sélectionner un lieu</option>
 
             <optgroup label="Paris Nord">
               {locations.filter(x => x.departements_id === 2).map((e, index) => {
-                return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                return (<option key={e.id} name="locations_id" value={e.id}>{e.name}</option>)
               })}
             </optgroup>
             <optgroup label="Paris Est">
               {locations.filter(x => x.departements_id === 3).map((e, index) => {
-                return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                return (<option key={e.id} name="locations_id" value={e.id}>{e.name}</option>)
               })}
             </optgroup>
             <optgroup label="Paris Centre">
               {locations.filter(x => x.departements_id === 1).map((e, index) => {
-                return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                return (<option key={e.id} name="locations_id" value={e.id}>{e.name}</option>)
               })}
             </optgroup>
             <optgroup label="Paris Ouest">
               {locations.filter(x => x.departements_id === 5).map((e, index) => {
-                return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                return (<option key={e.id} name="locations_id" value={e.id}>{e.name}</option>)
               })}
             </optgroup>
             <optgroup label="Paris Sud">
               {locations.filter(x => x.departements_id === 4).map((e, index) => {
-                return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                return (<option key={e.id} name="locations_id" value={e.id}>{e.name}</option>)
               })}
             </optgroup>
             <optgroup label="Banlieue">
               {locations.filter(x => x.departements_id === 6).map((e, index) => {
-                return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                return (<option key={e.id} name="locations_id" value={e.id}>{e.name}</option>)
               })}
             </optgroup>
           </select>
@@ -431,32 +434,32 @@ class Calendrier extends PureComponent {
                       <option name="locations_id" value="">Sélectionner un lieu</option>
                       <optgroup label="Paris Nord">
                         {locations.filter(x => x.departements_id === 2).map((e, index) => {
-                          return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                          return (<option key={e.id} name="locations_id" value={e.id}>{e.name}</option>)
                         })}
                       </optgroup>
                       <optgroup label="Paris Est">
                         {locations.filter(x => x.departements_id === 3).map((e, index) => {
-                          return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                          return (<option key={e.id} name="locations_id" value={e.id}>{e.name}</option>)
                         })}
                       </optgroup>
                       <optgroup label="Paris Centre">
                         {locations.filter(x => x.departements_id === 1).map((e, index) => {
-                          return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                          return (<option key={e.id} name="locations_id" value={e.id}>{e.name}</option>)
                         })}
                       </optgroup>
                       <optgroup label="Paris Ouest">
                         {locations.filter(x => x.departements_id === 5).map((e, index) => {
-                          return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                          return (<option key={e.id} name="locations_id" value={e.id}>{e.name}</option>)
                         })}
                       </optgroup>
                       <optgroup label="Paris Sud">
                         {locations.filter(x => x.departements_id === 4).map((e, index) => {
-                          return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                          return (<option key={e.id} name="locations_id" value={e.id}>{e.name}</option>)
                         })}
                       </optgroup>
                       <optgroup label="Banlieue">
                         {locations.filter(x => x.departements_id === 6).map((e, index) => {
-                          return (<option name="locations_id" value={e.id}>{e.name}</option>)
+                          return (<option key={e.id} name="locations_id" value={e.id}>{e.name}</option>)
                         })}
                       </optgroup>
                     </AvField>

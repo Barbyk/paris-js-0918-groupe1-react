@@ -9,7 +9,7 @@ import TextField from '@material-ui/core/TextField';
 
 class ModifArticle extends Component {
     state = {
-        modifyInputValue: { is_active: "1" }, files : []
+        modifyInputValue: { is_active: "1", title:'', date:'' }, files : []
     };
 
     componentDidMount() {
@@ -26,7 +26,8 @@ class ModifArticle extends Component {
     getAssoprofil = e => {
         this.setState({ isLoading: true })
         axios
-            .get("/news/" + this.props.match.params.id)
+            .get("/news/" + this.props.match.params.id,{headers: {
+              'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
             .then(response => {
               response.data[0].date = this.convertDate(response.data[0].date)
               this.setState({ modifyInputValue: response.data[0], isLoading: false })}
@@ -45,7 +46,8 @@ class ModifArticle extends Component {
         e.preventDefault();
 
         axios
-            .put("/news/" + this.props.match.params.id, this.state.modifyInputValue)
+            .put("/news/" + this.props.match.params.id, this.state.modifyInputValue,{headers: {
+              'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
             .then(window.history.back() );
         alert("Les modifications sont enregistrées")
         

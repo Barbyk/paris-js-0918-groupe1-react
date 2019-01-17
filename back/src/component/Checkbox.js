@@ -2,7 +2,7 @@ import React  from 'react';
 
 const CheckBox = (props) => {
     return( <div>
-    <label for={props.name} className="form-label">{props.title}</label>
+    <label htmlFor={props.name} className="form-label">{props.title}</label>
     <div className="checkbox-group">
       {props.options.map((option,index) => {
         return (

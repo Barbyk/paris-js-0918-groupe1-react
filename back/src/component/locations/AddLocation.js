@@ -21,10 +21,10 @@ class AddLocation extends Component {
     submitNewLocation = (e) => {
         e.preventDefault();
         axios
-            .post('/locations', this.state.addInputValue)
+            .post('/locations', this.state.addInputValue,{headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
             .then(this.setState({}))
             .then(window.history.back());
-            console.log(this.state.addInputValue);
             
         alert("Localisation ajoutée !")
     }

@@ -10,7 +10,9 @@ import Dropzone from 'react-dropzone'
 
 class ModifyNewAssoprofil extends Component {
     state = {
-        modifyInputValue: { is_visible: "1",actions:[]  },
+        modifyInputValue: { is_visible: "1",actions:[], name:'', description:'', address:'', logo:'', social_network_url_1:'',
+        social_network_url_2:'', social_network_url_3:'', phone_number:'', web_site:'',
+        mail:'', departements_id:''  },
         actionsOptions: ["Maraudes mobiles","Tables solidaires","Colis alimentaires","Visites aux isolés","Accompagnement administratif",
     "Cultures et loisirs","Soutien scolaire","Actions de l'étranger","Aide aux migrants"], files : []
     };
@@ -55,12 +57,12 @@ class ModifyNewAssoprofil extends Component {
       formData.append("file", image);
       formData.append("tags", 'LOGO'); // Add tags for the images - {Array}
       formData.append("upload_preset", "wj40wyla"); // Replace the preset name with your own
-      formData.append("api_key", "823679753155951"); // Replace API key with your own Cloudinary API key
+      formData.append("api_key", process.env.REACT_APP_CLOUDINARY_API_KEY); // Replace API key with your own Cloudinary API key
       formData.append("timestamp", (Date.now() / 1000) | 0);
 
       // Replace cloudinary upload URL with yours
       return axios.post(
-        "https://api.cloudinary.com/v1_1/dna4dgicb/image/upload",
+        `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_API_SECRET}/image/upload`,
         formData, 
         { headers: { "X-Requested-With": "XMLHttpRequest" }})
         .then(response => this.setState({ modifyInputValue : { ...this.state.modifyInputValue, logo : response.data.url }}))
@@ -78,7 +80,7 @@ class ModifyNewAssoprofil extends Component {
         this.setState({ isLoading: true })
         axios
             .get("/assoprofil/" + this.props.match.params.id,{headers: {
-                'Authorization': 'Bearer ' + sessionStorage.getItem("id_token")}})
+                'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
             .then(response => {
                 this.setState({ modifyInputValue: response.data[0], isLoading: false })})
             
@@ -91,7 +93,8 @@ class ModifyNewAssoprofil extends Component {
         e.preventDefault();
 
         axios
-            .put("/assoprofil/" + this.props.match.params.id, this.state.modifyInputValue)
+            .put("/assoprofil/" + this.props.match.params.id, this.state.modifyInputValue,{headers: {
+              'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
             .then(window.history.back() );
         alert("Les modifications sont enregistrées")
 

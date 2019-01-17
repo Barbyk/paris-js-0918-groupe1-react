@@ -123,7 +123,7 @@ export default class AssoByDept extends Component {
                             // const icon_urls = {
                             // }
                             return (
-                                <div class="assocard col-lg-6 col-sm-12">
+                                <div key={e.name} className="assocard col-lg-6 col-sm-12">
                                     <DisplayAssociations
                                         name={e.name}
                                         description={e.description}
@@ -150,9 +150,9 @@ export default class AssoByDept extends Component {
                     </div>
                     <div className="nobuttons">
 
-                        <div className="twins"><button type="button" class="btn btn-dark" onClick={this.handleButtonPrevious}>Précédent</button></div>
+                        <div className="twins"><button type="button" className="btn btn-dark" onClick={this.handleButtonPrevious}>Précédent</button></div>
                         <div className="twins"><span className="number_page">{this.state.currentNumberPage}</span></div>
-                        <div className="twins"><button type="button" class="btn btn-dark" onClick={this.handleButtonNext}>Suivant</button></div>
+                        <div className="twins"><button type="button" className="btn btn-dark" onClick={this.handleButtonNext}>Suivant</button></div>
 
                     </div>
                 </div>

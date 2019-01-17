@@ -74,12 +74,12 @@ class AddNewAssoprofil extends Component {
       formData.append("file", image);
       formData.append("tags", 'LOGO'); // Add tags for the images - {Array}
       formData.append("upload_preset", "wj40wyla"); // Replace the preset name with your own
-      formData.append("api_key", "823679753155951"); // Replace API key with your own Cloudinary API key
+      formData.append("api_key", process.env.REACT_APP_CLOUDINARY_API_KEY); // Replace API key with your own Cloudinary API key
       formData.append("timestamp", (Date.now() / 1000) | 0);
 
       // Replace cloudinary upload URL with yours
       return axios.post(
-        "https://api.cloudinary.com/v1_1/dna4dgicb/image/upload",
+        `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_API_SECRET}/image/upload`,
         formData, 
         { headers: { "X-Requested-With": "XMLHttpRequest" }})
         .then(response => this.setState({ addInputValue : { ...this.state.addInputValue, logo : response.data.url }}))
@@ -162,7 +162,7 @@ class AddNewAssoprofil extends Component {
           <fieldset><legend>Ajouter une association</legend></fieldset>
           <Input name="name" label="Nom*" value={this.state.addInputValue.name} handleChange={this.handleChange} isRequired={"required"} />
           <div className="form-group">
-            <label class="control-label">Description*</label>
+            <label className="control-label">Description*</label>
             <textarea
               rows={5} cols={1}
               className="form-control"

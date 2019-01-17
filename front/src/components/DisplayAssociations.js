@@ -137,11 +137,11 @@ export default class DisplayAssociations extends Component {
                 <a href={this.props.web_site}><p>site web</p></a>
                 <p>{this.props.phone}</p>
                 <div className="divier"></div> */}
-                <div class=" container  d-flex justify-content-around">
-                <div class="row justify-content-center">
+                <div className=" container  d-flex justify-content-around">
+                <div className="row justify-content-center">
                   {this.props.icon
                     ? this.props.icon.map((e, index) => (
-                        <>
+                        <div key={index}>
                           <span id={"action-icon" + index}>
                             <img
                               src={this.tab[e - 1]}
@@ -155,7 +155,7 @@ export default class DisplayAssociations extends Component {
                           >
                             {(this.props.definition[e - 1] || []).definition}
                           </UncontrolledTooltip>
-                        </>
+                        </div>
                       ))
                     : null}{" "}
                 </div></div>

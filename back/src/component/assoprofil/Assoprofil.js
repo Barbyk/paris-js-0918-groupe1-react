@@ -21,7 +21,13 @@ class Assoprofil extends Component {
         'Authorization': 'Bearer ' + localStorage.getItem("id_token")}
       })
       .then(response => this.setState({ assoProfil: response.data, isLoading: false }))
-
+      .catch(function (error) {
+        if (error.response.status === 401) {
+          localStorage.removeItem("id_token")
+          window.location.reload()
+        }
+      });
+  
   };
 
   handleChangeDelete = (id) => {
@@ -56,7 +62,7 @@ class Assoprofil extends Component {
               <th> Réseau Social Url 3 </th><th> Téléphone </th><th> Site Internet </th><th> Mail </th><th> Departements Id </th><th>Actions</th><th> Bouton </th></tr></thead>
             <tbody>
               {this.state.assoProfil.map((el, index) =>
-                <tr><td>{el.id}</td><td>{el.name}</td><td>{el.description}</td><td>{el.address}</td><td><img src={el.logo} alt=""/></td>
+                <tr key={index}><td>{el.id}</td><td>{el.name}</td><td>{el.description}</td><td>{el.address}</td><td><img src={el.logo} alt=""/></td>
                   <td>{el.social_network_url_1}</td><td>{el.social_network_url_2}</td><td>{el.social_network_url_3}</td>
 
                   <td>{el.phone_number}</td><td>{el.web_site}</td><td>{el.mail}</td><td>{tabDepartement[el.departements_id-1]}</td><td>{ el.actions ? (shouldParse(el.actions)).map(e=>(tabActions[e-1]+"\r\n")):null}</td><td><Link to={'/modifyAssoprofil/' + el.id}>

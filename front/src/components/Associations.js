@@ -113,7 +113,7 @@ export default class Associations extends Component {
               // const icon_urls = {
               // }
               return (
-                <div className="assocard col-lg-6 col-sm-12">
+                <div key={e.id} className="assocard col-lg-6 col-sm-12">
                   <DisplayAssociations
                     name={e.name}
                     logo={e.logo}

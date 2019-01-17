@@ -13,9 +13,9 @@ state = {
 }
  getLocations =() => {
      axios
-        .get ('/locations')
+        .get ('/locations',{headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
         .then (reponse => this.setState ({locations : reponse.data, isLoading: false}))
-        .then(console.log(this.state.locations))
         
  }
 
@@ -48,7 +48,7 @@ state = {
             </thead>
             <tbody>
               {this.state.locations.map((el, index) =>
-                <tr><td>{el.id}</td><td>{el.name}</td><td>{el.img_url}</td>
+                <tr key={index}><td>{el.id}</td><td>{el.name}</td><td>{el.img_url}</td>
                   <td>{tabDepartement[el.departements_id-1]}</td><td><Link to={'/modifyLocation/' + el.id}>
               <button>Modifier</button></Link><button onClick={() => this.handleChangeDelete(el.id)}>Supprimer</button></td></tr> )}
             </tbody>

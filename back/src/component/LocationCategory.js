@@ -2,7 +2,7 @@ import React  from 'react';
 const Departements= ({handleChange,value})=>{
     return (
         <div className="form-group">
-                <label class="control-label">Catégorie* </label>
+                <label className="control-label">Catégorie* </label>
                     <select required name="departements_id" onChange={handleChange} value={value}>
                         <option name="departements_id" value="">Sélectionner la catégorie.</option>
                         <option name="departements_id" value="1">Paris Centre</option>
