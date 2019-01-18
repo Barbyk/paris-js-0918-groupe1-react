@@ -108,7 +108,8 @@ class Calendrier extends PureComponent {
 
     var startDate = moment(this.state.event_start_on).format("YYYY-MM-DD H:mm:ss");
     var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD H:mm:ss");
-    axios.post('events', {
+    console.log(startDate,endDate)
+    axios.post('/api/events', {
       users_id: 1, locations_id: this.state.location_selected, is_active: 1, title: "["+this.state.asso_name+"] "+this.state.event_title, description: this.state.description,
       begin_date: startDate, end_date: endDate
     })
