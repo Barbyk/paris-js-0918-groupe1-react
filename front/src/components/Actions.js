@@ -106,7 +106,7 @@ class Actions extends Component {
 
   getAction = async () => {
     await axios
-      .get("/actions")
+      .get("/api/actions")
       .then(response =>
         this.setState({ actionList: response.data, isLoading: false })
       );
