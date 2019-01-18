@@ -38,18 +38,19 @@
 
 .logo:hover{
         
-        animation: logo-spin infinite 50s linear; }
-        
-       
-      
-      @keyframes logo-spin {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(10deg);
-        } 
-       }
+    animation: logo-spin infinite 1.3s linear; }
+    
+   
+  
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(6deg);
+    } 
+   }
+ 
      
 
 
