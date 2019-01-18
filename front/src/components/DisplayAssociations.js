@@ -128,15 +128,11 @@ export default class DisplayAssociations extends Component {
                 {this.props.name}
               </ModalHeader>
               <ModalBody className="modal-corps">
-                {this.props.description
+               {this.props.description
                   ? this.props.description
                   : "Description à venir."}
-                {/* <div className="divier"></div>
-                <p>{this.props.address}</p>
-                <p>{this.props.mail}</p>
-                <a href={this.props.web_site}><p>site web</p></a>
-                <p>{this.props.phone}</p>
-                <div className="divier"></div> */}
+                   <div class="modaldseparation">
+                   </div>
                 <div className=" container  d-flex justify-content-around">
                 <div className="row justify-content-center">
                   {this.props.icon
