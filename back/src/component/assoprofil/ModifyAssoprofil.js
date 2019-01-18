@@ -55,6 +55,7 @@ class ModifyNewAssoprofil extends Component {
       // our formdata
       const formData = new FormData();
       formData.append("file", image);
+      formData.append("secure", true)
       formData.append("tags", 'LOGO'); // Add tags for the images - {Array}
       formData.append("upload_preset", "wj40wyla"); // Replace the preset name with your own
       formData.append("api_key", process.env.REACT_APP_CLOUDINARY_API_KEY); // Replace API key with your own Cloudinary API key
@@ -65,7 +66,7 @@ class ModifyNewAssoprofil extends Component {
         `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_API_SECRET}/image/upload`,
         formData, 
         { headers: { "X-Requested-With": "XMLHttpRequest" }})
-        .then(response => this.setState({ modifyInputValue : { ...this.state.modifyInputValue, logo : response.data.url }}))
+        .then(response => this.setState({ modifyInputValue : { ...this.state.modifyInputValue, logo : response.data.secure_url }}))
         
     });
 

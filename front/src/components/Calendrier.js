@@ -48,7 +48,7 @@ class Calendrier extends PureComponent {
   }
   getLocations = () => {
 
-    axios.get('/locations/')
+    axios.get('/api/locations/')
       .then(response => {
         this.setState({
           locations: response.data
@@ -62,7 +62,7 @@ class Calendrier extends PureComponent {
 
   getEvents = (locationid = 0) => {
 
-    axios.get('/events/location/' + locationid)
+    axios.get('/api/events/location/' + locationid)
       .then(response => {
         let appointments = response.data;
 
@@ -82,7 +82,7 @@ class Calendrier extends PureComponent {
 
   getMultipleEvents = async (locationid = 0) => {
 
-    await axios.post('/events/multiplelocations/', {id:locationid})
+    await axios.post('/api/events/multiplelocations/', {id:locationid})
       .then(response => {
         if (response.data){
         let appointments = response.data;
@@ -108,7 +108,8 @@ class Calendrier extends PureComponent {
 
     var startDate = moment(this.state.event_start_on).format("YYYY-MM-DD H:mm:ss");
     var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD H:mm:ss");
-    axios.post('events', {
+    console.log(startDate,endDate)
+    axios.post('/api/events', {
       users_id: 1, locations_id: this.state.location_selected, is_active: 1, title: "["+this.state.asso_name+"] "+this.state.event_title, description: this.state.description,
       begin_date: startDate, end_date: endDate
     })
@@ -132,7 +133,7 @@ class Calendrier extends PureComponent {
     var startDate = moment(this.state.event_start_on).format("YYYY-MM-DD H:mm:ss");
     var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD H:mm:ss");
 
-    axios.put('/events/' + this.state.currentEvent.id, {
+    axios.put('/api/events/' + this.state.currentEvent.id, {
       users_id: 1, is_active: 1, locations_id: this.state.location_selected, title: this.state.event_title, description:this.state.description,
       begin_date: startDate, end_date: endDate
     })
@@ -153,7 +154,7 @@ class Calendrier extends PureComponent {
 
   deleteEvent = (element) => {
 
-    axios.put('/events/' + this.state.currentEvent.id, {
+    axios.put('/api/events/' + this.state.currentEvent.id, {
       is_active: 0, users_id: 1, locations_id: this.state.location_selected
     })
       .then(response => {
@@ -176,12 +177,11 @@ class Calendrier extends PureComponent {
     })
   }
   toggleAddModal = slotInfo => {
-
     if (!this.state.isEditModalOpen) {
 
       this.setState({
         event_start_on : slotInfo ? moment(slotInfo.start).format("YYYY-MM-DDTHH:mm") : undefined,
-        event_end_on : slotInfo ? moment(slotInfo.end).format("YYYY-MM-DDTHH:mm") : undefined,
+        event_end_on : slotInfo ? (slotInfo.start === slotInfo.end) ? moment(slotInfo.end).add(2,"hours").format("YYYY-MM-DDTHH:mm"): moment(slotInfo.end).format("YYYY-MM-DDTHH:mm")  : undefined,
         isAddModalOpen: !this.state.isAddModalOpen,
       });
     }
@@ -397,7 +397,7 @@ class Calendrier extends PureComponent {
               <label>
                 Nom de l'évenement :
                     </label>
-              <AvField type="text" name="event_title" value={(currentEvent||"").title} onChange={this.handleInputChange} required />
+              <AvField type="text" name="event_title" value={(currentEvent||"").title} onChange={this.handleInputChange} required  />
               <label>
                 Description :
                     </label>
@@ -427,7 +427,7 @@ class Calendrier extends PureComponent {
               <div className="dropdown" style={{ fontSize: "2vh" }}>
                    
 
-                    <AvField type="select" name="locations_id" onChange={this.handleLocationChange} value={this.state.location_selected} required validate={{
+                    <AvField type="select" name="locations_id" onChange={this.handleLocationChange} value={this.state.location_selected}required validate={{
                       required: { value: true, errorMessage: "Veuillez séléctionner un lieu" }
                     }}>
 
@@ -467,17 +467,17 @@ class Calendrier extends PureComponent {
                 <label>
                   Nom de l'évenement :
                     </label>
-                <AvField type="text" name="event_title" onChange={this.handleInputChange} required validate={{
+                <AvField type="text" name="event_title" onChange={this.handleInputChange}  placeholder="Exemple : Maraude mobile"  required validate={{
               required: {value: true, errorMessage: "Veuillez saisir une valeur"}}}/>
                 <label>
                   Nom de l'association :
                     </label>
-                <AvField type="text" name="asso_name" value={asso_name} onChange={this.handleInputChange} required validate={{
+                <AvField type="text" name="asso_name" value={asso_name} onChange={this.handleInputChange} placeholder="Exemple : Les Restos du Coeur" required validate={{
               required: {value: true, errorMessage: "Veuillez saisir une valeur"}}}/>
                 <label>
                   Description :
                     </label>
-                <AvField type="text" name="description" onChange={this.handleInputChange} />
+                <AvField type="textarea" name="description" placeholder="Exemple : 150 sandwichs; 150 bouteilles d'eau; 25 kits hygieniques..." onChange={this.handleInputChange} />
                 <label>
                   Début :
                     </label>

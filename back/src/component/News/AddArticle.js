@@ -76,9 +76,10 @@ class AddArticle extends Component {
           // our formdata
           const formData = new FormData();
           formData.append("file", image);
+          formData.append("secure", true)
           formData.append("tags", 'image article'); // Add tags for the images - {Array}
           formData.append("upload_preset", "wj40wyla"); // Replace the preset name with your own
-          formData.append("api_key", `${process.env.REACT_APP_CLOUDINARY_API_KEY}`); // Replace API key with your own Cloudinary API key
+          formData.append("api_key", process.env.REACT_APP_CLOUDINARY_API_KEY); // Replace API key with your own Cloudinary API key
           formData.append("timestamp", (Date.now() / 1000) | 0);
     
           // Replace cloudinary upload URL with yours
@@ -86,7 +87,7 @@ class AddArticle extends Component {
             `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_API_SECRET}/image/upload`,
             formData, 
             { headers: { "X-Requested-With": "XMLHttpRequest" }})
-            .then(response => this.setState({ news :{ ...this.state.news,img_url : response.data.url} }))
+            .then(response => this.setState({ news :{ ...this.state.news,img_url : response.data.secure_url} }))
             
         });
     

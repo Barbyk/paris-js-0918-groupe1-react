@@ -106,7 +106,7 @@ class Actions extends Component {
 
   getAction = async () => {
     await axios
-      .get("/actions")
+      .get("/api/actions")
       .then(response =>
         this.setState({ actionList: response.data, isLoading: false })
       );
@@ -134,7 +134,7 @@ class Actions extends Component {
                 {this.state.definition ? (
                   <Link to={"/actions/" + this.state.id}>
                     <button type="button" className="btngo">
-                      Liste des Associations
+                      Trouver une association
                     </button>
                   </Link>
                 ) : null}
