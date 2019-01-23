@@ -24,12 +24,12 @@ class Calendrier extends PureComponent {
     isAddModalOpen: false,
     isEditModalOpen: false,
     isFiltreModalOpen: false,
-    event_start_on: undefined,
-    event_end_on: undefined,
-    event_title: undefined,
-    description: undefined,
+    event_start_on: '',
+    event_end_on: '',
+    event_title: '',
+    description: '',
     asso_name:undefined,
-    currentEvent: null,
+    currentEvent: undefined,
     location_selected: undefined,
     locations: [],
     actions: [],
@@ -108,7 +108,6 @@ class Calendrier extends PureComponent {
 
     var startDate = moment(this.state.event_start_on).format("YYYY-MM-DD H:mm:ss");
     var endDate = moment(this.state.event_end_on).format("YYYY-MM-DD H:mm:ss");
-    console.log(startDate,endDate)
     axios.post('/api/events', {
       users_id: 1, locations_id: this.state.location_selected, is_active: 1, title: "["+this.state.asso_name+"] "+this.state.event_title, description: this.state.description,
       begin_date: startDate, end_date: endDate
@@ -312,7 +311,7 @@ class Calendrier extends PureComponent {
       <div className="calendrier">
         <div className="dropdown" style={{ fontSize: "2vh" }}>
                    
-          <label className="control-label">Lieu de la mauraude</label>{" "}
+          {/* <label className="control-label">Lieu de la mauraude</label>{" "} */}
           <select name="locations_id" onChange={this.handleLocationChange} value={this.state.location_selected}  >
 
             <option name="locations_id" value="">Sélectionner un lieu</option>
@@ -390,8 +389,8 @@ class Calendrier extends PureComponent {
            
           </Modal> */}
 
-          <Modal isOpen={isEditModalOpen} toggle={this.toggleEditModal}>
-            <ModalHeader toggle={this.toggle}>Modifier l'évenement</ModalHeader>
+          <Modal isOpen={isEditModalOpen} toggle={()=>this.setState({isEditModalOpen: !this.state.isEditModalOpen})}>
+            <ModalHeader toggle={()=>this.setState({isEditModalOpen: !this.state.isEditModalOpen})}>Modifier l'évenement</ModalHeader>
             <ModalBody><AvForm onValidSubmit={this.editEvent}>
             <p> Lieu : {(locations.find(x=>x.id===(currentEvent||"").locations_id)||"").name}</p>
               <label>
@@ -422,7 +421,7 @@ class Calendrier extends PureComponent {
             <ModalHeader toggle={this.toggleAddModal}>Ajouter un nouvel évenement</ModalHeader>
             <ModalBody>
               <AvForm onValidSubmit={this.createEvent}>
-              <p> Lieu : 
+              <div> Lieu : 
                 
               <div className="dropdown" style={{ fontSize: "2vh" }}>
                    
@@ -463,7 +462,7 @@ class Calendrier extends PureComponent {
                         })}
                       </optgroup>
                     </AvField>
-                  </div></p>
+                  </div></div>
                 <label>
                   Nom de l'évenement :
                     </label>
