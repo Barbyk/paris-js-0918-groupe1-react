@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans");
+.item {
+    background-color: rgb(166, 219, 240, 0);
+}
+
+/* @media only screen and (min-width: 1000px) { */
+
+.carousel-global {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    /* padding-bottom: 12vh; */
+    margin-top: 15px;
+}
+
+.carousel .carousel-status {
+    font-size: 0px;
+}
+
+.news {
+    padding: 0.5vh;
+    position: absolute;
+    background-color: rgb(0, 0, 0, 0.5);
+    width: 100%;
+    bottom: 0;
+}
+
+.text {
+    color: white;
+    text-shadow: 2px 2px black;
+}
+
+.carousel img {
+    height: 67vh;
+}
+
+.date {
+    color: white;
+    border-width: 0px 3px 0px 0px;
+    border-style: solid;
+    padding: 10px;
+    text-align: center;
+    font-family: "Josefin sans", sans-serif;
+    font-size: 2vw;
+}
+
+.text {
+    font-family: "Josefin sans", sans-serif;
+    font-size: 2vw;
+
+    padding-left: 3vw;
+}
+
+.carousel .control-dots {
+    background-color: rgb(255, 255, 0, 0);
+    position: relative;
+}
+
+.carousel .slide {
+    background: rgba(24, 110, 185, 0);
+    text-align: left;
+}
+
+.news .container-fluid {
+    align-items: center;
+    justify-content: start;
+    display: flex;
+}
+
+@media only screen and (max-width: 600px) {
+    .carousel-global {
+        width: 100%;
+        bottom: 0;
+        margin-top: 0
+        /* padding-bottom: 12vh; */
+    }
+    .carousel-slider {
+        background-color: rgb(42, 187, 172);
+    }
+    .news .container-fluid {
+        flex-direction: column;
+    }
+    .date {
+        font-size: 6.5vw;
+        margin-bottom: 3vh;
+        text-align: center;
+        border-width: 0px 0px 3px 0px;
+    }
+    .text {
+        font-size: 6vw;
+        padding-left: 2vh;
+        text-align: center;
+        margin-top: 2vh;
+        font-weight: bold;
+        font-family: "Happy Monkey";
+    }
+    .news {
+        height:30vh;
+        bottom: 0;
+        position: relative;
+        background-color: rgb(0, 0, 0, 0);
+        
+    }
+    .carousel img {
+        height: 38vh;
+        
+    }
+    .carousel .control-dots {
+        background-color: rgb(255, 255, 0, 0);
+        margin-bottom: 10vh
+}
+}

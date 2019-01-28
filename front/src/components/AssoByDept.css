@@ -1,0 +1,42 @@
+/* table {
+    width: 100%;
+}
+
+thead {
+    border-bottom: 3px solid rgb(100, 165, 173) !important
+} */
+
+.nobuttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* .twins {
+    margin: 30px 30px;
+    font-family: 'Josefin Sans'
+} */
+
+.number_page {
+  /* font-size: 150%; */
+  padding: 0 25px;
+}
+
+.back .row {
+  justify-content: center;
+}
+
+.back {
+  padding-bottom: 12vh;
+  padding-top: 4vh;
+}
+
+.btn-page {
+  background-color: #004c52 !important;
+  color: white !important;
+}
+
+.btn-page:hover {
+  background-color: white !important;
+  color: #004c52 !important;
+}

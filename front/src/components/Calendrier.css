@@ -1,0 +1,33 @@
+.rbc-event {
+    z-index: 999 !important;
+  }
+
+  @media screen and (max-width: 640px) {
+    select {max-width: 250px}
+    
+  }
+
+.calendrier {
+  background-color: #edf0f4;
+  padding-bottom: 8vh
+}
+
+.rbc-btn-group {
+  flex-grow: 1
+}
+.rbc-toolbar {
+  font-size: 2vh !important;
+  margin-bottom: 1vh !important;
+}
+
+.dropdown select {
+  overflow: hidden;
+  max-width: 90%;
+  padding: .375rem .75rem;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+}
+

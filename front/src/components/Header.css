@@ -1,0 +1,75 @@
+.nav-link {
+    margin-left: 3vw;
+    margin-right: 3vw;
+    font-size: 1.50em;
+    font-family: Pacifico;
+    color: rgb(151, 212, 79) !important;
+    transition-property: font-size, color;
+    transition-duration: 1s;
+}
+
+.nav-link:hover {
+   
+    color: rgb(159, 216, 126) !important;
+    font-size:1.8em;
+    text-shadow: 1px 1px 10px #b3b8b7;
+   
+    /* animation: App-logo-spin infinite 2s linear; */
+        
+}
+/* @keyframes App-logo-spin {
+    from {
+      transform: rotate(-15deg);
+    }
+    to {
+      transform: rotate(15deg);
+    } 
+   } */
+
+.collapse {
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    height: 15vh;
+    margin-left: 1vw;
+}
+
+.logo:hover{
+        
+    animation: logo-spin infinite 1.3s linear; }
+    
+   
+  
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(6deg);
+    } 
+   }
+ 
+     
+
+
+@media only screen and (max-width: 1000px) {
+    .logo {
+        height: 10vh;
+        margin-left: 0em;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        position: relative;
+    }
+}
+
+.navbar {
+    display: flex;
+    background: linear-gradient(to right, #017a83, #004c52);
+}
+
+.btn-menu {
+    font-family: 'Josefin Sans';
+    font-size: 1.25em !important;
+}
