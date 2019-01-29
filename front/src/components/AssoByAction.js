@@ -24,7 +24,7 @@ export default class AssoByAction extends Component {
 
   getAssoByAction() {
     axios
-      .get("/api/assoprofil/filterbyaction/" + Number(this.props.match.params.id))
+      .get("/api/public/assoprofil/filterbyaction/" + Number(this.props.match.params.id))
       .then(res => {
         this.setState({ asso: res.data });
         this.getAssoPerPage();
@@ -32,7 +32,7 @@ export default class AssoByAction extends Component {
   }
 
   getActions() {
-    axios.get("/api/actions").then(res => this.setState({ actions: res.data }));
+    axios.get("/api/public/actions").then(res => this.setState({ actions: res.data }));
   }
 
   getAssoPerPage() {

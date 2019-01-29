@@ -17,7 +17,7 @@ class Assoprofil extends Component {
   getAssoprofil = e => {
     this.setState({ isLoading: true })
     axios
-      .get("/assoprofil",{headers: {
+      .get("/api/private/assoprofil",{headers: {
         'Authorization': 'Bearer ' + localStorage.getItem("id_token")}
       })
       .then(response => this.setState({ assoProfil: response.data, isLoading: false }))
@@ -34,7 +34,7 @@ class Assoprofil extends Component {
     const response = window.confirm("Etes-vous certain de vouloir supprimer ?");
     if (response) {
       axios
-        .put("/assoprofil/" + id, {...this.state.assoProfil[id-1], actions:[], "is_visible": "0" },{headers: {
+        .put("/api/private/assoprofil/" + id, {...this.state.assoProfil[id-1], actions:[], "is_visible": "0" },{headers: {
           'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
         .then(window.location.reload())
     }

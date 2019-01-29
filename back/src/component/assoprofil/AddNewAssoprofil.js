@@ -43,7 +43,7 @@ class AddNewAssoprofil extends Component {
     e.preventDefault();
 
     axios
-      .post("/assoprofil", this.state.addInputValue,{headers: {
+      .post("/api/private/assoprofil", this.state.addInputValue,{headers: {
         'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
         
       .then(this.setState({}))

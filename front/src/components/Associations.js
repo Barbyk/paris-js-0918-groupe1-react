@@ -23,14 +23,14 @@ export default class Associations extends Component {
   }
 
   getAsso() {
-    axios.get("/api/assoprofil").then(res => {
+    axios.get("/api/public/assoprofil").then(res => {
       this.setState({ asso: res.data });
       this.getAssoPerPage();
     });
   }
 
   getActions() {
-    axios.get("/api/actions").then(res => this.setState({ actions: res.data }));
+    axios.get("/api/public/actions").then(res => this.setState({ actions: res.data }));
   }
 
   getAssoPerPage() {
