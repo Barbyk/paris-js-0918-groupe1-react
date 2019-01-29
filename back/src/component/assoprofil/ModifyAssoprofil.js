@@ -80,7 +80,7 @@ class ModifyNewAssoprofil extends Component {
     getAssoprofil = e => {
         this.setState({ isLoading: true })
         axios
-            .get("/assoprofil/" + this.props.match.params.id,{headers: {
+            .get("/api/private/assoprofil/" + this.props.match.params.id,{headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
             .then(response => {
                 this.setState({ modifyInputValue: response.data[0], isLoading: false })})
@@ -94,7 +94,7 @@ class ModifyNewAssoprofil extends Component {
         e.preventDefault();
 
         axios
-            .put("/assoprofil/" + this.props.match.params.id, this.state.modifyInputValue,{headers: {
+            .put("/api/private/assoprofil/" + this.props.match.params.id, this.state.modifyInputValue,{headers: {
               'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
             .then(window.history.back() );
         alert("Les modifications sont enregistrées")

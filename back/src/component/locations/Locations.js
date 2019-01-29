@@ -13,7 +13,7 @@ state = {
 }
  getLocations =() => {
      axios
-        .get ('/locations',{headers: {
+        .get ('/api/private/locations',{headers: {
           'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
         .then (reponse => this.setState ({locations : reponse.data, isLoading: false}))
         
@@ -27,7 +27,7 @@ state = {
   const response = window.confirm("Etes-vous certain de vouloir supprimer ?");
   if (response) {
     axios
-      .put("/locations/" + id, { "is_active": "0" },{headers: {
+      .put("/api/private/locations/" + id, { "is_active": "0" },{headers: {
         'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
       .then(window.location.reload())
   }

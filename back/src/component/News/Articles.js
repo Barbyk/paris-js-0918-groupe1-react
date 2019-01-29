@@ -21,7 +21,7 @@ class Articles extends Component {
     getAssoprofil = e => {
         this.setState({ isLoading: true })
         axios
-            .get("/news",{headers: {
+            .get("/api/private/news",{headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
             .then(response => this.setState({ assoProfil: response.data, isLoading: false }))
 
@@ -32,7 +32,7 @@ class Articles extends Component {
         const response = window.confirm("Etes-vous certain de vouloir supprimer ?");
         if (response) {
             axios
-                .put("/news/" + id, { "is_active": "0" },{headers: {
+                .put("/api/private/news/" + id, { "is_active": "0" },{headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
                 .then(window.location.reload())
         }
