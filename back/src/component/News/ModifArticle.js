@@ -26,7 +26,7 @@ class ModifArticle extends Component {
     getAssoprofil = e => {
         this.setState({ isLoading: true })
         axios
-            .get("/news/" + this.props.match.params.id,{headers: {
+            .get("/api/private/news/" + this.props.match.params.id,{headers: {
               'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
             .then(response => {
               response.data[0].date = this.convertDate(response.data[0].date)
@@ -46,7 +46,7 @@ class ModifArticle extends Component {
         e.preventDefault();
 
         axios
-            .put("/news/" + this.props.match.params.id, this.state.modifyInputValue,{headers: {
+            .put("/api/private/news/" + this.props.match.params.id, this.state.modifyInputValue,{headers: {
               'Authorization': 'Bearer ' + localStorage.getItem("id_token")}})
             .then(window.history.back() );
         alert("Les modifications sont enregistrées")

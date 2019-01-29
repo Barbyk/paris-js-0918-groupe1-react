@@ -29,7 +29,7 @@ export default class AssoByDept extends Component {
         const dept = [75, 77, 78, 91, 92, 93, 94, 95]
         let id = dept.indexOf(Number(this.props.match.params.id)) + 1
 
-        axios.get('/api/assoprofil/filterbydept/' + id)
+        axios.get('/api/public/assoprofil/filterbydept/' + id)
             .then(res => {
                 this.setState({ asso: res.data })
                 this.getAssoPerPage();
@@ -39,7 +39,7 @@ export default class AssoByDept extends Component {
     }
 
     getActions() {
-        axios.get('/api/actions')
+        axios.get('/api/public/actions')
             .then(res => this.setState({ actions: res.data }))
 
     }
